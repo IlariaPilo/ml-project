@@ -1,0 +1,204 @@
+import numpy as np
+import scipy.special
+import utilities as u
+import gaussian_models as gm
+
+#####################################
+#                                   #
+#      GAUSSIAN MIXTURE MODELS      #
+#                                   #
+#####################################
+
+"""
+Computes the log-density of a GMM.
+:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+:param gmm is the gmm model. It is an array of M tuples (w, mu, C)
+"""
+def logpdf_GMM(X, gmm):
+    N = X.shape[1]
+    S = np.empty((0, N))
+
+    for (w, mu, C) in gmm:
+        row = gm.logpdf_GAU_ND(X, mu, C) + np.log(w)
+        S = np.vstack((S, row))
+
+    return scipy.special.logsumexp(S, axis=0), S
+
+
+"""
+Estimates the parameters of a GMM maximizing the likelihood of the training set by using the EM algorithm.
+:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+:param start_gmm is the initial gmm model. It is an array of M tuples (w, mu, C)
+:param version is the version of em: None - classic version, 'diag' - diagonal matrix, 'tied' tied covariance matrix
+:param threshold is the hyperparameter (when is the conversion reached?)
+:param isPrint when set to True the function prints information about iterations
+:param psi should be used to constrain the eigenvalues of the covariance matrices, to avoid unbounded solutions
+"""
+def em(X, start_gmm, version=None, threshold=10 ** (-6), isPrint=False, psi=None):
+    D, N = X.shape
+    M = len(start_gmm)
+    gmm = start_gmm
+    llNew = None
+    while True:
+        llOld = llNew
+        # compute the logpdf_GMM
+        logpdf, S = logpdf_GMM(X, gmm)
+        # compute llNew
+        llNew = np.sum(logpdf) / N
+        isPrint and print(llNew)
+        if llOld is not None and llNew - llOld < 0:
+            raise Exception("The log likelihood decreased!")
+        if llOld is not None and llNew - llOld < threshold:
+            # the algorithm is done
+            break
+        # compute the responsibilities (this should be a MxN matrix)
+        gamma = np.exp(S - logpdf)
+        # compute the statistics
+        Z = u.vcol(np.sum(gamma, axis=1))  # M size array
+        F = np.dot(X, gamma.T).T  # MxD matrix
+        gamma_ = np.reshape(gamma, (M, 1, N))
+        X_ = np.reshape(X, (1, D, N))
+        S = np.dot(X_ * gamma_, X.T)  # MxDxD matrix
+        # compute the new parameters
+        mu = F / Z  # MxD matrix
+        w = Z / np.sum(Z)  # M size array
+        C = S / np.reshape(Z, (M, 1, 1)) - np.reshape(mu, (M, D, 1)) * np.reshape(mu, (M, 1, D))
+        if version=='diagonal':
+            # make it diagonal
+            C = C * np.eye(C.shape[1])
+        elif version=='tied':
+            # compute the covariance matrix
+            C = np.sum(np.reshape(Z, (M, 1, 1)) * C, axis=0) / N
+            C = np.repeat(np.reshape(C, (1, C.shape[0], C.shape[1])), M, axis=0)
+        if psi is not None:
+            U, s, _ = np.linalg.svd(C)
+            s[s < psi] = psi
+            C = np.matmul(U, np.reshape(s, (M, D, 1)) * np.transpose(U, (0, 2, 1)))
+        # update the gmm
+        gmm = list(zip(w, mu, C))
+    return gmm
+
+
+"""
+A wrapper of em() with version='diag'.
+:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+:param start_gmm is the initial gmm model. It is an array of M tuples (w, mu, C)
+:param threshold is the hyperparameter (when is the conversion reached?)
+:param isPrint when set to True the function prints information about iterations
+:param psi should be used to constrain the eigenvalues of the covariance matrices, to avoid unbounded solutions
+"""
+def diag_em(X, start_gmm, threshold=10 ** (-6), isPrint=False, psi=None):
+    return em(X, start_gmm, 'diag', threshold, isPrint, psi)
+
+
+"""
+A wrapper of em() with version='tied'.
+:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+:param start_gmm is the initial gmm model. It is an array of M tuples (w, mu, C)
+:param threshold is the hyperparameter (when is the conversion reached?)
+:param isPrint when set to True the function prints information about iterations
+:param psi should be used to constrain the eigenvalues of the covariance matrices, to avoid unbounded solutions
+"""
+def tied_em(X, start_gmm, threshold=10 ** (-6), isPrint=False, psi=None):
+    return em(X, start_gmm, 'tied', threshold, isPrint, psi)
+
+
+"""
+Constructs a GMM with 2*G components starting from a GMM with G components.
+:param gmm_G is the initial gmm
+:alpha hyperparameter of the LGB algorithm
+"""
+def split_LBG(gmm_G, alpha=0.1):
+    gmm_2G = []
+    for (w, mu, C) in gmm_G:
+        mu = u.vcol(mu)
+        w_2G = w / 2
+        U, s, _ = np.linalg.svd(C)
+        d = U[:, 0:1] * s[0] ** 0.5 * alpha
+        gmm_2G.append((w_2G, mu + d, C))
+        gmm_2G.append((w_2G, mu - d, C))
+    return gmm_2G
+
+
+"""
+Generates a GMM of exponentially-increasing size using the LBG algorithm fitting the dataset X.
+:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+:param G is the final number of components we want to gain
+:param em_algorithm is the em algorithm we want to use (em, diag_em, tied_em)
+:alpha hyperparameter of the LGB algorithm
+:param threshold is the hyperparameter (when is the conversion reached?)
+:param isPrint when set to True the function prints information about iterations
+:param psi should be used to constrain the eigenvalues of the covariance matrices, to avoid unbounded solutions
+"""
+def gmm_LBG(X, G, em_algorithm=em, alpha=0.1, threshold=10 ** (-6), isPrint=False, psi=None):
+    mu = u.get_m_ML(X)
+    C = u.get_C_ML(X, mu)
+    if em_algorithm==diag_em:
+        C = C * np.eye(C.shape[0])
+    if psi is not None:
+        U, s, _ = np.linalg.svd(C)
+        s[s < psi] = psi
+        C = np.dot(U, u.vcol(s) * U.T)
+    gmm = [(1.0, mu, C)]
+    M = 1
+    while M < G:
+        # split gmm
+        gmm = split_LBG(gmm, alpha)
+        # call EM
+        gmm = em_algorithm(X, gmm, threshold=threshold, isPrint=isPrint, psi=psi)
+        M *= 2
+    return gmm
+
+
+"""
+Trains a GMM of exponentially-increasing size.
+:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+:param L is the array of knows labels for such samples
+:param G is the final number of components we want to gain
+:param em_algorithm is the em algorithm we want to use (em, diag_em, tied_em)
+:alpha hyperparameter of the LGB algorithm
+:param threshold is the hyperparameter (when is the conversion reached?)
+:param isPrint when set to True the function prints information about iterations
+:param psi should be used to constrain the eigenvalues of the covariance matrices, to avoid unbounded solutions
+"""
+def gmm_fit(X, L, G, em_algorithm=em, alpha=0.1, threshold=10 ** (-6), isPrint=False, psi=None):
+    gmm_list = []
+    # compute number of classes
+    K = np.max(L) + 1
+    # for each class
+    for i in range(K):
+        # select the samples for that class
+        L_i = X[:, L == i]
+        # compute the gmm
+        gmm = gmm_LBG(L_i, G, em_algorithm, alpha, threshold, isPrint, psi)
+        gmm_list.append(gmm)
+
+    return gmm_list
+
+
+"""
+Classifies a dataset applying the given GMM model.
+:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+:param gmm_list is the GMM model
+:param K is the number of classes (default 2: binary problem)
+:param prior is the prior probability of each class (if None, it is computed)
+"""
+def gmm_predict(X, gmm_list, K=2, prior=None):
+    S = np.empty((0, X.shape[1]))
+    if prior is None:
+        prior = np.array([1 / K] * K)
+        prior = u.vcol(prior)
+    # for each class
+    for i in range(K):
+        # compute the likelihoods for the class i and save them in the score matrix
+        logpdf, _ = logpdf_GMM(X, gmm_list[i])
+        S = np.vstack((S, np.exp(logpdf)))
+    # multiply by prior probabilities
+    SJoint = S * prior
+    # compute marginal
+    SMarginal = u.vrow(SJoint.sum(0))
+    # finally, compute posterior probabilities
+    SPost = SJoint / SMarginal
+    # predict the label as the class associated with the highest probability
+    predL = np.argmax(SPost, axis=0)
+    return predL

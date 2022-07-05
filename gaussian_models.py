@@ -118,13 +118,17 @@ Applies any Gaussian classifier.
 :param mu_s is the set of means of the gaussian model
 :param C_s is the set of covariance matrices of the gaussian model
 :param K is the number of classes (default 2: binary problem)
+:param prior is the prior probability of each class (if None, it is computed)
 """
-def mvg_predict(X, mu_s, C_s, K=2):
+def mvg_predict(X, mu_s, C_s, K=2, prior=None):
     SJoint = np.empty((0, X.shape[1]))
+    if prior is None:
+        prior = np.array([1 / K] * K)
+        prior = u.vcol(prior)
     # for each class
     for i in range(K):
         # compute the likelihoods for the class i and save them in the score matrix
-        SJoint = np.append(SJoint, u.vrow(np.exp(logpdf_GAU_ND(X, u.vcol(mu_s[:, i]), C_s[i] if len(C_s.shape) == 3 else C_s))) / 3, axis=0)
+        SJoint = np.append(SJoint, u.vrow(np.exp(logpdf_GAU_ND(X, u.vcol(mu_s[:, i]), C_s[i] if len(C_s.shape) == K else C_s))) / prior[i], axis=0)
 
     # compute the marginal
     SMarginal = u.vrow(SJoint.sum(0))
@@ -143,14 +147,17 @@ Applies any logarithmic Gaussian classifier.
 :param mu_s is the set of means of the gaussian model
 :param C_s is the set of covariance matrices of the gaussian model
 :param K is the number of classes (default 2: binary problem)
+:param prior is the prior probability of each class (if None, it is computed)
 """
-def mvg_log_predict(X, mu_s, C_s, K=2):
+def mvg_log_predict(X, mu_s, C_s, K=2, prior=None):
     logSJoint = np.empty((0, X.shape[1]))
-
+    if prior is None:
+        prior = np.array([1 / K] * K)
+        prior = u.vcol(prior)
     # for each class
-    for i in range(2):
+    for i in range(K):
         # compute the likelihoods for the class i and save them in the score matrix
-        logSJoint = np.append(logSJoint, u.vrow(logpdf_GAU_ND(X, u.vcol(mu_s[:, i]), C_s[i] if len(C_s.shape) == 3 else C_s)) - np.log(3), axis=0)
+        logSJoint = np.append(logSJoint, u.vrow(logpdf_GAU_ND(X, u.vcol(mu_s[:, i]), C_s[i] if len(C_s.shape) == K else C_s)) + np.log(prior[i]), axis=0)
 
     # compute the marginal
     logSMarginal = u.vrow(scipy.special.logsumexp(logSJoint, axis=0))

@@ -58,7 +58,7 @@ Returns the between class covariance matrix.
 :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
 :param L is the array of knows labels for such samples  
 """
-def betweenClass(X, L):
+def between_class(X, L):
     # initialize Sb
     Sb = 0
     # compute the dataset mean
@@ -93,7 +93,7 @@ def lda_generalized(X, L, m, orth_basis=False):
     # first, compute the within class covariance matrix
     Sw = within_class(X, L)
     # then, compute the between class covariance matrix
-    Sb = betweenClass(X, L)
+    Sb = between_class(X, L)
     # solve the generalized eigenvalue problem
     s, U = scipy.linalg.eigh(Sb, Sw)
     W = U[:, ::-1][:, 0:m]
@@ -117,7 +117,7 @@ def lda_joint_diag(X, L, m):
     # first, compute the within class covariance matrix
     Sw = within_class(X, L)
     # then, compute the between class covariance matrix
-    Sb = betweenClass(X, L)
+    Sb = between_class(X, L)
 
     # compute the SVD of Sw
     Uw, s, _ = np.linalg.svd(Sw)
