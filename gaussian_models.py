@@ -111,65 +111,24 @@ def mvg_tied_naive_bayes_fit(X, L):
     return mu_s, C_s
 
 
-# -------------- gaussian estimators -------------- #
-"""
-Applies any Gaussian classifier.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param mu_s is the set of means of the gaussian model
-:param C_s is the set of covariance matrices of the gaussian model
-:param K is the number of classes (default 2: binary problem)
-:param prior is the prior probability of each class (if None, it is computed)
-"""
-def mvg_predict(X, mu_s, C_s, K=2, prior=None):
-    SJoint = np.empty((0, X.shape[1]))
-    if prior is None:
-        prior = np.array([1 / K] * K)
-        prior = u.vcol(prior)
-    # for each class
-    for i in range(K):
-        # compute the likelihoods for the class i and save them in the score matrix
-        SJoint = np.append(SJoint, u.vrow(np.exp(logpdf_GAU_ND(X, u.vcol(mu_s[:, i]), C_s[i] if len(C_s.shape) == K else C_s))) / prior[i], axis=0)
-
-    # compute the marginal
-    SMarginal = u.vrow(SJoint.sum(0))
-    # now, compute the posterior probabilities
-    SPost = SJoint/SMarginal
-
-    # predict the label as the class associated with the highest probability
-    predictedL = np.argmax(SPost, axis=0)
-
-    return predictedL
-
-
+# -------------- binary gaussian estimators -------------- #
 """
 Applies any logarithmic Gaussian classifier.
 :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
 :param mu_s is the set of means of the gaussian model
 :param C_s is the set of covariance matrices of the gaussian model
-:param K is the number of classes (default 2: binary problem)
-:param prior is the prior probability of each class (if None, it is computed)
+:param pi is the prior probability of class 1
 """
-def mvg_log_predict(X, mu_s, C_s, K=2, prior=None):
-    logSJoint = np.empty((0, X.shape[1]))
-    if prior is None:
-        prior = np.array([1 / K] * K)
-        prior = u.vcol(prior)
-    # for each class
-    for i in range(K):
-        # compute the likelihoods for the class i and save them in the score matrix
-        logSJoint = np.append(logSJoint, u.vrow(logpdf_GAU_ND(X, u.vcol(mu_s[:, i]), C_s[i] if len(C_s.shape) == K else C_s)) + np.log(prior[i]), axis=0)
-
-    # compute the marginal
-    logSMarginal = u.vrow(scipy.special.logsumexp(logSJoint, axis=0))
-
-    # now, compute the posterior probabilities
-    logSPost = logSJoint - logSMarginal
-
-    SPost = np.exp(logSPost)
-    # predict the label as the class associated with the highest probability
-    predictedL = np.argmax(SPost, axis=0)
-
-    return predictedL
+def mvg_log_predict(X, mu_s, C_s, pi=0.5):
+    # compute threshold
+    t = -np.log(pi/(1-pi))
+    # get log-density for class 1
+    ll1 = logpdf_GAU_ND(X, u.vcol(mu_s[:,1]), C_s[1] if len(C_s) == 2 else C_s)
+    # get log-density for class 0
+    ll0 = logpdf_GAU_ND(X, u.vcol(mu_s[:,0]), C_s[0] if len(C_s) == 2 else C_s)
+    S = ll1-ll0
+    predL = S > t
+    return predL.astype(int), S
 
 
 # -------------- k-fold -------------- #

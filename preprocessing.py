@@ -139,17 +139,25 @@ def lda_joint_diag(X, L, m):
 # -------------- features gaussianization -------------- #
 """
 Computes the features gaussianization of the given dataset.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+:param X is the TRAIN dataset matrix
+:param X is the TEST dataset matrix
 """
-def feats_gaussianization(X):
-    N = X.shape[1]
-    # compute ranks of features
-    order = X.argsort(axis=1)
+def feats_gaussianization(trainX, testX):
+    D, N = trainX.shape
+    # compute ranks of train features
+    order = trainX.argsort(axis=1)
     ranks = order.argsort(axis=1)
-    # add 1 and divide by N+2
-    ranks = (ranks+1)/(N+2)
     # compute the inverse of the cumulative distribution function of the standard normal distribution
-    return norm.ppf(ranks)
+    gauss_train = norm.ppf((ranks+1)/(N+2))
+    # now, compute ranks of test features
+    ranks = np.empty((D,0), dtype=int)
+    for i in range(testX.shape[1]):
+        sample = u.vcol(testX[:,i])
+        mask = trainX<sample
+        ranks = np.hstack((ranks, u.vcol(np.sum(mask, axis=1))))
+    gauss_test = norm.ppf((ranks + 1) / (N + 2))
+    return gauss_train, gauss_test
+
 
 
 # -------------- plot functions -------------- #

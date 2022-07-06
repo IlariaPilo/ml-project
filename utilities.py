@@ -54,3 +54,24 @@ notice the following relation holds: err_rate = 1 - accuracy
 """
 def err_rate(predL, L):
     return np.sum(predL != L) / L.size
+
+
+"""
+Splits the dataset into a training part and an evaluation part.
+:param X is the dataset
+:param L is the array of labels
+:param train_perc is the percentage of samples we want to keep for training
+:param seed is used to set up the random generator to obtain consistent results
+"""
+def split_dataset(X, L, train_perc, seed=0):
+    nTrain = int(X.shape[1] * train_perc / 100.0)
+    np.random.seed(seed)
+    idx = np.random.permutation(X.shape[1])
+    idxTrain = idx[0:nTrain]
+    idxTest = idx[nTrain:]
+    DTR = X[:, idxTrain]
+    DTE = X[:, idxTest]
+    LTR = L[idxTrain]
+    LTE = L[idxTest]
+    return (DTR, LTR), (DTE, LTE)
+
