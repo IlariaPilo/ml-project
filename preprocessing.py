@@ -2,6 +2,7 @@ import numpy as np
 import scipy
 import utilities as u
 import matplotlib.pyplot as plt
+import seaborn as sns
 from scipy.stats import norm
 
 #####################################
@@ -170,5 +171,38 @@ def feats_hist(X, L):
         plt.hist(X0[a, :], bins=20, density=True, alpha=0.4, color='blue')  # Male
         plt.hist(X1[a, :], bins=20, density=True, alpha=0.4, color='red')   # Female
         plt.tight_layout()  # Use with non-default font size to keep axis label inside the figure
+
+    plt.show()
+
+
+"""
+Prints three heatmaps to detect correlation between attributes.
+:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+:param L is the array of knows labels for such samples
+"""
+def feats_correlation(X, L):
+    X0 = X[:, L == 0]  # keep only columns related to label 0 (male)
+    X1 = X[:, L == 1]  # keep only columns related to label 1 (female)
+
+    # compute the Pearson Correlation Coefficient
+    corrX = np.corrcoef(X)
+    corrX0 = np.corrcoef(X0)
+    corrX1 = np.corrcoef(X1)
+
+    # print heatmaps
+    plt.figure()
+    plt.suptitle('Features correlation')
+
+    plt.subplot(1, 3, 1)
+    plt.title('Full dataset')
+    sns.heatmap(corrX, cmap='Greys', cbar=False, square=True)
+
+    plt.subplot(1, 3, 2)
+    plt.title('Male samples')
+    sns.heatmap(corrX0, cmap='Blues', cbar=False, square=True)
+
+    plt.subplot(1, 3, 3)
+    plt.title('Female samples')
+    sns.heatmap(corrX1, cmap='Reds', cbar=False, square=True)
 
     plt.show()
