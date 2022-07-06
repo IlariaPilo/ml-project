@@ -1,6 +1,8 @@
 import numpy as np
 import scipy
 import utilities as u
+import matplotlib.pyplot as plt
+from scipy.stats import norm
 
 #####################################
 #                                   #
@@ -131,3 +133,42 @@ def lda_joint_diag(X, L, m):
     P2 = Ub[:, 0:m]
 
     return np.dot(P1.T, P2)
+
+
+# -------------- features gaussianization -------------- #
+"""
+Computes the features gaussianization of the given dataset.
+:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+"""
+def feats_gaussianization(X):
+    N = X.shape[1]
+    # compute ranks of features
+    order = X.argsort(axis=1)
+    ranks = order.argsort(axis=1)
+    # add 1 and divide by N+2
+    ranks = (ranks+1)/(N+2)
+    # compute the inverse of the cumulative distribution function of the standard normal distribution
+    return norm.ppf(ranks)
+
+
+# -------------- plot functions -------------- #
+"""
+Plots two histograms for each feature: one (blue) representing values for male samples, and another (red) representing
+values for female samples.
+:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+:param L is the array of knows labels for such samples
+"""
+def feats_hist(X, L):
+    X0 = X[:, L == 0]   # keep only columns related to label 0 (male)
+    X1 = X[:, L == 1]   # keep only columns related to label 1 (female)
+
+    plt.figure()
+    plt.suptitle("Features histograms")
+
+    for a in range(12):  # for each attribute
+        plt.subplot(4,3,a+1)
+        plt.hist(X0[a, :], bins=20, density=True, alpha=0.4, color='blue')  # Male
+        plt.hist(X1[a, :], bins=20, density=True, alpha=0.4, color='red')   # Female
+        plt.tight_layout()  # Use with non-default font size to keep axis label inside the figure
+
+    plt.show()
