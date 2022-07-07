@@ -1,4 +1,3 @@
-import copy
 import numpy as np
 import scipy
 import utilities as u
@@ -235,31 +234,6 @@ def split_dataset(X, L, train_perc, seed=0):
     LTR = L[idxTrain]
     LTE = L[idxTest]
     return (DTR, LTR), (DTE, LTE)
-
-
-def hyperparams_combinations_R(hyperparams_items, pair_idx, res, curr_sol):
-    """
-    A recursive function to support k_fold_hyperparams_combinations_R
-    """
-    if pair_idx == len(hyperparams_items):
-        res.append(copy.deepcopy(curr_sol))
-        return
-    # get current pair (key, value)
-    key, value = hyperparams_items[pair_idx]
-    for v in value:
-        # add v in the current solution
-        curr_sol[key] = v
-        hyperparams_combinations_R(hyperparams_items, pair_idx + 1, res, curr_sol)
-
-
-def hyperparams_combinations(hyperparams):
-    """
-    Computes all hyperparameters combinations.
-    :param hyperparams is a dictionary of hyperparameters we want to test
-    """
-    res = []
-    hyperparams_combinations_R(list(hyperparams.items()), 0, res, {})
-    return len(res), res
 
 
 def k_fold(k, X, L, seed=0):

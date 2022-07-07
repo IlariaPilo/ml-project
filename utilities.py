@@ -1,4 +1,5 @@
 import numpy as np
+import copy
 
 #####################################
 #                                   #
@@ -56,3 +57,28 @@ def err_rate(predL, L):
     :param L is the array of actual labels
     """
     return np.sum(predL != L) / L.size
+
+
+def params_combinations_R(params_items, pair_idx, res, curr_sol):
+    """
+    A recursive function to support params_combinations
+    """
+    if pair_idx == len(params_items):
+        res.append(copy.deepcopy(curr_sol))
+        return
+    # get current pair (key, value)
+    key, value = params_items[pair_idx]
+    for v in value:
+        # add v in the current solution
+        curr_sol[key] = v
+        params_combinations_R(params_items, pair_idx + 1, res, curr_sol)
+
+
+def params_combinations(params):
+    """
+    Computes all parameters combinations.
+    :param params is a dictionary of parameters we want to test
+    """
+    res = []
+    params_combinations_R(list(params.items()), 0, res, {})
+    return res
