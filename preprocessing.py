@@ -12,13 +12,13 @@ from scipy.stats import norm
 #####################################
 
 # -------------- PCA -------------- #
-"""
-Computes the projection matrix for PCA.
-Once computed the projection matrix, we can appy it to a matrix of samples by performing XP = np.dot(P.T, X)
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param m is the dimensionality of the projection matrix we want to obtain
-"""
 def pca(X, m):
+    """
+    Computes the projection matrix for PCA.
+    Once computed the projection matrix, we can appy it to a matrix of samples by performing XP = np.dot(P.T, X)
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param m is the dimensionality of the projection matrix we want to obtain
+    """
     # first, compute the dataset mean
     mu = u.get_m_ML(X)
     # now, compute the covariance matrix
@@ -31,12 +31,12 @@ def pca(X, m):
 
 
 # -------------- LDA -------------- #
-"""
-Returns the within class covariance matrix.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples  
-"""
 def within_class(X, L):
+    """
+    Returns the within class covariance matrix.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    """
     # initialize Sw
     Sw = 0
     # compute the number of classes
@@ -56,12 +56,12 @@ def within_class(X, L):
     return Sw / X.shape[1]
 
 
-"""
-Returns the between class covariance matrix.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples  
-"""
 def between_class(X, L):
+    """
+    Returns the between class covariance matrix.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    """
     # initialize Sb
     Sb = 0
     # compute the dataset mean
@@ -83,16 +83,16 @@ def between_class(X, L):
     return Sb / X.shape[1]
 
 
-"""
-Computes the transformation matrix for LDA by solving the generalized eigenvalue problem.
-Once computed the transformation matrix, we can appy it to a matrix of samples by performing XP = np.dot(W.T, X)
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples  
-:param m is the dimensionality of the transformation matrix we want to obtain (AT MOST K-1, where K is the 
-number of classes)
-:param orth_basis should be set to True whenever we want W to be an orthogonal basis (usually it is not necessary)
-"""
 def lda_generalized(X, L, m, orth_basis=False):
+    """
+    Computes the transformation matrix for LDA by solving the generalized eigenvalue problem.
+    Once computed the transformation matrix, we can appy it to a matrix of samples by performing XP = np.dot(W.T, X)
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    :param m is the dimensionality of the transformation matrix we want to obtain (AT MOST K-1, where K is the
+    number of classes)
+    :param orth_basis should be set to True whenever we want W to be an orthogonal basis (usually it is not necessary)
+    """
     # first, compute the within class covariance matrix
     Sw = within_class(X, L)
     # then, compute the between class covariance matrix
@@ -108,15 +108,15 @@ def lda_generalized(X, L, m, orth_basis=False):
     return W
 
 
-"""
-Computes the transformation matrix for LDA by solving the eigenvalue problem by joint diagonalization of Sb and Sw.
-Once computed the transformation matrix, we can appy it to a matrix of samples by performing XP = np.dot(W.T, X)
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples  
-:param m is the dimensionality of the transformation matrix we want to obtain (AT MOST K-1, where K is the 
-number of classes)
-"""
 def lda_joint_diag(X, L, m):
+    """
+    Computes the transformation matrix for LDA by solving the eigenvalue problem by joint diagonalization of Sb and Sw.
+    Once computed the transformation matrix, we can appy it to a matrix of samples by performing XP = np.dot(W.T, X)
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    :param m is the dimensionality of the transformation matrix we want to obtain (AT MOST K-1, where K is the
+    number of classes)
+    """
     # first, compute the within class covariance matrix
     Sw = within_class(X, L)
     # then, compute the between class covariance matrix
@@ -137,12 +137,12 @@ def lda_joint_diag(X, L, m):
 
 
 # -------------- features gaussianization -------------- #
-"""
-Computes the features gaussianization of the given dataset.
-:param X is the TRAIN dataset matrix
-:param X is the TEST dataset matrix
-"""
 def feats_gaussianization(trainX, testX):
+    """
+    Computes the features gaussianization of the given dataset.
+    :param X is the TRAIN dataset matrix
+    :param X is the TEST dataset matrix
+    """
     D, N = trainX.shape
     # compute ranks of train features
     order = trainX.argsort(axis=1)
@@ -159,15 +159,14 @@ def feats_gaussianization(trainX, testX):
     return gauss_train, gauss_test
 
 
-
 # -------------- plot functions -------------- #
-"""
-Plots two histograms for each feature: one (blue) representing values for male samples, and another (red) representing
-values for female samples.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples
-"""
 def feats_hist(X, L):
+    """
+    Plots two histograms for each feature: one (blue) representing values for male samples, and another (red) representing
+    values for female samples.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    """
     X0 = X[:, L == 0]   # keep only columns related to label 0 (male)
     X1 = X[:, L == 1]   # keep only columns related to label 1 (female)
 
@@ -183,12 +182,12 @@ def feats_hist(X, L):
     plt.show()
 
 
-"""
-Prints three heatmaps to detect correlation between attributes.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples
-"""
 def feats_correlation(X, L):
+    """
+    Prints three heatmaps to detect correlation between attributes.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    """
     X0 = X[:, L == 0]  # keep only columns related to label 0 (male)
     X1 = X[:, L == 1]  # keep only columns related to label 1 (female)
 
@@ -214,3 +213,25 @@ def feats_correlation(X, L):
     sns.heatmap(corrX1, cmap='Reds', cbar=False, square=True)
 
     plt.show()
+
+
+# -------------- split dataset -------------- #
+def split_dataset(X, L, train_perc, seed=0):
+    """
+    Splits the dataset into a training part and an evaluation part.
+    :param X is the dataset
+    :param L is the array of labels
+    :param train_perc is the percentage of samples we want to keep for training
+    :param seed is used to set up the random generator to obtain consistent results
+    """
+    nTrain = int(X.shape[1] * train_perc / 100.0)
+    np.random.seed(seed)
+    idx = np.random.permutation(X.shape[1])
+    idxTrain = idx[0:nTrain]
+    idxTest = idx[nTrain:]
+    DTR = X[:, idxTrain]
+    DTE = X[:, idxTest]
+    LTR = L[idxTrain]
+    LTE = L[idxTest]
+    return (DTR, LTR), (DTE, LTE)
+

@@ -9,13 +9,13 @@ import utilities as u
 #####################################
 
 # -------------- log-density and log-likelihood -------------- #
-"""
-Computes the log-density of the dataset X. 
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param mu is the mean of each feature, having size (D,1) -> it is a column vector
-:param C is the covariance matrix, having size (D,D)
-"""
 def logpdf_GAU_ND(X, mu, C):
+    """
+    Computes the log-density of the dataset X.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param mu is the mean of each feature, having size (D,1) -> it is a column vector
+    :param C is the covariance matrix, having size (D,D)
+    """
     D = np.shape(C)[0]
     _, log_C = np.linalg.slogdet(C)
     const = -0.5*D*np.log(2*np.pi) - 0.5*log_C
@@ -24,23 +24,23 @@ def logpdf_GAU_ND(X, mu, C):
     return const - 0.5*np.sum(A.T*B, axis=0)
 
 
-"""
-Computes the log-likelihood of the dataset X. 
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param mu is the mean of each feature, having size (D,1) -> it is a column vector
-:param C is the covariance matrix, having size (D,D)
-"""
 def loglikelihood(X, mu, C):
+    """
+    Computes the log-likelihood of the dataset X.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param mu is the mean of each feature, having size (D,1) -> it is a column vector
+    :param C is the covariance matrix, having size (D,D)
+    """
     return np.sum(logpdf_GAU_ND(X, mu, C))
 
 
 # -------------- gaussian classifiers -------------- #
-"""
-Trains the model for a Multivariate Gaussian Classifier.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples
-"""
 def mvg_fit(X, L):
+    """
+    Trains the model for a Multivariate Gaussian Classifier.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    """
     mu_s = np.empty((X.shape[0], 0))
     C_s = np.empty((0, X.shape[0]))
     # compute the number of classes
@@ -57,12 +57,12 @@ def mvg_fit(X, L):
     return mu_s, np.reshape(C_s, (K, X.shape[0], X.shape[0]))
 
 
-"""
-Trains the model for a Naive Bayes Multivariate Gaussian Classifier.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples
-"""
 def mvg_naive_bayes_fit(X, L):
+    """
+    Trains the model for a Naive Bayes Multivariate Gaussian Classifier.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    """
     # re-use the mgc
     mu_s, C_s = mvg_fit(X, L)
     # diagonalize C_s
@@ -71,12 +71,12 @@ def mvg_naive_bayes_fit(X, L):
     return mu_s, C_s
 
 
-"""
-Trains the model for a Tied Covariance Multivariate Gaussian Classifier.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples
-"""
 def mvg_tied_covariance_fit(X, L):
+    """
+    Trains the model for a Tied Covariance Multivariate Gaussian Classifier.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    """
     mu_s = np.empty((X.shape[0], 0))
     Sw = 0
     # compute the number of classes
@@ -97,12 +97,12 @@ def mvg_tied_covariance_fit(X, L):
     return mu_s, Sw / X.shape[1]
 
 
-"""
-Trains the model for a Tied Naive Bayes Gaussian Classifier.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples
-"""
 def mvg_tied_naive_bayes_fit(X, L):
+    """
+    Trains the model for a Tied Naive Bayes Gaussian Classifier.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    """
     # re-use the tied cgc
     mu_s, C_s = mvg_tied_covariance_fit(X, L)
     # diagonalize C_s
@@ -112,14 +112,14 @@ def mvg_tied_naive_bayes_fit(X, L):
 
 
 # -------------- binary gaussian estimators -------------- #
-"""
-Applies any logarithmic Gaussian classifier.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param mu_s is the set of means of the gaussian model
-:param C_s is the set of covariance matrices of the gaussian model
-:param pi is the prior probability of class 1
-"""
 def mvg_log_predict(X, mu_s, C_s, pi=0.5):
+    """
+    Applies any logarithmic Gaussian classifier.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param mu_s is the set of means of the gaussian model
+    :param C_s is the set of covariance matrices of the gaussian model
+    :param pi is the prior probability of class 1
+    """
     # compute threshold
     t = -np.log(pi/(1-pi))
     # get log-density for class 1
@@ -129,43 +129,3 @@ def mvg_log_predict(X, mu_s, C_s, pi=0.5):
     S = ll1-ll0
     predL = S > t
     return predL.astype(int), S
-
-
-# -------------- k-fold -------------- #
-# TODO --- either expand or delete these, if not useful
-"""
-Applies a basic k-fold approach.
-:param k is the number of folds
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples
-:param classifier is the type of gaussian classifier we want to use (eg, mvg_tied_naive_bayes_fit)
-:param evaluator is the type of evaluator we want to use (eg, mvg_log_predict) 
-"""
-def k_fold(k, X, L, classifier, evaluator):
-    N = X.shape[1]  # N is the number of samples
-    numberTestSamples = N//k
-    predL = np.empty(N)
-    for i in range(0, k):
-        # compute train and test set
-        testMask = [False]*N
-        testMask[i*numberTestSamples:(i+1)*numberTestSamples if i!=(k-1) else N] = [True]*(numberTestSamples + (N % k if i==(k-1) else 0))
-        testX = X[:, testMask]
-        trainX = X[:, np.logical_not(testMask)]
-        trainL = L[np.logical_not(testMask)]
-        # create classifier
-        mu_s, C_s = classifier(trainX, trainL)
-        predL[i*numberTestSamples] = evaluator(testX, mu_s, C_s)
-    # compute accuracy and error and return them
-    return u.accuracy(predL, L), u.err_rate(predL, L)
-
-
-"""
-Simply calls k_fold with k=N, where N is the number of samples in the dataset.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples
-:param classifier is the type of gaussian classifier we want to use (eg, mvg_tied_naive_bayes_fit)
-:param evaluator is the type of evaluator we want to use (eg, mvg_log_predict) 
-"""
-def leave_one_out(X, L, classifier, evaluator):
-    N = X.shape[1]  # N is the number of samples
-    return k_fold(N, X, L, classifier, evaluator)

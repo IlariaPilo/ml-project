@@ -8,10 +8,10 @@ import scipy.optimize as opt
 #                                  #
 ####################################
 
-"""
-Define the function to be minimized and its gradient.
-"""
 def svm_obj_wrap(H_):
+    """
+    Define the function to be minimized and its gradient.
+    """
     def svm_obj(arg):
         # unpack the argument
         alpha = u.vcol(arg)
@@ -29,14 +29,14 @@ def svm_obj_wrap(H_):
 
 # -------------- linear support vector machine -------------- #
 # TODO ------------this does not give the exact prof's results-----------------------------------
-"""
-Builds the linear SVM solution through the dual formulation.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples
-:param C is a hyperparameter of SVM
-:param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
-"""
 def linear_svm_fit(X, L, C, K):
+    """
+    Builds the linear SVM solution through the dual formulation.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    :param C is a hyperparameter of SVM
+    :param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
+    """
     # build the extended matrix of training data
     X_ = np.vstack((X, u.vrow(np.array([K] * X.shape[1]))))
     # compute z
@@ -60,13 +60,13 @@ def linear_svm_fit(X, L, C, K):
     return w_, J
 
 
-"""
-Classifies a dataset applying the linear SVM.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param w_ is the linear SVM model
-:param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
-"""
 def linear_svm_predict(X, w_, K):
+    """
+    Classifies a dataset applying the linear SVM.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param w_ is the linear SVM model
+    :param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
+    """
     w_ = u.vcol(w_)
     # build the extended matrix of training data
     X_ = np.vstack([X, u.vrow(np.array([K] * X.shape[1]))])
@@ -78,15 +78,15 @@ def linear_svm_predict(X, w_, K):
     return predL
 
 
-"""
-Computes the SVM primal solution starting from the dual one, to check for its correctness.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples
-:param w_ is the linear SVM model
-:param C is a hyperparameter of SVM
-:param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
-"""
 def primal_solution(X, L, w_, C, K):
+    """
+    Computes the SVM primal solution starting from the dual one, to check for its correctness.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    :param w_ is the linear SVM model
+    :param C is a hyperparameter of SVM
+    :param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
+    """
     w_ = u.vcol(w_)
     # build the extended matrix of training data
     X_ = np.vstack([X, u.vrow(np.array([K] * X.shape[1]))])
@@ -100,36 +100,36 @@ def primal_solution(X, L, w_, C, K):
 
 
 # -------------- linear support vector machine -------------- #
-"""
-A polynomial kernel.
-:param d is the degree of the polynomial
-:param c is the kernel hyperparameter
-"""
 def poly_kernel(d, c=0):
+    """
+    A polynomial kernel.
+    :param d is the degree of the polynomial
+    :param c is the kernel hyperparameter
+    """
     def kernel(x1, x2):
         return (np.dot(x1.T,x2)+c)**d
     return kernel
 
 
-"""
-A Radial Basis Function kernel.
-:param gamma is the kernel hyperparameter
-"""
 def radial_kernel(gamma):
+    """
+    A Radial Basis Function kernel.
+    :param gamma is the kernel hyperparameter
+    """
     def kernel(x1, x2):
         return np.exp(-gamma*(np.linalg.norm(x1-x2) ** 2))
     return kernel
 
 
-"""
-Builds the kernel SVM solution.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples
-:param C is a hyperparameter of SVM
-:param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
-:param kernel is the kernel function we want to apply
-"""
 def kernel_svm_fit(X, L, C, K, kernel):
+    """
+    Builds the kernel SVM solution.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    :param C is a hyperparameter of SVM
+    :param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
+    :param kernel is the kernel function we want to apply
+    """
     # build the dual SVM solution through the dual formulation
     # compute z
     z = 2*L - 1
@@ -153,16 +153,16 @@ def kernel_svm_fit(X, L, C, K, kernel):
     return x, J
 
 
-"""
-Classifies a dataset applying the kernel SVM.
-:param X_test is the TEST dataset matrix
-:param alpha is the kernel SVM model
-:param X_train is the TRAIN dataset matrix
-:param L_train is the array of knows labels for TRAIN samples
-:param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
-:param kernel is the kernel function we want to apply
-"""
 def kernel_svm_predict(X_test, alpha, X_train, L_train, K, kernel):
+    """
+    Classifies a dataset applying the kernel SVM.
+    :param X_test is the TEST dataset matrix
+    :param alpha is the kernel SVM model
+    :param X_train is the TRAIN dataset matrix
+    :param L_train is the array of knows labels for TRAIN samples
+    :param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
+    :param kernel is the kernel function we want to apply
+    """
     z = 2 * L_train - 1
     predL = np.empty(X_test.shape[1])
     for t in range(0, X_test.shape[1]):

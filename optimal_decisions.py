@@ -10,12 +10,12 @@ import matplotlib.pyplot as plt
 ################################################
 
 # -------------- confusion matrices utilities -------------- #
-"""
-Computes the confusion matrix for the provided sets of labels.
-:param trueL stores the actual labels of the dataset
-:param predL stores the predicted labels for sch dataset
-"""
 def confusion(trueL, predL):
+    """
+    Computes the confusion matrix for the provided sets of labels.
+    :param trueL stores the actual labels of the dataset
+    :param predL stores the predicted labels for sch dataset
+    """
     # compute K = number of classes
     K = np.max(trueL)+1
     # initialize the confusion matrix
@@ -25,29 +25,29 @@ def confusion(trueL, predL):
     return conf
 
 
-"""
-Computes the False Negative Rate of a given confusion matrix.
-"""
 def get_FNR(confusion):
+    """
+    Computes the False Negative Rate of a given confusion matrix.
+    """
     return confusion[0,1]/(confusion[0,1]+confusion[1,1])
 
 
-"""
-Computes the False Positive Rate of a given confusion matrix.
-"""
 def get_FPR(confusion):
+    """
+    Computes the False Positive Rate of a given confusion matrix.
+    """
     return confusion[1,0]/(confusion[0,0]+confusion[1,0])
 
 
 # -------------- Bayes Binary Evaluation -------------- #
-"""
-Computes optimal bayes decision from a binary loglikelihood ratio.
-:param S is the binary log-likelihood ratio
-:param pi_1 is the prior probability of class 1
-:param C_fn is the error cost of false negatives
-:param C_fp is the error cost of false positives
-"""
 def binary_optimal_decision(S, pi_1, C_fn, C_fp):
+    """
+    Computes optimal bayes decision from a binary loglikelihood ratio.
+    :param S is the binary log-likelihood ratio
+    :param pi_1 is the prior probability of class 1
+    :param C_fn is the error cost of false negatives
+    :param C_fp is the error cost of false positives
+    """
     # compute threshold
     t = - np.log((pi_1*C_fn)/(1-pi_1)/C_fp)
     # generate predL array
@@ -57,15 +57,15 @@ def binary_optimal_decision(S, pi_1, C_fn, C_fp):
     return predL
 
 
-"""
-Computes the Bayes (normalized) risk.
-:param confusion is the confusion matrix
-:param pi_1 is the prior probability of class 1
-:param C_fn is the error cost of false negatives
-:param C_fp is the error cost of false positives
-:param normalized when set to true, the normalized bayes risk is computed
-"""
 def dcf(confusion, pi_1, C_fn, C_fp, normalized=False):
+    """
+    Computes the Bayes (normalized) risk.
+    :param confusion is the confusion matrix
+    :param pi_1 is the prior probability of class 1
+    :param C_fn is the error cost of false negatives
+    :param C_fp is the error cost of false positives
+    :param normalized when set to true, the normalized bayes risk is computed
+    """
     FNR = get_FNR(confusion)
     FPR = get_FPR(confusion)
     DCF = pi_1*C_fn*FNR + (1-pi_1)*C_fp*FPR
@@ -75,16 +75,16 @@ def dcf(confusion, pi_1, C_fn, C_fp, normalized=False):
         return DCF
 
 
-"""
-Computes the DCF obtained with the optimal threshold to understand the effect of mis-calibration.
-:param S is the binary log-likelihood ratio
-:param trueL stores the actual labels of the dataset
-:param pi_1 is the prior probability of class 1
-:param C_fn is the error cost of false negatives
-:param C_fp is the error cost of false positives
-:param normalized when set to true, the normalized bayes risk is computed
-"""
 def minimum_detection_cost(S, trueL, pi_1, C_fn, C_fp, normalized=False):
+    """
+    Computes the DCF obtained with the optimal threshold to understand the effect of mis-calibration.
+    :param S is the binary log-likelihood ratio
+    :param trueL stores the actual labels of the dataset
+    :param pi_1 is the prior probability of class 1
+    :param C_fn is the error cost of false negatives
+    :param C_fp is the error cost of false positives
+    :param normalized when set to true, the normalized bayes risk is computed
+    """
     # sort the values
     sortS = np.sort(S)
     # set up the minimum DCF
@@ -103,13 +103,13 @@ def minimum_detection_cost(S, trueL, pi_1, C_fn, C_fp, normalized=False):
 
 
 # -------------- plot functions -------------- #
-"""
-Plots the ROC curve.
-:param S is the binary log-likelihood ratio
-:param trueL stores the actual labels of the dataset
-:param file_name is the name of the file where we want to save the image, if any
-"""
 def roc_plot(S, trueL, file_name=None):
+    """
+    Plots the ROC curve.
+    :param S is the binary log-likelihood ratio
+    :param trueL stores the actual labels of the dataset
+    :param file_name is the name of the file where we want to save the image, if any
+    """
     # sort the values
     sortS = np.sort(S)
     # allocate FPR and TPR
@@ -135,16 +135,16 @@ def roc_plot(S, trueL, file_name=None):
         plt.savefig(file_name)
 
 
-"""
-Plots the Bayes error plots.
-:param S is the binary log-likelihood ratio
-:param trueL stores the actual labels of the dataset
-:param min_p is the minimum prior log-odd we want to consider
-:param max_p is the maximum prior log-odd we want to consider
-:param points is the number of points we want to consider
-:param file_name is the name of the file where we want to save the image, if any
-"""
 def bayes_error_plot(S, trueL, min_p_=-3, max_p_=3, points=21, file_name=None):
+    """
+    Plots the Bayes error plots.
+    :param S is the binary log-likelihood ratio
+    :param trueL stores the actual labels of the dataset
+    :param min_p is the minimum prior log-odd we want to consider
+    :param max_p is the maximum prior log-odd we want to consider
+    :param points is the number of points we want to consider
+    :param file_name is the name of the file where we want to save the image, if any
+    """
     # generate linear prior log-odds
     effPriorLogOdds = np.linspace(min_p_, max_p_, points)
     # generate the correspondent pi_

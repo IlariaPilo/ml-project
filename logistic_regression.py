@@ -9,13 +9,13 @@ import utilities as u
 #######################################
 
 # -------------- binary logistic regression -------------- #
-"""
-Trains the model for a Binary Logistic Regression classifier.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param L is the array of knows labels for such samples
-:param l is the hyperparameter lambda
-"""
 def binary_lr_fit(X, L, l):
+    """
+    Trains the model for a Binary Logistic Regression classifier.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    :param l is the hyperparameter lambda
+    """
     # build the binary logistic regression classifier
     def logreg_obj_wrap(X, L, l):
         def logreg_obj(arg):
@@ -36,13 +36,13 @@ def binary_lr_fit(X, L, l):
     return x[0:-1], x[-1], f    # that is, w, b and J(w,b)
 
 
-"""
-Applies a Binary Logistic Regression classifier.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param w is the first parameter of the LR classifier
-:param b is the second parameter of the LR classifier
-"""
 def binary_lr_predict(X, w, b):
+    """
+    Applies a Binary Logistic Regression classifier.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param w is the first parameter of the LR classifier
+    :param b is the second parameter of the LR classifier
+    """
     # fix w dimensions
     w = u.vcol(w)
     # compute scores

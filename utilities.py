@@ -6,72 +6,53 @@ import numpy as np
 #                                   #
 #####################################
 
-"""
-Automatically reshapes an array into a row vector.
-"""
+
 def vcol(v):
+    """
+    Automatically reshapes an array into a row vector.
+    """
     return v.reshape((v.size, 1))
 
 
-"""
-Automatically reshapes an array into a column vector.
-"""
 def vrow(v):
+    """
+    Automatically reshapes an array into a column vector.
+    """
     return v.reshape((1, v.size))
 
-"""
-Computes the empirical dataset mean.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-"""
+
 def get_m_ML(X):
+    """
+    Computes the empirical dataset mean.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    """
     return vcol(X.mean(1))
 
 
-"""
-Computes the empirical dataset covariance.
-:param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-:param mu is the empirical mean of the dataset
-"""
 def get_C_ML(X, mu=0):
+    """
+    Computes the empirical dataset covariance.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param mu is the empirical mean of the dataset
+    """
     return np.dot((X - mu), (X - mu).T) / X.shape[1]
 
 
-"""
-Computes the accuracy of a prediction.
-notice the following relation holds: err_rate = 1 - accuracy
-:param predL is the array of predicted labels
-:param L is the array of actual labels
-"""
 def accuracy(predL, L):
+    """
+    Computes the accuracy of a prediction.
+    notice the following relation holds: err_rate = 1 - accuracy
+    :param predL is the array of predicted labels
+    :param L is the array of actual labels
+    """
     return np.sum(predL == L) / L.size
 
 
-"""
-Computes the error rate of a prediction.
-notice the following relation holds: err_rate = 1 - accuracy
-:param predL is the array of predicted labels
-:param L is the array of actual labels
-"""
 def err_rate(predL, L):
+    """
+    Computes the error rate of a prediction.
+    notice the following relation holds: err_rate = 1 - accuracy
+    :param predL is the array of predicted labels
+    :param L is the array of actual labels
+    """
     return np.sum(predL != L) / L.size
-
-
-"""
-Splits the dataset into a training part and an evaluation part.
-:param X is the dataset
-:param L is the array of labels
-:param train_perc is the percentage of samples we want to keep for training
-:param seed is used to set up the random generator to obtain consistent results
-"""
-def split_dataset(X, L, train_perc, seed=0):
-    nTrain = int(X.shape[1] * train_perc / 100.0)
-    np.random.seed(seed)
-    idx = np.random.permutation(X.shape[1])
-    idxTrain = idx[0:nTrain]
-    idxTest = idx[nTrain:]
-    DTR = X[:, idxTrain]
-    DTE = X[:, idxTest]
-    LTR = L[idxTrain]
-    LTE = L[idxTest]
-    return (DTR, LTR), (DTE, LTE)
-
