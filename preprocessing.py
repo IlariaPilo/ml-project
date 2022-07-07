@@ -1,3 +1,4 @@
+import copy
 import numpy as np
 import scipy
 import utilities as u
@@ -235,3 +236,76 @@ def split_dataset(X, L, train_perc, seed=0):
     LTE = L[idxTest]
     return (DTR, LTR), (DTE, LTE)
 
+
+def k_fold_hyperparams_combinations_R(hyperparams_items, pair_idx, res, curr_sol):
+    """
+    A recursive function to support k_fold_hyperparams_combinations_R
+    """
+    if pair_idx == len(hyperparams_items):
+        res.append(copy.deepcopy(curr_sol))
+        return
+    # get current pair (key, value)
+    key, value = hyperparams_items[pair_idx]
+    for v in value:
+        # add v in the current solution
+        curr_sol[key] = v
+        k_fold_hyperparams_combinations_R(hyperparams_items, pair_idx+1, res, curr_sol)
+
+
+def k_fold_hyperparams_combinations(hyperparams):
+    """
+    Computes all hyperparameters combinations to support k-fold.
+    :param hyperparams is a dictionary of hyperparameters we want to test
+    """
+    res = []
+    k_fold_hyperparams_combinations_R(list(hyperparams.items()), 0, res, {})
+    return len(res), res
+
+
+def k_fold(k, X, L, seed=0):
+    """
+    Applies a basic k-fold approach.
+    :param k is the number of folds
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param L is the array of knows labels for such samples
+    :param seed is used to set up the random generator to obtain consistent results
+    """
+    N = X.shape[1]  # N is the number of samples
+    np.random.seed(seed)
+    idx = np.random.permutation(N)
+    fold_size = N // k
+    foldsX = []
+    foldsL = []
+    # fill the first k-1 folds
+    for i in range(0, k-1):
+        idxFold = idx[i*fold_size:(i+1)*fold_size]
+        foldsX.append(X[:, idxFold])
+        foldsL.append(L[idxFold])
+    # fill the last fold
+    idxFold = idx[(k-1)*fold_size:]
+    foldsX.append(X[:, idxFold])
+    foldsL.append(L[idxFold])
+    return foldsX, foldsL
+
+
+def k_fold_split_folds(i, foldsX, foldsL):
+    """
+    Splits the folds in training and validation folds
+    :param i is the iteration number
+    :param foldsX is the list of samples folds
+    :param foldsL is the list of labels folds
+    """
+    XTE = foldsX[i]
+    LTE = foldsL[i]
+    slice1_X = foldsX[:i]
+    slice2_X = foldsX[i+1:]
+    if len(slice1_X) != 0 and len(slice2_X) != 0:
+        XTR = np.hstack((np.hstack(slice1_X), np.hstack(slice2_X)))
+        LTR = np.concatenate((np.concatenate(foldsL[:i]), np.concatenate(foldsL[i + 1:])))
+    elif len(slice2_X) == 0:
+        XTR = np.hstack(slice1_X)
+        LTR = np.concatenate(foldsL[:i])
+    else:
+        XTR = np.hstack(slice2_X)
+        LTR = np.concatenate(foldsL[i+1:])
+    return (XTR, LTR), (XTE, LTE)
