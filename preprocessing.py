@@ -237,7 +237,7 @@ def split_dataset(X, L, train_perc, seed=0):
     return (DTR, LTR), (DTE, LTE)
 
 
-def k_fold_hyperparams_combinations_R(hyperparams_items, pair_idx, res, curr_sol):
+def hyperparams_combinations_R(hyperparams_items, pair_idx, res, curr_sol):
     """
     A recursive function to support k_fold_hyperparams_combinations_R
     """
@@ -249,16 +249,16 @@ def k_fold_hyperparams_combinations_R(hyperparams_items, pair_idx, res, curr_sol
     for v in value:
         # add v in the current solution
         curr_sol[key] = v
-        k_fold_hyperparams_combinations_R(hyperparams_items, pair_idx+1, res, curr_sol)
+        hyperparams_combinations_R(hyperparams_items, pair_idx + 1, res, curr_sol)
 
 
-def k_fold_hyperparams_combinations(hyperparams):
+def hyperparams_combinations(hyperparams):
     """
-    Computes all hyperparameters combinations to support k-fold.
+    Computes all hyperparameters combinations.
     :param hyperparams is a dictionary of hyperparameters we want to test
     """
     res = []
-    k_fold_hyperparams_combinations_R(list(hyperparams.items()), 0, res, {})
+    hyperparams_combinations_R(list(hyperparams.items()), 0, res, {})
     return len(res), res
 
 

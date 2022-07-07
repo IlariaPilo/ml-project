@@ -47,6 +47,10 @@ def main(config):
         # print the correlation between features
         preprocessing.feats_correlation(trainX, trainL)
 
+    # TODO
+    # get parameters combination
+    # hyperparams = preprocessing.hyperparams_combinations(config["hyperparams"])
+
     if config["k_fold"] is None:
         # >>>> SINGLE SPLIT <<<< #
         # split the dataset: we use 80% for training and 20% for evaluation
@@ -72,32 +76,33 @@ def main(config):
 
     else:
         # >>>> K-FOLD <<<< #
-        # get parameters combination
-        k, hyperparams = preprocessing.k_fold_hyperparams_combinations(config["hyperparams"])
+        k = config["k_fold"]
         # get folds
         foldsX, foldsL = preprocessing.k_fold(k, trainX, trainL)
-        # for each hyperparameter combination
-        for i in range(0,k):
-            # get hyperparameters and select folds
-            h_param = hyperparams[i]
-            print('--- hyperparameters: ' + str(h_param) + " ---")
+        predL = np.empty(0)
+        S = np.empty(0)
+        # for each fold
+        for i in range(0, k):
             (XTR, LTR), (XTE, LTE) = preprocessing.k_fold_split_folds(i, foldsX, foldsL)
 
             # ----------- 3b. preprocessing ----------- #
-            XTR, XTE = data_preprocessing(XTR, XTE, h_param, config["is_print"], LTR, LTE)
+            XTR, XTE = data_preprocessing(XTR, XTE, config["hyperparams"], config["is_print"], LTR, LTE)
 
             # ----------- 4b. modelling ----------- #
             params = model_fit(XTR, LTR, config["gaussian_fit"], None)
 
             # ----------- 5b. predicting ----------- #
-            predL, S = model_predict(XTE, params, config["gaussian_fit"], None)
+            predL_, S_ = model_predict(XTE, params, config["gaussian_fit"], None)
+            predL = np.concatenate((predL, predL_))
+            S = np.concatenate((S, S_))
 
-            # ----------- 6b. evaluation ----------- #
-            # we are using normalized min_dcf to evaluate the model
-            minDCF = optimal_decisions.minimum_detection_cost(S, LTE, 0.5, 1, 1, normalized=True)
-            print('minDCF: %f' % minDCF)
-            err = utilities.err_rate(predL, LTE) * 100
-            print('Error rate: %.3f' % err)
+        # ----------- 6b. evaluation ----------- #
+        trueL = np.hstack(foldsL)
+        # we are using normalized min_dcf to evaluate the model
+        minDCF = optimal_decisions.minimum_detection_cost(S, trueL, 0.5, 1, 1, normalized=True)
+        print('minDCF: %f' % minDCF)
+        err = utilities.err_rate(predL, trueL) * 100
+        print('Error rate: %.3f' % err)
 
 
 if __name__ == '__main__':
@@ -105,17 +110,16 @@ if __name__ == '__main__':
     config = {
         # is_print - if true, we generate plots
         "is_print": False,
-        # k_fold - if None, we use single fold.
-        # TODO ------ idk ------------- otherwise, it is an int storing the number of folds
-        "k_fold": True,
+        # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
+        "k_fold": 5,
         # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
         "gaussian_fit": gaussian_models.mvg_fit,
         "hyperparams": {
             # gaussianization - if true, we gaussianize the features
-            "gaussianization": [True, False],
+            "gaussianization": True,
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
-            "pca": [6,8,9,10]
+            "pca": None
         }
     }
     main(config)
