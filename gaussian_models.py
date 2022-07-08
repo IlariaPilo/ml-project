@@ -63,7 +63,7 @@ def mvg_naive_bayes_fit(X, L):
     :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
     :param L is the array of knows labels for such samples
     """
-    # re-use the mgc
+    # re-use the mvg
     mu_s, C_s = mvg_fit(X, L)
     # diagonalize C_s
     C_s = C_s*np.eye(X.shape[0])
@@ -103,7 +103,7 @@ def mvg_tied_naive_bayes_fit(X, L):
     :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
     :param L is the array of knows labels for such samples
     """
-    # re-use the tied cgc
+    # re-use the tied mvg
     mu_s, C_s = mvg_tied_covariance_fit(X, L)
     # diagonalize C_s
     C_s = C_s*np.eye(X.shape[0])
