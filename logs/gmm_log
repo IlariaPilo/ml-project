@@ -1,0 +1,130 @@
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 2, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.061823
+Error rate: 3.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 2, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.366137
+Error rate: 18.750
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 4, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.036670
+Error rate: 2.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 4, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.134963
+Error rate: 6.833
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 8, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.036637
+Error rate: 1.833
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 8, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.099877
+Error rate: 5.667
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 16, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.039971
+Error rate: 2.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 16, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.106511
+Error rate: 5.500
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 32, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.039971
+Error rate: 2.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 32, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.080141
+Error rate: 4.250
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 64, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.040237
+Error rate: 2.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 64, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.079808
+Error rate: 4.417
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 128, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.038287
+Error rate: 2.250
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 128, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.086409
+Error rate: 4.667
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 256, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.040037
+Error rate: 2.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 256, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.086542
+Error rate: 4.417
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 2, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.056772
+Error rate: 2.917
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 2, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.088459
+Error rate: 4.750
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 4, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.050005
+Error rate: 2.750
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 4, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.083542
+Error rate: 4.500
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 8, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.041721
+Error rate: 2.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 8, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.092976
+Error rate: 5.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 16, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.043338
+Error rate: 2.250
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 16, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.081658
+Error rate: 4.333
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 32, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.046671
+Error rate: 2.417
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 32, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.076474
+Error rate: 4.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 64, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.054989
+Error rate: 3.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 64, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.061523
+Error rate: 3.750
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 128, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.051822
+Error rate: 2.917
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 128, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.058356
+Error rate: 3.333
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 256, 'em': <function tied_em at 0x7fb8ff6aee60>}
+minDCF: 0.060139
+Error rate: 3.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 256, 'em': <function tied_diag_em at 0x7fb8ff6aeef0>}
+minDCF: 0.063273
+Error rate: 3.833
+
+Process finished with exit code 0
