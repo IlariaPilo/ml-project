@@ -30,7 +30,8 @@ def em(X, start_gmm, version=None, threshold=10 ** (-6), isPrint=False, psi=None
     Estimates the parameters of a GMM maximizing the likelihood of the training set by using the EM algorithm.
     :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
     :param start_gmm is the initial gmm model. It is an array of M tuples (w, mu, C)
-    :param version is the version of em: None - classic version, 'diag' - diagonal matrix, 'tied' tied covariance matrix
+    :param version is the version of em: None - classic version, 'diag' - diagonal matrix,
+    'tied' - tied covariance matrix, 'tied-diag' - tied and diagonal covariance matrix
     :param threshold is the hyperparameter (when is the conversion reached?)
     :param isPrint when set to True the function prints information about iterations
     :param psi should be used to constrain the eigenvalues of the covariance matrices, to avoid unbounded solutions
@@ -63,13 +64,13 @@ def em(X, start_gmm, version=None, threshold=10 ** (-6), isPrint=False, psi=None
         mu = F / Z  # MxD matrix
         w = Z / np.sum(Z)  # M size array
         C = S / np.reshape(Z, (M, 1, 1)) - np.reshape(mu, (M, D, 1)) * np.reshape(mu, (M, 1, D))
-        if version=='diagonal':
-            # make it diagonal
-            C = C * np.eye(C.shape[1])
-        elif version=='tied':
+        if version=='tied' or version=='tied-diag':
             # compute the covariance matrix
             C = np.sum(np.reshape(Z, (M, 1, 1)) * C, axis=0) / N
             C = np.repeat(np.reshape(C, (1, C.shape[0], C.shape[1])), M, axis=0)
+        if version == 'diagonal' or version=='tied-diag':
+            # make it diagonal
+            C = C * np.eye(C.shape[1])
         if psi is not None:
             U, s, _ = np.linalg.svd(C)
             s[s < psi] = psi
@@ -103,6 +104,18 @@ def tied_em(X, start_gmm, threshold=10 ** (-6), isPrint=False, psi=None):
     return em(X, start_gmm, 'tied', threshold, isPrint, psi)
 
 
+def tied_diag_em(X, start_gmm, threshold=10 ** (-6), isPrint=False, psi=None):
+    """
+    A wrapper of em() with version='tied-diag'.
+    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param start_gmm is the initial gmm model. It is an array of M tuples (w, mu, C)
+    :param threshold is the hyperparameter (when is the conversion reached?)
+    :param isPrint when set to True the function prints information about iterations
+    :param psi should be used to constrain the eigenvalues of the covariance matrices, to avoid unbounded solutions
+    """
+    return em(X, start_gmm, 'tied-diag', threshold, isPrint, psi)
+
+
 def split_LBG(gmm_G, alpha=0.1):
     """
     Constructs a GMM with 2*G components starting from a GMM with G components.
@@ -133,7 +146,7 @@ def gmm_LBG(X, G, em_algorithm=em, alpha=0.1, threshold=10 ** (-6), isPrint=Fals
     """
     mu = u.get_m_ML(X)
     C = u.get_C_ML(X, mu)
-    if em_algorithm==diag_em:
+    if em_algorithm==diag_em or em_algorithm==tied_diag_em:
         C = C * np.eye(C.shape[0])
     if psi is not None:
         U, s, _ = np.linalg.svd(C)
@@ -157,7 +170,7 @@ def gmm_fit(X, L, G, em_algorithm=em, alpha=0.1, threshold=10 ** (-6), isPrint=F
     :param L is the array of knows labels for such samples
     :param G is the final number of components we want to gain
     :param em_algorithm is the em algorithm we want to use (em, diag_em, tied_em)
-    :alpha hyperparameter of the LGB algorithm
+    :param alpha hyperparameter of the LGB algorithm
     :param threshold is the hyperparameter (when is the conversion reached?)
     :param isPrint when set to True the function prints information about iterations
     :param psi should be used to constrain the eigenvalues of the covariance matrices, to avoid unbounded solutions

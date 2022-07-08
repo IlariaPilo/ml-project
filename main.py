@@ -1,5 +1,6 @@
 import numpy as np
 
+import gaussian_mixture_models
 import load
 import preprocessing
 import support_vector_machines
@@ -162,13 +163,16 @@ if __name__ == '__main__':
             # TODO --- check weird results of quadratic regression
             # "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
             "quadratic_regression": [None],
+            # TODO --- weird svm too
             # svm - True if we want to use it. C and K are the related hyperparameters
-            "svm": [True],
+            "svm": [None],
             # None if we want linear svm
-            "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
-            "C": [1, 10],
-            "K": [1],
-
+            # "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
+            # "C": [1, 10],
+            # "K": [1],
+            # gmm - None if we don't want to use it, else is the number of components
+            "gmm": [2, 4, 8, 16, 32, 64, 128, 256],
+            "em": [gaussian_mixture_models.em, gaussian_mixture_models.diag_em]
         }
     }
     main(config)
