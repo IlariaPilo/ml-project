@@ -33,10 +33,10 @@ def model_fit(trainX, trainL, params):
     if params["gaussian_fit"] is not None:
         return params["gaussian_fit"](trainX, trainL)
     if params["logistic_regression"] is not None:
-        return logistic_regression.binary_lr_fit(trainX, trainL, params["logistic_regression"])
+        return logistic_regression.binary_lr_fit(trainX, trainL, params["logistic_regression"], pi=params["pi_t"])
     if params["quadratic_regression"] is not None:
         phi = logistic_regression.quadratic_expansion(trainX)
-        return logistic_regression.binary_lr_fit(phi, trainL, params["quadratic_regression"])
+        return logistic_regression.binary_lr_fit(phi, trainL, params["quadratic_regression"], pi=params["pi_t"])
     if params["svm"]:
         if params["kernel"] is None:
             return support_vector_machines.linear_svm_fit(trainX, trainL, params["C"], params["K"])
@@ -51,11 +51,11 @@ def model_predict(testX, model, params):
         return gaussian_models.mvg_log_predict(testX, mu_s, C_s, pi=params["pi_t"])
     if params["logistic_regression"] is not None:
         w, b, _ = model
-        return logistic_regression.binary_lr_predict(testX, w, b)
+        return logistic_regression.binary_lr_predict(testX, w, b, pi=params["pi_t"])
     if params["quadratic_regression"] is not None:
         w, b, _ = model
         phi = logistic_regression.quadratic_expansion(testX)
-        return logistic_regression.binary_lr_predict(phi, w, b)
+        return logistic_regression.binary_lr_predict(phi, w, b, pi=params["pi_t"])
     if params["svm"]:
         if params["kernel"] is None:
             w_, _ = model
@@ -156,15 +156,15 @@ if __name__ == '__main__':
             "gaussianization": [False, True],
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
-            "pca": [None, 10, 9, 8, 6],
+            "pca": [None, 8],
             # pi_t - the main application is 0.5. We focus also on biased applications
             "pi_t": [0.1, 0.9],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
-            "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
-                            gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
-            # "gaussian_fit": [None],
+            # "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
+            #                gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
+            "gaussian_fit": [None],
             # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
-            "logistic_regression": [None],
+            "logistic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
             # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
             # TODO --- check weird results of quadratic regression
             # "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],

@@ -9,29 +9,31 @@ import utilities as u
 #######################################
 
 # -------------- binary logistic regression -------------- #
-def binary_lr_fit(X, L, l):
+def binary_lr_fit(X, L, l, pi):
     """
     Trains the model for a Binary Logistic Regression classifier.
     :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
     :param L is the array of knows labels for such samples
     :param l is the hyperparameter lambda
+    :param pi is the prior probability of class 1
     """
     # build the binary logistic regression classifier
-    def logreg_obj_wrap(X, L, l):
+    def logreg_obj_wrap(X, L, l, pi):
+        # divide classes
+        X0 = X[:, L == 0]
+        X1 = X[:, L == 1]
         def logreg_obj(arg):
             # unpack the arguments
             w, b = u.vcol(arg[0:-1]), arg[-1]
             # norm term
             norm = 0.5 * l * (np.linalg.norm(w) ** 2)
-            # compute z
-            z = 2 * L - 1
-            # summation term
-            summation = np.sum(np.logaddexp(0, -z * (np.sum(w * X, axis=0) + b)))
-            n = X.shape[1]
-            return float(norm + summation / n)
+            # summation terms
+            sum0 = ((1-pi)/X0.shape[1]) * np.sum(np.logaddexp(0, (np.sum(w * X0, axis=0) + b)))
+            sum1 = (pi/X1.shape[1]) * np.sum(np.logaddexp(0, -(np.sum(w * X1, axis=0) + b)))
+            return float(norm + sum0 + sum1)
         return logreg_obj
 
-    logreg_obj = logreg_obj_wrap(X, L, l)
+    logreg_obj = logreg_obj_wrap(X, L, l, pi)
     x, f, d = opt.fmin_l_bfgs_b(func=logreg_obj, x0=np.zeros(X.shape[0] + 1), approx_grad=True, maxiter=30000, iprint=0)
     return x[0:-1], x[-1], f    # that is, w, b and J(w,b)
 
@@ -51,7 +53,7 @@ def binary_lr_predict(X, w, b, pi=0.5):
     S[1,:] = np.sum(w * X, axis=0) + b
     # assign labels
     predL = np.argmax(S, axis=0)
-    return predL, S[1,:]-np.log(pi/(1-pi))
+    return predL, S[1,:]
 
 
 # TODO --- check weird results
