@@ -1,5 +1,4 @@
 import numpy as np
-import scipy.special
 import utilities as u
 
 #####################################
@@ -17,6 +16,7 @@ def logpdf_GAU_ND(X, mu, C):
     :param C is the covariance matrix, having size (D,D)
     """
     D = np.shape(C)[0]
+    mu = u.vcol(mu)
     _, log_C = np.linalg.slogdet(C)
     const = -0.5*D*np.log(2*np.pi) - 0.5*log_C
     A = (X-mu).T

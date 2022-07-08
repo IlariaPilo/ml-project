@@ -189,29 +189,19 @@ def gmm_fit(X, L, G, em_algorithm=em, alpha=0.1, threshold=10 ** (-6), isPrint=F
     return gmm_list
 
 
-def gmm_predict(X, gmm_list, K=2, prior=None):
+def gmm_predict(X, gmm_list, pi=0.5):
     """
     Classifies a dataset applying the given GMM model.
     :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
     :param gmm_list is the GMM model
-    :param K is the number of classes (default 2: binary problem)
-    :param prior is the prior probability of each class (if None, it is computed)
+    :param pi is the prior associated to class 1
     """
-    S = np.empty((0, X.shape[1]))
-    if prior is None:
-        prior = np.array([1 / K] * K)
-        prior = u.vcol(prior)
-    # for each class
-    for i in range(K):
-        # compute the likelihoods for the class i and save them in the score matrix
-        logpdf, _ = logpdf_GMM(X, gmm_list[i])
-        S = np.vstack((S, np.exp(logpdf)))
-    # multiply by prior probabilities
-    SJoint = S * prior
-    # compute marginal
-    SMarginal = u.vrow(SJoint.sum(0))
-    # finally, compute posterior probabilities
-    SPost = SJoint / SMarginal
-    # predict the label as the class associated with the highest probability
-    predL = np.argmax(SPost, axis=0)
-    return predL
+    # compute threshold
+    t = -np.log(pi / (1 - pi))
+    # get log-density for class 1
+    ll1, _ = logpdf_GMM(X, gmm_list[1])
+    # get log-density for class 0
+    ll0, _ = logpdf_GMM(X, gmm_list[0])
+    S = ll1-ll0
+    predL = S > t
+    return predL.astype(int), S

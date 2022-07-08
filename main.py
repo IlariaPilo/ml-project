@@ -41,6 +41,8 @@ def model_fit(trainX, trainL, params):
         if params["kernel"] is None:
             return support_vector_machines.linear_svm_fit(trainX, trainL, params["C"], params["K"])
         return support_vector_machines.kernel_svm_fit(trainX, trainL, params["C"], params["K"], params["kernel"])
+    if params["gmm"] is not None:
+        return gaussian_mixture_models.gmm_fit(trainX, trainL, params["gmm"], params["em"])
 
 
 def model_predict(testX, model, params):
@@ -60,6 +62,9 @@ def model_predict(testX, model, params):
             return support_vector_machines.linear_svm_predict(testX, w_, params["K"])
         alpha, _, trainX, trainL = model
         return support_vector_machines.kernel_svm_predict(testX, alpha, trainX, trainL, params["K"], params["kernel"])
+    if params["gmm"] is not None:
+        return gaussian_mixture_models.gmm_predict(testX, model)
+
 
 
 def main(config):
