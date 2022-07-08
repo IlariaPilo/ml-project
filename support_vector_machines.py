@@ -75,7 +75,7 @@ def linear_svm_predict(X, w_, K, pi=0.5):
     S[1,:] = np.sum(w_*X_, axis=0)
     # assign labels
     predL = np.argmax(S, axis=0)
-    return predL, S[1,:]-np.log(pi/(1-pi))
+    return predL, S[1,:]
 
 
 def primal_solution(X, L, w_, C, K):
