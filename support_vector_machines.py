@@ -60,7 +60,7 @@ def linear_svm_fit(X, L, C, K):
     return w_, J
 
 
-def linear_svm_predict(X, w_, K):
+def linear_svm_predict(X, w_, K, pi=0.5):
     """
     Classifies a dataset applying the linear SVM.
     :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
@@ -75,7 +75,7 @@ def linear_svm_predict(X, w_, K):
     S[1,:] = np.sum(w_*X_, axis=0)
     # assign labels
     predL = np.argmax(S, axis=0)
-    return predL
+    return predL, S[1,:]-np.log(pi/(1-pi))
 
 
 def primal_solution(X, L, w_, C, K):
@@ -150,10 +150,10 @@ def kernel_svm_fit(X, L, C, K, kernel):
 
     # we have considered the negative in order to minimize instead of maximize
     J = -f
-    return x, J
+    return x, J, X, L
 
 
-def kernel_svm_predict(X_test, alpha, X_train, L_train, K, kernel):
+def kernel_svm_predict(X_test, alpha, X_train, L_train, K, kernel, pi=0.5):
     """
     Classifies a dataset applying the kernel SVM.
     :param X_test is the TEST dataset matrix
@@ -165,6 +165,7 @@ def kernel_svm_predict(X_test, alpha, X_train, L_train, K, kernel):
     """
     z = 2 * L_train - 1
     predL = np.empty(X_test.shape[1])
+    S = np.empty(X_test.shape[1])
     for t in range(0, X_test.shape[1]):
         x_t = u.vcol(X_test[:, t])
         score = 0
@@ -172,4 +173,5 @@ def kernel_svm_predict(X_test, alpha, X_train, L_train, K, kernel):
             x_i = u.vcol(X_train[:, i])
             score += alpha[i]*z[i]*(kernel(x_i,x_t)+(K**0.5))
         predL[t] = 0 if score<0 else 1
-    return predL
+        S[t] = score - np.log(pi/(1-pi))
+    return predL, S

@@ -2,9 +2,11 @@ import numpy as np
 
 import load
 import preprocessing
+import support_vector_machines
 import utilities
 import gaussian_models
 import optimal_decisions
+import logistic_regression
 
 
 def data_preprocessing(trainX, testX, params, is_print, trainL, testL):
@@ -26,15 +28,37 @@ def data_preprocessing(trainX, testX, params, is_print, trainL, testL):
     return trainX, testX
 
 
-def model_fit(trainX, trainL, gaussian_fit, _something_else_):
-    if gaussian_fit is not None:
-        return gaussian_fit(trainX, trainL)
+def model_fit(trainX, trainL, params):
+    if params["gaussian_fit"] is not None:
+        return params["gaussian_fit"](trainX, trainL)
+    if params["logistic_regression"] is not None:
+        return logistic_regression.binary_lr_fit(trainX, trainL, params["logistic_regression"])
+    if params["quadratic_regression"] is not None:
+        phi = logistic_regression.quadratic_expansion(trainX)
+        return logistic_regression.binary_lr_fit(phi, trainL, params["quadratic_regression"])
+    if params["svm"]:
+        if params["kernel"] is None:
+            return support_vector_machines.linear_svm_fit(trainX, trainL, params["C"], params["K"])
+        return support_vector_machines.kernel_svm_fit(trainX, trainL, params["C"], params["K"], params["kernel"])
 
 
-def model_predict(testX, model, gaussian_fit, _something_else_):
-    if gaussian_fit is not None:
+def model_predict(testX, model, params):
+    if params["gaussian_fit"] is not None:
         mu_s, C_s = model
         return gaussian_models.mvg_log_predict(testX, mu_s, C_s)
+    if params["logistic_regression"] is not None:
+        w, b, _ = model
+        return logistic_regression.binary_lr_predict(testX, w, b)
+    if params["quadratic_regression"] is not None:
+        w, b, _ = model
+        phi = logistic_regression.quadratic_expansion(testX)
+        return logistic_regression.binary_lr_predict(phi, w, b)
+    if params["svm"]:
+        if params["kernel"] is None:
+            w_, _ = model
+            return support_vector_machines.linear_svm_predict(testX, w_, params["K"])
+        alpha, _, trainX, trainL = model
+        return support_vector_machines.kernel_svm_predict(testX, alpha, trainX, trainL, params["K"], params["kernel"])
 
 
 def main(config):
@@ -65,10 +89,10 @@ def main(config):
             XTR_, XTE_ = data_preprocessing(XTR, XTE, param, config["is_print"], LTR, LTE)
 
             # ----------- 4a. modelling ----------- #
-            model = model_fit(XTR_, LTR, param["gaussian_fit"], None)
+            model = model_fit(XTR_, LTR, param)
 
             # ----------- 5a. predicting ----------- #
-            predL, S = model_predict(XTE_, model, param["gaussian_fit"], None)
+            predL, S = model_predict(XTE_, model, param)
 
             # ----------- 6a. evaluation ----------- #
             # we are using normalized min_dcf to evaluate the model
@@ -98,10 +122,10 @@ def main(config):
                 XTR, XTE = data_preprocessing(XTR, XTE, param, config["is_print"], LTR, LTE)
 
                 # ----------- 4b. modelling ----------- #
-                model = model_fit(XTR, LTR, param["gaussian_fit"], None)
+                model = model_fit(XTR, LTR, param)
 
                 # ----------- 5b. predicting ----------- #
-                predL_, S_ = model_predict(XTE, model, param["gaussian_fit"], None)
+                predL_, S_ = model_predict(XTE, model, param)
                 predL = np.concatenate((predL, predL_))
                 S = np.concatenate((S, S_))
 
@@ -120,16 +144,30 @@ if __name__ == '__main__':
         # is_print - if true, we generate plots
         "is_print": False,
         # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
-        "k_fold": 5,
+        "k_fold": None,
         "params": {
             # gaussianization - if true, we gaussianize the features
-            "gaussianization": [False, True],
+            "gaussianization": [False],
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
-            "pca": [None,10,9,8,6],
+            "pca": [None, 8],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
-            "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
-                             gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit]
+            # "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
+            #                 gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit]
+            "gaussian_fit": [None],
+            # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
+            "logistic_regression": [None],
+            # "pi_t": [0.5, 0.1, 0.9],
+            # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
+            # TODO --- check weird results of quadratic regression
+            # "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
+            "quadratic_regression": [None],
+            # svm - True if we want to use it. C and K are the related hyperparameters
+            "svm": [True],
+            "kernel": [support_vector_machines.poly_kernel(2)],     # None if we want linear svm
+            "C": [1, 10],
+            "K": [1],
+
         }
     }
     main(config)
