@@ -36,6 +36,7 @@ def em(X, start_gmm, version=None, threshold=10 ** (-6), isPrint=False, psi=None
     :param isPrint when set to True the function prints information about iterations
     :param psi should be used to constrain the eigenvalues of the covariance matrices, to avoid unbounded solutions
     """
+    eps = 10**(-12)
     D, N = X.shape
     M = len(start_gmm)
     gmm = start_gmm
@@ -47,7 +48,7 @@ def em(X, start_gmm, version=None, threshold=10 ** (-6), isPrint=False, psi=None
         # compute llNew
         llNew = np.sum(logpdf) / N
         isPrint and print(llNew)
-        if llOld is not None and llNew - llOld < 0:
+        if llOld is not None and llNew - llOld + eps < 0:
             raise Exception("The log likelihood decreased!")
         if llOld is not None and llNew - llOld < threshold:
             # the algorithm is done
@@ -163,7 +164,7 @@ def gmm_LBG(X, G, em_algorithm=em, alpha=0.1, threshold=10 ** (-6), isPrint=Fals
     return gmm
 
 
-def gmm_fit(X, L, G, em_algorithm=em, alpha=0.1, threshold=10 ** (-6), isPrint=False, psi=None):
+def gmm_fit(X, L, G, em_algorithm=em, alpha=0.1, threshold=10 ** (-6), isPrint=False, psi=0.01):
     """
     Trains a GMM of exponentially-increasing size.
     :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
