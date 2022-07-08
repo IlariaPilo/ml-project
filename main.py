@@ -164,7 +164,8 @@ if __name__ == '__main__':
             "quadratic_regression": [None],
             # svm - True if we want to use it. C and K are the related hyperparameters
             "svm": [True],
-            "kernel": [support_vector_machines.poly_kernel(2)],     # None if we want linear svm
+            # None if we want linear svm
+            "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
             "C": [1, 10],
             "K": [1],
 
