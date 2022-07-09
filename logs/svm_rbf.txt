@@ -30,3 +30,67 @@ Error rate: 50.500
 {'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fde9eecc3a0>, 'C': 10, 'K': 1, 'gmm': None}
 minDCF: 0.998316
 Error rate: 50.500
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x000001A764C6C040>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.048221
+Error rate: 2.667
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x000001A764C6C040>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.060106
+Error rate: 3.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x000001A764C6C0D0>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.093443
+Error rate: 17.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x000001A764C6C0D0>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.091759
+Error rate: 15.833
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x000001A764C6C040>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.061623
+Error rate: 3.417
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x000001A764C6C040>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.063373
+Error rate: 3.583
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x000001A764C6C0D0>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.098527
+Error rate: 7.417
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x000001A764C6C0D0>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.098527
+Error rate: 7.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fdceafbc680>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.051755
+Error rate: 2.750
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fdceafbc680>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.049938
+Error rate: 2.833
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fdceafbc710>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 1.000000
+Error rate: 50.500
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fdceafbc710>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 1.000000
+Error rate: 50.500
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fdceafbc680>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.051722
+Error rate: 2.667
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fdceafbc680>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.050072
+Error rate: 2.750
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fdceafbc710>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 1.000000
+Error rate: 50.500
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fdceafbc710>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 1.000000
+Error rate: 50.500
