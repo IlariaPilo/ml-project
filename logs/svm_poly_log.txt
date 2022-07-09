@@ -1,0 +1,101 @@
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f37f48d4e50>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.855702
+Error rate: 49.750
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f37f48d4e50>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.976098
+Error rate: 52.417
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f37f48d4ee0>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.773327
+Error rate: 42.250
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f37f48d4ee0>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.792563
+Error rate: 41.333
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f37f48d4e50>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.887855
+Error rate: 47.917
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f37f48d4e50>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.829716
+Error rate: 44.500
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f37f48d4ee0>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.854352
+Error rate: 44.833
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f37f48d4ee0>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.747775
+Error rate: 40.750
+
+Process finished with exit code 0
+
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4e50>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.998350
+Error rate: 47.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4e50>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.995050
+Error rate: 49.333
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4ee0>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.980198
+Error rate: 34.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4ee0>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.998350
+Error rate: 45.917
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4e50>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 1.009801
+Error rate: 46.750
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4e50>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.986532
+Error rate: 38.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4ee0>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.928393
+Error rate: 32.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4ee0>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.976431
+Error rate: 42.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4e50>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.965347
+Error rate: 48.250
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4e50>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.972247
+Error rate: 46.250
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4ee0>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.995050
+Error rate: 31.667
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4ee0>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.996700
+Error rate: 43.833
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4e50>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.996633
+Error rate: 45.500
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4e50>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 0.988215
+Error rate: 44.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4ee0>, 'C': 1, 'K': 1, 'gmm': None}
+minDCF: 0.932843
+Error rate: 33.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f05f0fc4ee0>, 'C': 10, 'K': 1, 'gmm': None}
+minDCF: 1.004750
+Error rate: 40.000
+
+Process finished with exit code 0
