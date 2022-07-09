@@ -173,9 +173,9 @@ if __name__ == '__main__':
             # svm - True if we want to use it. C and K are the related hyperparameters
             "svm": [True],
             # kernel is None if we want linear svm
-            "kernel": [None],
-            # "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
-            "C": [1],
+            # "kernel": [None],
+            "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
+            "C": [1, 10],
             "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
             "gmm": [None]
