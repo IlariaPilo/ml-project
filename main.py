@@ -82,6 +82,7 @@ def main(config):
 
     # get parameters combination
     params_list = utilities.params_combinations(config["params"])
+    i = 0
 
     if config["k_fold"] is None:
         # >>>> SINGLE SPLIT <<<< #
@@ -101,6 +102,11 @@ def main(config):
 
             # ----------- 5a. predicting ----------- #
             predL, S = model_predict(XTE_, model, param)
+
+            # save the scores
+            if config["save_scores"]:
+                np.save("scores/"+config["save_scores"]+'_'+str(i)+".npy", S)
+                i += 1
 
             # ----------- 6a. evaluation ----------- #
             # we are using normalized min_dcf to evaluate the model
@@ -137,6 +143,11 @@ def main(config):
                 predL = np.concatenate((predL, predL_))
                 S = np.concatenate((S, S_))
 
+            # save the scores
+            if config["save_scores"]:
+                np.save("scores/" + config["save_scores"] + str(i) + ".npy", S)
+                i += 1
+
             # ----------- 6b. evaluation ----------- #
             trueL = np.hstack(foldsL)
             # we are using normalized min_dcf to evaluate the model
@@ -150,7 +161,6 @@ def main(config):
                 res = calibration.calibrate(param["calibration"])
 
 
-
 if __name__ == '__main__':
     # ----------- 0. configuration ----------- #
     config = {
@@ -158,19 +168,21 @@ if __name__ == '__main__':
         "is_print": False,
         # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
         "k_fold": None,
+        # save_scores - if None, we do not save scores. Otherwise, it is the name of the file (without extension)
+        "save_scores": "MVG",
         # each parameter should be inside an array, even if it is just one value
         "params": {
             # gaussianization - if true, we gaussianize the features
             "gaussianization": [False],
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
-            "pca": [None],
+            "pca": [8],
             # pi_t - the main application is 0.5. We focus also on biased applications
             "pi_t": [0.5],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
             # "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
             #                gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
-            "gaussian_fit": [None],
+            "gaussian_fit": [gaussian_models.mvg_tied_covariance_fit],
             # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
             "logistic_regression": [None],
             # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
@@ -184,13 +196,13 @@ if __name__ == '__main__':
             # "C": [1, 10],
             # "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
-            "gmm": [2],
+            "gmm": [None],
             # "gmm": [2, 4, 8, 16, 32, 64, 128, 256],
             # "em": [gaussian_mixture_models.em, gaussian_mixture_models.diag_em]
-            "em": [gaussian_mixture_models.em],
+            # "em": [gaussian_mixture_models.tied_em],
 
             # calibration
-            "calibration": ["simple"]
+            "calibration": [None]
             # "calibration": ["simple", "recalibration_func"]
         }
     }

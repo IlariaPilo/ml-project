@@ -1,6 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+import load
+import optimal_decisions
+import preprocessing
+
 
 def linear_svm_plot():
     C = np.array([0.01, 0.1, 1, 10])
@@ -187,16 +191,26 @@ def lr_plot():
     plt.legend()
     plt.show()
 
+def gmm_plot_main():
+    pcaF_em = np.array([0.054989, 0.046805, 0.035020, 0.046538, 0.048455, 0.078324, 0.116378, 0.211705])
+    pcaF_diag = np.array([0.371721, 0.138897, 0.107761, 0.099810, 0.091926, 0.085259, 0.093476, 0.125463])
+    pca8_em = np.array([0.051789, 0.044988, 0.039971, 0.038387, 0.048255, 0.058389, 0.089776, 0.121162])
+    pca8_diag = np.array([0.095260, 0.093443, 0.096943, 0.086609, 0.091492, 0.093343, 0.103210, 0.146615])
+    pcaF_tied = np.array([0.061823, 0.036670, 0.036637, 0.039971, 0.039971, 0.040237, 0.038287, 0.040037])
+    pcaF_tied_diag = np.array([0.366137, 0.134963, 0.099877, 0.106511, 0.080141, 0.079808, 0.086409, 0.086542])
+    pca8_tied = np.array([0.056772, 0.050005, 0.041721, 0.043338, 0.046671, 0.076474, 0.061523, 0.060139])
+    pca8_tied_diag = np.array([0.088459, 0.083542, 0.092976, 0.081658, 0.054989, 0.051822, 0.058356, 0.063273])
+    gmm_plot(pcaF_em, pca8_em)
+    gmm_plot(pcaF_diag, pca8_diag)
+    gmm_plot(pcaF_tied, pca8_tied)
+    gmm_plot(pcaF_tied_diag, pca8_tied_diag)
+    gmm_plot2(pcaF_em, pcaF_diag, pcaF_tied, pcaF_tied_diag)
+    gmm_plot2(pca8_em, pca8_diag, pca8_tied, pca8_tied_diag)
 
 if __name__ == '__main__':
-    pcaF_em = np.array([0.054989,0.046805,0.035020,0.046538,0.048455,0.078324,0.116378,0.211705])
-    pcaF_diag = np.array([0.371721,0.138897,0.107761,0.099810,0.091926,0.085259,0.093476,0.125463])
-    pca8_em = np.array([0.051789,0.044988,0.039971,0.038387,0.048255,0.058389,0.089776,0.121162])
-    pca8_diag = np.array([0.095260,0.093443,0.096943,0.086609,0.091492,0.093343,0.103210,0.146615])
-    pcaF_tied = np.array([0.061823,0.036670,0.036637,0.039971,0.039971,0.040237,0.038287,0.040037])
-    pcaF_tied_diag = np.array([0.366137,0.134963,0.099877,0.106511,0.080141,0.079808,0.086409,0.086542])
-    pca8_tied = np.array([0.056772,0.050005,0.041721,0.043338,0.046671,0.076474,0.061523,0.060139])
-    pca8_tied_diag = np.array([0.088459,0.083542,0.092976,0.081658,0.054989,0.051822,0.058356,0.063273])
-    # gmm_plot(pcaF_tied_diag, pca8_tied_diag)
-    gmm_plot2(pca8_em, pca8_diag, pca8_tied, pca8_tied_diag)
-    # lr_plot()
+    trainX, trainL = load.load("data/Train")
+    (XTR, LTR), (XTE, LTE) = preprocessing.split_dataset(trainX, trainL, 80)
+    S1 = np.load("scores/GMM_4_tied.npy")
+    S2 = np.load("scores/MVG_tied_ pca8.npy")
+    optimal_decisions.det_plot([(S1, "Tied GMM, 4 components, no PCA"), (S2, "MVG, PCA (m = 8)")], LTE)
+    # optimal_decisions.roc_plot(S1, LTE)
