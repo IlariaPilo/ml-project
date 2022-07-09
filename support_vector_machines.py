@@ -27,9 +27,27 @@ def svm_obj_wrap(H_):
     return svm_obj, svm_obj_prime
 
 
+def svm_bounds(X, L, C, pi):
+    """
+    Prepares the bounds for balanced SVM.
+    """
+    # get samples proportion
+    N = X.shape[1]
+    N1 = X[:, L == 1].shape[1]
+    prop1 = N1/N
+    C1 = C*pi/prop1
+    C0 = C*(1-pi)/(1-prop1)
+    # compute bounds
+    bound_low = [0.0]*N
+    bound_high = np.array(bound_low)
+    bound_high[L == 1] = C1
+    bound_high[L == 0] = C0
+    bound = list(zip(bound_low, bound_high))
+    return bound
+
+
 # -------------- linear support vector machine -------------- #
-# TODO ------------this does not give the exact prof's results-----------------------------------
-def linear_svm_fit(X, L, C, K):
+def linear_svm_fit(X, L, C, K, pi):
     """
     Builds the linear SVM solution through the dual formulation.
     :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
@@ -47,7 +65,7 @@ def linear_svm_fit(X, L, C, K):
 
     svm_obj, svm_obj_prime = svm_obj_wrap(H_)
     # prepare the bounds
-    bounds = [(0,C)] * X.shape[1]
+    bounds = svm_bounds(X, L, C, pi)
     # call the optimizer
     x, f, d = opt.fmin_l_bfgs_b(func=svm_obj, x0=np.zeros(X.shape[1]), fprime=svm_obj_prime, bounds=bounds,
                                 factr=0.0, iprint=False)
@@ -78,27 +96,6 @@ def linear_svm_predict(X, w_, K):
     return predL, S[1,:]
 
 
-def primal_solution(X, L, w_, C, K):
-    """
-    Computes the SVM primal solution starting from the dual one, to check for its correctness.
-    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-    :param L is the array of knows labels for such samples
-    :param w_ is the linear SVM model
-    :param C is a hyperparameter of SVM
-    :param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
-    """
-    w_ = u.vcol(w_)
-    # build the extended matrix of training data
-    X_ = np.vstack([X, u.vrow(np.array([K] * X.shape[1]))])
-    z = 2*L - 1
-    # norm term
-    norm = 0.5 * (np.linalg.norm(w_) ** 2)
-    # summation term
-    summation = C * np.sum(np.max(np.vstack([np.zeros(L.shape), 1 - z * np.sum(w_*X_, axis=0)]), axis=0))
-
-    return norm + summation
-
-
 # -------------- linear support vector machine -------------- #
 def poly_kernel(d, c=0):
     """
@@ -121,7 +118,7 @@ def radial_kernel(gamma):
     return kernel
 
 
-def kernel_svm_fit(X, L, C, K, kernel):
+def kernel_svm_fit(X, L, C, K, kernel, pi):
     """
     Builds the kernel SVM solution.
     :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
@@ -143,7 +140,7 @@ def kernel_svm_fit(X, L, C, K, kernel):
 
     svm_obj, svm_obj_prime = svm_obj_wrap(H_)
     # prepare the bounds
-    bounds = [(0,C)] * X.shape[1]
+    bounds = svm_bounds(X, L, C, pi)
     # call the optimizer
     x, f, d = opt.fmin_l_bfgs_b(func=svm_obj, x0=np.zeros(X.shape[1]), fprime=svm_obj_prime, bounds=bounds,
                                 factr=0.0, iprint=False)
@@ -159,7 +156,7 @@ def kernel_svm_predict(X_test, alpha, X_train, L_train, K, kernel):
     :param X_test is the TEST dataset matrix
     :param alpha is the kernel SVM model
     :param X_train is the TRAIN dataset matrix
-    :param L_train is the array of knows labels for TRAIN samples
+    :param L_train is the array of known labels for TRAIN samples
     :param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
     :param kernel is the kernel function we want to apply
     """

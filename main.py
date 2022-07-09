@@ -39,8 +39,9 @@ def model_fit(trainX, trainL, params):
         return logistic_regression.binary_lr_fit(phi, trainL, params["quadratic_regression"], pi=params["pi_t"])
     if params["svm"]:
         if params["kernel"] is None:
-            return support_vector_machines.linear_svm_fit(trainX, trainL, params["C"], params["K"])
-        return support_vector_machines.kernel_svm_fit(trainX, trainL, params["C"], params["K"], params["kernel"])
+            return support_vector_machines.linear_svm_fit(trainX, trainL, params["C"], params["K"], pi=params["pi_t"])
+        return support_vector_machines.kernel_svm_fit(trainX, trainL, params["C"], params["K"], params["kernel"],
+                                                      pi=params["pi_t"])
     if params["gmm"] is not None:
         return gaussian_mixture_models.gmm_fit(trainX, trainL, params["gmm"], params["em"])
 
@@ -63,7 +64,7 @@ def model_predict(testX, model, params):
         alpha, _, trainX, trainL = model
         return support_vector_machines.kernel_svm_predict(testX, alpha, trainX, trainL, params["K"], params["kernel"])
     if params["gmm"] is not None:
-        return gaussian_mixture_models.gmm_predict(testX, model)
+        return gaussian_mixture_models.gmm_predict(testX, model, pi=params["pi_t"])
 
 
 
@@ -167,17 +168,15 @@ if __name__ == '__main__':
             # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
             "logistic_regression": [None],
             # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
-            # TODO --- check weird results of quadratic regression
             # "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
-            "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
-            # TODO --- weird svm too
+            "quadratic_regression": [None],
             # svm - True if we want to use it. C and K are the related hyperparameters
-            "svm": [False],
+            "svm": [True],
+            # kernel is None if we want linear svm
             "kernel": [None],
             # "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
-            # kernel is None if we want linear svm
-            # "C": [10],
-            # "K": [1],
+            "C": [1],
+            "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
             "gmm": [None]
             # "gmm": [2, 4, 8, 16, 32, 64, 128, 256],
