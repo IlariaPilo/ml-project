@@ -171,16 +171,16 @@ if __name__ == '__main__':
             # "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
             "quadratic_regression": [None],
             # svm - True if we want to use it. C and K are the related hyperparameters
-            "svm": [True],
+            "svm": [False],
             # kernel is None if we want linear svm
             # "kernel": [None],
-            "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
-            "C": [1, 10],
-            "K": [1],
+            # "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
+            # "C": [1, 10],
+            # "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
-            "gmm": [None]
-            # "gmm": [2, 4, 8, 16, 32, 64, 128, 256],
-            # "em": [gaussian_mixture_models.em, gaussian_mixture_models.diag_em]
+            # "gmm": [None]
+            "gmm": [2, 4, 8, 16, 32, 64, 128, 256],
+            "em": [gaussian_mixture_models.diag_em]
         }
     }
     main(config)

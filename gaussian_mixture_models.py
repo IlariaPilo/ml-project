@@ -69,7 +69,7 @@ def em(X, start_gmm, version=None, threshold=10 ** (-6), isPrint=False, psi=None
             # compute the covariance matrix
             C = np.sum(np.reshape(Z, (M, 1, 1)) * C, axis=0) / N
             C = np.repeat(np.reshape(C, (1, C.shape[0], C.shape[1])), M, axis=0)
-        if version == 'diagonal' or version=='tied-diag':
+        if version == 'diag' or version=='tied-diag':
             # make it diagonal
             C = C * np.eye(C.shape[1])
         if psi is not None:

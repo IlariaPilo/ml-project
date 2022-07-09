@@ -98,8 +98,34 @@ def gmm_plot(noPca, pca8):
     ax.set_xticks(x, labels)
     ax.legend()
 
-    ax.bar_label(rects1, padding=3)
-    ax.bar_label(rects2, padding=3)
+    # ax.bar_label(rects1, padding=3)
+    # ax.bar_label(rects2, padding=3)
+
+    fig.tight_layout()
+
+    plt.show()
+
+
+def gmm_plot2(em, diag, tied, tied_diag):
+    labels = [2,4,8,16,32,64,128,256]
+
+    x = np.arange(len(labels))  # the label locations
+    width = 0.15  # the width of the bars
+
+    fig, ax = plt.subplots()
+    rects1 = ax.bar(x - width*1.5, em, width, label='Full-Cov')
+    rects2 = ax.bar(x - width / 2, diag, width, label='Diag-Cov')
+    rects3 = ax.bar(x + width / 2, tied, width, label='Tied-Cov')
+    rects4 = ax.bar(x + width*1.5, tied_diag, width, label='Tied-Diag-Cov')
+
+    # Add some text for labels, title and custom x-axis tick labels, etc.
+    ax.set_ylabel('minDCF')
+    ax.set_xlabel('GMM components number')
+    ax.set_xticks(x, labels)
+    ax.legend()
+
+    # ax.bar_label(rects1, padding=3)
+    # ax.bar_label(rects2, padding=3)
 
     fig.tight_layout()
 
@@ -164,8 +190,13 @@ def lr_plot():
 
 if __name__ == '__main__':
     pcaF_em = np.array([0.054989,0.046805,0.035020,0.046538,0.048455,0.078324,0.116378,0.211705])
-    pcaF_diag = np.array([0.054989,0.046805,0.035020,0.046538,0.048455,0.078324,0.116378,0.211705])
+    pcaF_diag = np.array([0.371721,0.138897,0.107761,0.099810,0.091926,0.085259,0.093476,0.125463])
     pca8_em = np.array([0.051789,0.044988,0.039971,0.038387,0.048255,0.058389,0.089776,0.121162])
-    pca8_diag = np.array([0.051789,0.044988,0.039971,0.038387,0.048255,0.058389,0.089776,0.121162])
-    # gmm_plot(pcaF_em, pca8_em)
+    pca8_diag = np.array([0.095260,0.093443,0.096943,0.086609,0.091492,0.093343,0.103210,0.146615])
+    pcaF_tied = np.array([0.061823,0.036670,0.036637,0.039971,0.039971,0.040237,0.038287,0.040037])
+    pcaF_tied_diag = np.array([0.366137,0.134963,0.099877,0.106511,0.080141,0.079808,0.086409,0.086542])
+    pca8_tied = np.array([0.056772,0.050005,0.041721,0.043338,0.046671,0.076474,0.061523,0.060139])
+    pca8_tied_diag = np.array([0.088459,0.083542,0.092976,0.081658,0.054989,0.051822,0.058356,0.063273])
+    # gmm_plot(pcaF_tied_diag, pca8_tied_diag)
+    gmm_plot2(pca8_em, pca8_diag, pca8_tied, pca8_tied_diag)
     # lr_plot()
