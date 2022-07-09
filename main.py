@@ -51,11 +51,11 @@ def model_predict(testX, model, params):
         return gaussian_models.mvg_log_predict(testX, mu_s, C_s, pi=params["pi_t"])
     if params["logistic_regression"] is not None:
         w, b, _ = model
-        return logistic_regression.binary_lr_predict(testX, w, b, pi=params["pi_t"])
+        return logistic_regression.binary_lr_predict(testX, w, b)
     if params["quadratic_regression"] is not None:
         w, b, _ = model
         phi = logistic_regression.quadratic_expansion(testX)
-        return logistic_regression.binary_lr_predict(phi, w, b, pi=params["pi_t"])
+        return logistic_regression.binary_lr_predict(phi, w, b)
     if params["svm"]:
         if params["kernel"] is None:
             w_, _ = model
@@ -151,30 +151,32 @@ if __name__ == '__main__':
         "is_print": False,
         # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
         "k_fold": None,
+        # each parameter should be inside an array, even if it is just one value
         "params": {
             # gaussianization - if true, we gaussianize the features
-            "gaussianization": [False, True],
+            "gaussianization": [False],
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
             "pca": [None, 8],
             # pi_t - the main application is 0.5. We focus also on biased applications
-            "pi_t": [0.1, 0.9],
+            "pi_t": [0.5],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
             # "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
             #                gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
             "gaussian_fit": [None],
             # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
-            "logistic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
+            "logistic_regression": [None],
             # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
             # TODO --- check weird results of quadratic regression
             # "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
-            "quadratic_regression": [None],
+            "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
             # TODO --- weird svm too
             # svm - True if we want to use it. C and K are the related hyperparameters
-            "svm": [None],
+            "svm": [False],
+            "kernel": [None],
             # "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
             # kernel is None if we want linear svm
-            # "C": [1, 10],
+            # "C": [10],
             # "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
             "gmm": [None]

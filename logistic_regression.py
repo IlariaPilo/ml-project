@@ -34,17 +34,16 @@ def binary_lr_fit(X, L, l, pi):
         return logreg_obj
 
     logreg_obj = logreg_obj_wrap(X, L, l, pi)
-    x, f, d = opt.fmin_l_bfgs_b(func=logreg_obj, x0=np.zeros(X.shape[0] + 1), approx_grad=True, maxiter=30000, iprint=0)
+    x, f, d = opt.fmin_l_bfgs_b(func=logreg_obj, x0=np.zeros(X.shape[0] + 1), approx_grad=True, iprint=0)
     return x[0:-1], x[-1], f    # that is, w, b and J(w,b)
 
 
-def binary_lr_predict(X, w, b, pi=0.5):
+def binary_lr_predict(X, w, b):
     """
     Applies a Binary Logistic Regression classifier.
     :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
     :param w is the first parameter of the LR classifier
     :param b is the second parameter of the LR classifier
-    :param pi is the prior probability of class 1
     """
     # fix w dimensions
     w = u.vcol(w)

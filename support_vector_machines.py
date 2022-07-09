@@ -50,7 +50,7 @@ def linear_svm_fit(X, L, C, K):
     bounds = [(0,C)] * X.shape[1]
     # call the optimizer
     x, f, d = opt.fmin_l_bfgs_b(func=svm_obj, x0=np.zeros(X.shape[1]), fprime=svm_obj_prime, bounds=bounds,
-                                factr=1.0, iprint=False)
+                                factr=0.0, iprint=False)
 
     # we have considered the negative in order to minimize instead of maximize
     J = -f
@@ -60,7 +60,7 @@ def linear_svm_fit(X, L, C, K):
     return w_, J
 
 
-def linear_svm_predict(X, w_, K, pi=0.5):
+def linear_svm_predict(X, w_, K):
     """
     Classifies a dataset applying the linear SVM.
     :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
@@ -146,14 +146,14 @@ def kernel_svm_fit(X, L, C, K, kernel):
     bounds = [(0,C)] * X.shape[1]
     # call the optimizer
     x, f, d = opt.fmin_l_bfgs_b(func=svm_obj, x0=np.zeros(X.shape[1]), fprime=svm_obj_prime, bounds=bounds,
-                                factr=1.0, iprint=False)
+                                factr=0.0, iprint=False)
 
     # we have considered the negative in order to minimize instead of maximize
     J = -f
     return x, J, X, L
 
 
-def kernel_svm_predict(X_test, alpha, X_train, L_train, K, kernel, pi=0.5):
+def kernel_svm_predict(X_test, alpha, X_train, L_train, K, kernel):
     """
     Classifies a dataset applying the kernel SVM.
     :param X_test is the TEST dataset matrix
@@ -173,5 +173,5 @@ def kernel_svm_predict(X_test, alpha, X_train, L_train, K, kernel, pi=0.5):
             x_i = u.vcol(X_train[:, i])
             score += alpha[i]*z[i]*(kernel(x_i,x_t)+(K**0.5))
         predL[t] = 0 if score<0 else 1
-        S[t] = score - np.log(pi/(1-pi))
+        S[t] = score
     return predL, S
