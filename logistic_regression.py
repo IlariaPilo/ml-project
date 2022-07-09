@@ -18,24 +18,19 @@ def binary_lr_fit(X, L, l, pi):
     :param pi is the prior probability of class 1
     """
     # build the binary logistic regression classifier
-    def logreg_obj_wrap(X, L, l, pi):
-        # divide classes
-        X0 = X[:, L == 0]
-        X1 = X[:, L == 1]
-        def logreg_obj(arg):
-            # unpack the arguments
-            w, b = u.vcol(arg[0:-1]), arg[-1]
-            # norm term
-            norm = 0.5 * l * (np.linalg.norm(w) ** 2)
-            # summation terms
-            sum0 = ((1-pi)/X0.shape[1]) * np.sum(np.logaddexp(0, (np.sum(w * X0, axis=0) + b)))
-            sum1 = (pi/X1.shape[1]) * np.sum(np.logaddexp(0, -(np.sum(w * X1, axis=0) + b)))
-            return float(norm + sum0 + sum1)
+    def logreg_obj_wrap(DTR, LTR, l):
+        Z = LTR * 2.0 - 1.0
+        M = DTR.shape[0]
+        def logreg_obj(v):
+            w = u.vcol((v[0:M]))
+            b = v[-1]
+            S = np.dot(w.T, DTR) + b
+            cxe = np.logaddexp(0, -S*Z).mean()
+            return cxe + 0.5*l * np.linalg.norm(w)**2
         return logreg_obj
-
-    logreg_obj = logreg_obj_wrap(X, L, l, pi)
-    x, f, d = opt.fmin_l_bfgs_b(func=logreg_obj, x0=np.zeros(X.shape[0] + 1), approx_grad=True, iprint=0)
-    return x[0:-1], x[-1], f    # that is, w, b and J(w,b)
+    logreg_obj = logreg_obj_wrap(X, L, l)
+    _v, _J, _d = opt.fmin_l_bfgs_b(logreg_obj, np.zeros(X.shape[0]+1), approx_grad=True)
+    return _v[0:X.shape[0]], _v[-1], _J
 
 
 def binary_lr_predict(X, w, b):
@@ -48,11 +43,9 @@ def binary_lr_predict(X, w, b):
     # fix w dimensions
     w = u.vcol(w)
     # compute scores (posterior log-likelihood ratio)
-    S = np.zeros((2, X.shape[1]))
-    S[1,:] = np.sum(w * X, axis=0) + b
-    # assign labels
-    predL = np.argmax(S, axis=0)
-    return predL, S[1,:]
+    STE = np.dot(w.T, X) + b
+    LP = STE > 0
+    return LP, np.reshape(STE, STE.size)
 
 
 # TODO --- check weird results

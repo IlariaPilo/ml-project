@@ -165,11 +165,11 @@ if __name__ == '__main__':
             #                gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
             "gaussian_fit": [None],
             # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
-            "logistic_regression": [None],
+            "logistic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
             # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
             # TODO --- check weird results of quadratic regression
             # "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
-            "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
+            "quadratic_regression": [None],
             # TODO --- weird svm too
             # svm - True if we want to use it. C and K are the related hyperparameters
             "svm": [False],
