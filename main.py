@@ -71,6 +71,11 @@ def main(config):
     # ----------- 1. read the training dataset ----------- #
     trainX, trainL = load.load("data/Train")
 
+    # TODO temp
+    if False:
+        trainX = trainX[:, :3000]
+        trainL = trainL[:3000]
+
     # ----------- 2. feature analysis ----------- #
     if config["is_print"]:
         # print the distribution of all features
@@ -153,16 +158,17 @@ if __name__ == '__main__':
         "k_fold": None,
         "params": {
             # gaussianization - if true, we gaussianize the features
-            "gaussianization": [False, True],
+            "gaussianization": [False],
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
-            "pca": [None, 10, 9, 8, 6],
+            "pca": [None],
+            #"pca": [None, 10, 9, 8, 6],
             # pi_t - the main application is 0.5. We focus also on biased applications
-            "pi_t": [0.1, 0.9],
+            "pi_t": [0.5],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
-            "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
-                            gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
-            # "gaussian_fit": [None],
+            #"gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
+            #                gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
+            "gaussian_fit": [None],
             # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
             "logistic_regression": [None],
             # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
@@ -171,11 +177,12 @@ if __name__ == '__main__':
             "quadratic_regression": [None],
             # TODO --- weird svm too
             # svm - True if we want to use it. C and K are the related hyperparameters
-            "svm": [None],
+            "svm": [True],
             # "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
+            "kernel": [None],
             # kernel is None if we want linear svm
-            # "C": [1, 10],
-            # "K": [1],
+            "C": [1],
+            "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
             "gmm": [None]
             # "gmm": [2, 4, 8, 16, 32, 64, 128, 256],

@@ -1,3 +1,5 @@
+# #Marco
+
 import utilities as u
 import numpy as np
 import scipy.optimize as opt
@@ -29,35 +31,51 @@ def svm_obj_wrap(H_):
 
 # -------------- linear support vector machine -------------- #
 # TODO ------------this does not give the exact prof's results-----------------------------------
-def linear_svm_fit(X, L, C, K):
+def linear_svm_fit(DTR, LTR, C, K):
     """
     Builds the linear SVM solution through the dual formulation.
-    :param X is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
-    :param L is the array of knows labels for such samples
+    :param data is the dataset matrix having size (D,N) -> a row for each feature, a column for each sample
+    :param labels is the array of knows labels for such samples
     :param C is a hyperparameter of SVM
     :param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
     """
-    # build the extended matrix of training data
-    X_ = np.vstack((X, u.vrow(np.array([K] * X.shape[1]))))
-    # compute z
-    z = 2*L - 1
-    # compute matrix H_ (NO LOOPS)
-    G_ = np.dot(X_.T, X_)
-    H_ = u.vcol(z) * G_ * u.vrow(z)
+    # #Marco
+    Z = np.zeros(LTR.shape)
+    Z[LTR == 1] = 1
+    Z[LTR == 0] = -1
 
-    svm_obj, svm_obj_prime = svm_obj_wrap(H_)
-    # prepare the bounds
-    bounds = [(0,C)] * X.shape[1]
-    # call the optimizer
-    x, f, d = opt.fmin_l_bfgs_b(func=svm_obj, x0=np.zeros(X.shape[1]), fprime=svm_obj_prime, bounds=bounds,
-                                factr=1.0, iprint=False)
 
-    # we have considered the negative in order to minimize instead of maximize
-    J = -f
-    # recover the primal solution
-    w_ = np.sum(x*z*X_, axis=1)
+    DTREXT = np.vstack([DTR, np.ones((1, DTR.shape[1]))*K])
+    H = np.dot(DTREXT.T, DTREXT)
+    H = mcol(Z)*mrow(Z)*H
 
-    return w_, J
+    def JDual(alpha):
+        Ha = np.dot(H, mcol(alpha))
+        aHa = np.dot(mrow(alpha), Ha)
+        a1 = alpha.sum()
+        return -0.5*aHa.ravel() + a1, -Ha.ravel() + np.ones(alpha.size)
+
+    def LDual(alpha):
+        loss, grad = JDual(alpha)
+        return -loss, -grad
+
+    def JPrimal(w):
+        S = np.dot(mrow(w), DTREXT)
+        loss = np.maximum(np.zeros(S.shape), 1 - Z*S).sum()
+        return 0.5*np.linalg.norm(w)**2 + C*loss
+
+    alphaStar, _x, _y = opt.fmin_l_bfgs_b(
+        LDual,
+        np.zeros(DTR.shape[1]),
+        bounds=[(0, C)]*DTR.shape[1],
+        factr=1.0,
+        maxiter=100000,
+        maxfun=100000
+    )
+
+    wStar = np.dot(DTREXT, mcol(alphaStar)*mcol(Z))
+
+    return wStar, -_x
 
 
 def linear_svm_predict(X, w_, K, pi=0.5):
@@ -67,6 +85,16 @@ def linear_svm_predict(X, w_, K, pi=0.5):
     :param w_ is the linear SVM model
     :param K is a hyperparameter of SVM (to reduce the effect of regularizing b)
     """
+
+    """w = w_[0:X.shape[0],:]
+    b = w[-1,:]
+    s = zeros(X.shape[1])
+    for i in range(X.shape[1]):
+
+    s = w.T*X + b
+    predL = argmax(s)
+    return predL, s"""
+
     w_ = u.vcol(w_)
     # build the extended matrix of training data
     X_ = np.vstack([X, u.vrow(np.array([K] * X.shape[1]))])
@@ -175,3 +203,10 @@ def kernel_svm_predict(X_test, alpha, X_train, L_train, K, kernel, pi=0.5):
         predL[t] = 0 if score<0 else 1
         S[t] = score - np.log(pi/(1-pi))
     return predL, S
+
+def mcol(array: np.ndarray):
+    return array.reshape((array.size, 1))
+
+
+def mrow(array: np.ndarray):
+    return array.reshape((1, array.size))
