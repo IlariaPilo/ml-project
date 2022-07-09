@@ -33,14 +33,15 @@ def model_fit(trainX, trainL, params):
     if params["gaussian_fit"] is not None:
         return params["gaussian_fit"](trainX, trainL)
     if params["logistic_regression"] is not None:
-        return logistic_regression.binary_lr_fit(trainX, trainL, params["logistic_regression"])
+        return logistic_regression.binary_lr_fit(trainX, trainL, params["logistic_regression"], pi=params["pi_t"])
     if params["quadratic_regression"] is not None:
         phi = logistic_regression.quadratic_expansion(trainX)
-        return logistic_regression.binary_lr_fit(phi, trainL, params["quadratic_regression"])
+        return logistic_regression.binary_lr_fit(phi, trainL, params["quadratic_regression"], pi=params["pi_t"])
     if params["svm"]:
         if params["kernel"] is None:
-            return support_vector_machines.linear_svm_fit(trainX, trainL, params["C"], params["K"])
-        return support_vector_machines.kernel_svm_fit(trainX, trainL, params["C"], params["K"], params["kernel"])
+            return support_vector_machines.linear_svm_fit(trainX, trainL, params["C"], params["K"], pi=params["pi_t"])
+        return support_vector_machines.kernel_svm_fit(trainX, trainL, params["C"], params["K"], params["kernel"],
+                                                      pi=params["pi_t"])
     if params["gmm"] is not None:
         return gaussian_mixture_models.gmm_fit(trainX, trainL, params["gmm"], params["em"])
 
@@ -63,7 +64,7 @@ def model_predict(testX, model, params):
         alpha, _, trainX, trainL = model
         return support_vector_machines.kernel_svm_predict(testX, alpha, trainX, trainL, params["K"], params["kernel"])
     if params["gmm"] is not None:
-        return gaussian_mixture_models.gmm_predict(testX, model)
+        return gaussian_mixture_models.gmm_predict(testX, model, pi=params["pi_t"])
 
 
 
@@ -151,31 +152,31 @@ if __name__ == '__main__':
         "is_print": False,
         # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
         "k_fold": None,
+        # each parameter should be inside an array, even if it is just one value
         "params": {
             # gaussianization - if true, we gaussianize the features
-            "gaussianization": [False, True],
+            "gaussianization": [False],
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
-            "pca": [None, 10, 9, 8, 6],
+            "pca": [None, 8],
             # pi_t - the main application is 0.5. We focus also on biased applications
-            "pi_t": [0.1, 0.9],
+            "pi_t": [0.5],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
-            "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
-                            gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
-            # "gaussian_fit": [None],
+            # "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
+            #                gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
+            "gaussian_fit": [None],
             # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
             "logistic_regression": [None],
             # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
-            # TODO --- check weird results of quadratic regression
             # "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
             "quadratic_regression": [None],
-            # TODO --- weird svm too
             # svm - True if we want to use it. C and K are the related hyperparameters
-            "svm": [None],
-            # "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
+            "svm": [True],
             # kernel is None if we want linear svm
-            # "C": [1, 10],
-            # "K": [1],
+            # "kernel": [None],
+            "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
+            "C": [1, 10],
+            "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
             "gmm": [None]
             # "gmm": [2, 4, 8, 16, 32, 64, 128, 256],

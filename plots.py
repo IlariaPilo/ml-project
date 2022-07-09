@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-if __name__ == '__main__':
+
+def linear_svm_plot():
     C = np.array([0.01, 0.1, 1, 10])
     gaussF_pcaF_K_1 = np.array([0.058389, 0.060039, 0.060306, 0.056706])
     gaussF_pcaF_K_10 = np.array([0.060073, 0.060273, 0.060239, 0.060273])
@@ -12,7 +13,6 @@ if __name__ == '__main__':
     gaussT_pca8_K_1 = np.array([0.180585, 0.177118, 0.177218, 0.175534])
     gaussT_pca8_K_10 = np.array([0.180585, 0.177118, 0.177218, 0.180118])
 
-    """
     plt.figure()
     plt.suptitle("Linear SVM results, gaussianized features comparison")
     plt.subplot(2, 2, 1)
@@ -44,8 +44,7 @@ if __name__ == '__main__':
     plt.ylabel("minDCF")
     plt.legend()
     plt.show()
-    """
-    """
+
     plt.figure()
     plt.suptitle("Linear SVM results, PCA comparison")
     plt.subplot(1, 2, 1)
@@ -63,7 +62,7 @@ if __name__ == '__main__':
     plt.ylabel("minDCF")
     plt.legend()
     plt.show()
-    """
+
     plt.figure()
     plt.suptitle("Linear SVM results, K comparison")
     plt.subplot(1, 2, 1)
@@ -81,3 +80,92 @@ if __name__ == '__main__':
     plt.ylabel("minDCF")
     plt.legend()
     plt.show()
+
+
+def gmm_plot(noPca, pca8):
+    labels = [2,4,8,16,32,64,128,256]
+
+    x = np.arange(len(labels))  # the label locations
+    width = 0.35  # the width of the bars
+
+    fig, ax = plt.subplots()
+    rects1 = ax.bar(x - width / 2, noPca, width, label='No PCA')
+    rects2 = ax.bar(x + width / 2, pca8, width, label='PCA (m = 8)')
+
+    # Add some text for labels, title and custom x-axis tick labels, etc.
+    ax.set_ylabel('minDCF')
+    ax.set_xlabel('GMM components number')
+    ax.set_xticks(x, labels)
+    ax.legend()
+
+    ax.bar_label(rects1, padding=3)
+    ax.bar_label(rects2, padding=3)
+
+    fig.tight_layout()
+
+    plt.show()
+
+
+def lr_plot():
+    l = [10**(-6), 0.001, 0.1, 1, 10]
+    gaussF_pcaF_pi5 = [0.061723, 0.061723, 0.065457, 0.083542, 0.160183]
+    gaussF_pcaF_pi1 = [0.143114, 0.143114, 0.156016, 0.280378, 0.553555]
+    gaussF_pcaF_pi9 = [0.121996, 0.121996, 0.120612, 0.204187, 0.548105]
+    gaussF_pca8_pi5 = [0.060073, 0.060073, 0.061956, 0.086575, 0.161866]
+    gaussF_pca8_pi1 = [0.157966, 0.151365, 0.170867, 0.293879, 0.555956]
+    gaussF_pca8_pi9 = [0.108828, 0.107144, 0.125663, 0.202504, 0.556522]
+    gaussT_pcaF_pi5 = [0.059873, 0.068657, 0.162166, 0.271277, 0.494849]
+    gaussT_pcaF_pi1 = [0.207171, 0.222022, 0.528653, 0.798530, 0.841734]
+    gaussT_pcaF_pi9 = [0.165467, 0.165467, 0.434527, 0.764010, 0.784212]
+    gaussT_pca8_pi5 = [0.177151, 0.177251, 0.220189, 0.301230, 0.509668]
+    gaussT_pca8_pi1 = [0.409391, 0.420642, 0.614761, 0.846985, 0.873837]
+    gaussT_pca8_pi9 = [0.422742, 0.434227, 0.533253, 0.814098, 0.846501]
+
+    plt.figure()
+    plt.suptitle("Logistic regression results")
+    plt.subplot(2, 2, 1)
+    plt.title("Raw features, no PCA")
+    plt.semilogx(l, gaussF_pcaF_pi5, 'r', label=r'$\pi = 0.5$')
+    plt.semilogx(l, gaussF_pcaF_pi1, 'b', label=r'$\pi = 0.1$')
+    plt.semilogx(l, gaussF_pcaF_pi9, 'g', label=r'$\pi = 0.9$')
+    plt.xlabel(r'$\lambda$')
+    plt.ylabel("minDCF")
+    plt.xticks(l)
+    plt.legend()
+    plt.subplot(2, 2, 2)
+    plt.title("Raw features, PCA (m = 8)")
+    plt.semilogx(l, gaussF_pca8_pi5, 'r', label=r'$\pi = 0.5$')
+    plt.semilogx(l, gaussF_pca8_pi1, 'b', label=r'$\pi = 0.1$')
+    plt.semilogx(l, gaussF_pca8_pi9, 'g', label=r'$\pi = 0.9$')
+    plt.xlabel(r'$\lambda$')
+    plt.ylabel("minDCF")
+    plt.xticks(l)
+    plt.legend()
+    plt.subplot(2, 2, 3)
+    plt.title("Gaussianized features, no PCA")
+    plt.semilogx(l, gaussT_pcaF_pi5, 'r', label=r'$\pi = 0.5$')
+    plt.semilogx(l, gaussT_pcaF_pi1, 'b', label=r'$\pi = 0.1$')
+    plt.semilogx(l, gaussT_pcaF_pi9, 'g', label=r'$\pi = 0.9$')
+    plt.xlabel(r'$\lambda$')
+    plt.ylabel("minDCF")
+    plt.xticks(l)
+    plt.legend()
+    plt.subplot(2, 2, 4)
+    plt.title("Gaussianized features, PCA (m = 8)")
+    plt.semilogx(l, gaussT_pca8_pi5, 'r', label=r'$\pi = 0.5$')
+    plt.semilogx(l, gaussT_pca8_pi1, 'b', label=r'$\pi = 0.1$')
+    plt.semilogx(l, gaussT_pca8_pi9, 'g', label=r'$\pi = 0.9$')
+    plt.xlabel(r'$\lambda$')
+    plt.ylabel("minDCF")
+    plt.xticks(l)
+    plt.legend()
+    plt.show()
+
+
+if __name__ == '__main__':
+    pcaF_em = np.array([0.054989,0.046805,0.035020,0.046538,0.048455,0.078324,0.116378,0.211705])
+    pcaF_diag = np.array([0.054989,0.046805,0.035020,0.046538,0.048455,0.078324,0.116378,0.211705])
+    pca8_em = np.array([0.051789,0.044988,0.039971,0.038387,0.048255,0.058389,0.089776,0.121162])
+    pca8_diag = np.array([0.051789,0.044988,0.039971,0.038387,0.048255,0.058389,0.089776,0.121162])
+    # gmm_plot(pcaF_em, pca8_em)
+    # lr_plot()
