@@ -167,21 +167,21 @@ if __name__ == '__main__':
         # is_print - if true, we generate plots
         "is_print": False,
         # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
-        "k_fold": 5,
+        "k_fold": None,
         # save_scores - if None, we do not save scores. Otherwise, it is the name of the file (without extension)
-        "save_scores": "GMM",
+        "save_scores": "SVM_C_1",
         # each parameter should be inside an array, even if it is just one value
         "params": {
             # gaussianization - if true, we gaussianize the features
             "gaussianization": [False],
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
-            "pca": [None],
+            "pca": [None, 8],
             # pi_tilde - the EFFECTIVE prior probability. the main application is 0.5. We focus also on biased
             # applications
-            "pi_tilde": [0.5, 0.1, 0.9],
+            "pi_tilde": [0.1, 0.5, 0.9],
             # pi_t - the prior probability. the main application is 0.5. We focus also on biased applications
-            "pi_t": [0.5],
+            "pi_t": [0.1, 0.5, 0.9],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
             # "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
             #                gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
@@ -192,17 +192,17 @@ if __name__ == '__main__':
             # "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
             "quadratic_regression": [None],
             # svm - True if we want to use it. C and K are the related hyperparameters
-            "svm": [None],
+            "svm": [True],
             # kernel is None if we want linear svm
-            # "kernel": [None],
+            "kernel": [None],
             # "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
-            # "C": [1, 10],
-            # "K": [1],
+            "C": [1],
+            "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
-            "gmm": [4],
+            # "gmm": [4],
             # "gmm": [2, 4, 8, 16, 32, 64, 128, 256],
             # "em": [gaussian_mixture_models.em, gaussian_mixture_models.diag_em]
-            "em": [gaussian_mixture_models.tied_em],
+            # "em": [gaussian_mixture_models.tied_em],
         }
     }
     main(config)
