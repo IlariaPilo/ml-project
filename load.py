@@ -1,8 +1,10 @@
 import numpy as np
 
+
 def convert_txt_to_np(file_name):
     """
-    Loads the content of a file in a pair X (dataset) and L (labels), then saves them as npy files (to be used only once per file).
+    Loads the content of a file in a pair X (dataset) and L (labels), then saves them as npy files (to be used only
+    once per file).
     :param file_name is the name of the file (WITHOUT EXTENSION)
     """
     # open the file in read mode
@@ -30,6 +32,7 @@ def load(file_name):
     :param file_name is the name of the file (WITHOUT EXTENSION)
     """
     return np.load(file_name+'X.npy'), np.load(file_name+'L.npy')
+
 
 if __name__ == '__main__':
     # convert from txt to binary

@@ -191,6 +191,7 @@ def lr_plot():
     plt.legend()
     plt.show()
 
+
 def gmm_plot_main():
     pcaF_em = np.array([0.054989, 0.046805, 0.035020, 0.046538, 0.048455, 0.078324, 0.116378, 0.211705])
     pcaF_diag = np.array([0.371721, 0.138897, 0.107761, 0.099810, 0.091926, 0.085259, 0.093476, 0.125463])
@@ -206,6 +207,7 @@ def gmm_plot_main():
     gmm_plot(pcaF_tied_diag, pca8_tied_diag)
     gmm_plot2(pcaF_em, pcaF_diag, pcaF_tied, pcaF_tied_diag)
     gmm_plot2(pca8_em, pca8_diag, pca8_tied, pca8_tied_diag)
+
 
 if __name__ == '__main__':
     trainX, trainL = load.load("data/Train")

@@ -1,0 +1,242 @@
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.047333
+Error rate: 2.450
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.047333
+Error rate: 2.450
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.049333
+Error rate: 2.500
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.068333
+Error rate: 3.450
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.148000
+Error rate: 7.650
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.131333
+Error rate: 2.450
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.132000
+Error rate: 2.450
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.135667
+Error rate: 2.500
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.174333
+Error rate: 3.450
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.391667
+Error rate: 7.650
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.125667
+Error rate: 2.450
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.124333
+Error rate: 2.450
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.129333
+Error rate: 2.500
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.157667
+Error rate: 3.450
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.363000
+Error rate: 7.650
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.047000
+Error rate: 2.383
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.046333
+Error rate: 2.383
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.049667
+Error rate: 2.517
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.070667
+Error rate: 3.567
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.149000
+Error rate: 7.650
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.136000
+Error rate: 2.383
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.135333
+Error rate: 2.383
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.134667
+Error rate: 2.517
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.173333
+Error rate: 3.567
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.396667
+Error rate: 7.650
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.122333
+Error rate: 2.383
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.123000
+Error rate: 2.383
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.126000
+Error rate: 2.517
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.160667
+Error rate: 3.567
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.368000
+Error rate: 7.650
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.056000
+Error rate: 2.800
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.059333
+Error rate: 3.000
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.145333
+Error rate: 7.350
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.282000
+Error rate: 14.150
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.506000
+Error rate: 25.483
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.162000
+Error rate: 2.800
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.172667
+Error rate: 3.000
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.370667
+Error rate: 7.350
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.639333
+Error rate: 14.150
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.793000
+Error rate: 25.483
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.158000
+Error rate: 2.800
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.167667
+Error rate: 3.000
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.333000
+Error rate: 7.350
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.667000
+Error rate: 14.150
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.805667
+Error rate: 25.483
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.164000
+Error rate: 8.217
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.164667
+Error rate: 8.400
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.202667
+Error rate: 10.183
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.316000
+Error rate: 15.933
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.5, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.522333
+Error rate: 26.533
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.437667
+Error rate: 8.217
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.438333
+Error rate: 8.400
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.516000
+Error rate: 10.183
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.691333
+Error rate: 15.933
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.1, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.826333
+Error rate: 26.533
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.416333
+Error rate: 8.217
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.409333
+Error rate: 8.400
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.469000
+Error rate: 10.183
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.720667
+Error rate: 15.933
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_tilde': 0.9, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None, 'gmm': None, 'calibration': None}
+minDCF: 0.843000
+Error rate: 26.533
+
+Process finished with exit code 0
