@@ -106,11 +106,12 @@ def main(config):
             # save the scores
             if config["save_scores"]:
                 np.save("scores/"+config["save_scores"]+'_'+str(i)+".npy", S)
+                np.save("scores/"+config["save_scores"]+'_labels_'+str(i)+".npy", LTE)
                 i += 1
 
             # ----------- 6a. evaluation ----------- #
             # we are using normalized min_dcf to evaluate the model
-            minDCF = optimal_decisions.minimum_detection_cost(S, LTE, param["pi_tilde"], 1, 1, normalized=True)
+            minDCF = optimal_decisions.minimum_detection_cost(S, LTE, param["pi_t"], 1, 1, normalized=True)
             print('minDCF: %f' % minDCF)
             err = utilities.err_rate(predL, LTE) * 100
             print('Error rate: %.3f' % err)
@@ -145,20 +146,19 @@ def main(config):
 
             # save the scores
             if config["save_scores"]:
-                np.save("scores/" + config["save_scores"] + str(i) + ".npy", S)
+                np.save("scores/" + config["save_scores"] + '_' + str(i) + ".npy", S)
+                np.save("scores/" + config["save_scores"] + '_labels_' + str(i) + ".npy", np.hstack(foldsL))
                 i += 1
 
             # ----------- 6b. evaluation ----------- #
             trueL = np.hstack(foldsL)
             # we are using normalized min_dcf to evaluate the model
-            minDCF = optimal_decisions.minimum_detection_cost(S, trueL, param["pi_tilde"], 1, 1, normalized=True)
+            minDCF = optimal_decisions.minimum_detection_cost(S, trueL, param["pi_t"], 1, 1, normalized=True)
             print('minDCF: %f' % minDCF)
             err = utilities.err_rate(predL, trueL) * 100
             print('Error rate: %.3f' % err)
 
-            # ----------- 7b. calibration ----------- #
-            if param["calibration"]:
-                res = calibration.calibrate(param["calibration"])
+
 
 
 if __name__ == '__main__':
@@ -169,24 +169,22 @@ if __name__ == '__main__':
         # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
         "k_fold": 5,
         # save_scores - if None, we do not save scores. Otherwise, it is the name of the file (without extension)
-        "save_scores": None,
+        "save_scores": "GMM",
         # each parameter should be inside an array, even if it is just one value
         "params": {
             # gaussianization - if true, we gaussianize the features
-            "gaussianization": [False, True],
+            "gaussianization": [False],
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
-            "pca": [None, 8],
-            # pi_tilde - the cost pi. The main application is 0.5. We focus also on biased applications.
-            "pi_tilde": [0.5, 0.1, 0.9],
-            # pi_t - the prior pi. The main application is 0.5. We focus also on biased applications.
+            "pca": [None],
+            # pi_t - the main application is 0.5. We focus also on biased applications
             "pi_t": [0.5],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
             # "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
             #                gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
             "gaussian_fit": [None],
             # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
-            "logistic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
+            "logistic_regression": [None],
             # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
             # "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
             "quadratic_regression": [None],
@@ -198,14 +196,10 @@ if __name__ == '__main__':
             # "C": [1, 10],
             # "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
-            "gmm": [None],
+            "gmm": [4],
             # "gmm": [2, 4, 8, 16, 32, 64, 128, 256],
             # "em": [gaussian_mixture_models.em, gaussian_mixture_models.diag_em]
-            # "em": [gaussian_mixture_models.tied_em],
-
-            # calibration
-            "calibration": [None]
-            # "calibration": ["simple", "recalibration_func"]
+            "em": [gaussian_mixture_models.tied_em],
         }
     }
     main(config)

@@ -88,6 +88,8 @@ def minimum_detection_cost(S, trueL, pi_1, C_fn, C_fp, normalized=False):
     """
     # sort the values
     sortS = np.sort(S)
+    # extend array to inlcude -inf and +inf
+    sortS = np.hstack([-np.inf, sortS, np.inf])
     # set up the minimum DCF
     minDCF = sys.float_info.max
     # generate the confusion matrix for each threshold (value in sortS)
@@ -101,6 +103,24 @@ def minimum_detection_cost(S, trueL, pi_1, C_fn, C_fp, normalized=False):
         if minDCF > DCF:
             minDCF = DCF
     return minDCF
+
+def actual_dcf(S, trueL, threshold, pi):
+    """
+    Compute the DCF using a given threshold
+    :param S: array of scores
+    :param trueL: actual labels of the dataset
+    :param threshold: threshold for the dcf
+    :param pi: effective prior
+    :return: the DCF
+    """
+
+    predL = np.zeros(S.size, dtype=int)
+    predL[S > threshold] = 1
+    conf = confusion(trueL, predL)
+    # compute the (normalized) DCF
+    DCF = dcf(conf, pi, 1, 1, True)
+    # if it is lower than the minimum, update it
+    return DCF
 
 
 # -------------- plot functions -------------- #

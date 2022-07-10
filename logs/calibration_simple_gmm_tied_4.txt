@@ -1,0 +1,3 @@
+simple calibration: minDCF = 0.09627124672459354, actDCF(t) = 0.12004034689437283, actualDCF(t_star) = 0.17900738859449983
+simple calibration: minDCF = 0.030071218381733864, actDCF(t) = 0.0332834091458518, actualDCF(t_star) = 0.0332834091458518
+simple calibration: minDCF = 0.06104551807690919, actDCF(t) = 0.0851814081955324, actualDCF(t_star) = 0.08591498809322023
