@@ -167,22 +167,22 @@ if __name__ == '__main__':
         # is_print - if true, we generate plots
         "is_print": False,
         # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
-        "k_fold": None,
+        "k_fold": 5,
         # save_scores - if None, we do not save scores. Otherwise, it is the name of the file (without extension)
-        "save_scores": "MVG",
+        "save_scores": "GMM",
         # each parameter should be inside an array, even if it is just one value
         "params": {
             # gaussianization - if true, we gaussianize the features
             "gaussianization": [False],
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
-            "pca": [8],
+            "pca": [None],
             # pi_t - the main application is 0.5. We focus also on biased applications
             "pi_t": [0.5],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
             # "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
             #                gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
-            "gaussian_fit": [gaussian_models.mvg_tied_covariance_fit],
+            "gaussian_fit": [None],
             # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
             "logistic_regression": [None],
             # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
@@ -196,10 +196,10 @@ if __name__ == '__main__':
             # "C": [1, 10],
             # "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
-            "gmm": [None],
+            "gmm": [4],
             # "gmm": [2, 4, 8, 16, 32, 64, 128, 256],
             # "em": [gaussian_mixture_models.em, gaussian_mixture_models.diag_em]
-            # "em": [gaussian_mixture_models.tied_em],
+            "em": [gaussian_mixture_models.tied_em],
 
             # calibration
             "calibration": [None]

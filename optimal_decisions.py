@@ -147,13 +147,11 @@ def det_plot(models, trueL, file_name=None):
     :param trueL stores the actual labels of the dataset
     :param file_name is the name of the file where we want to save the image, if any
     """
-    FPR = []
-    FNR = []
     for S, label in models:
         # sort the values
         sortS = np.sort(S)
-        # extend array to inlcude -inf and +inf
-        sortS = np.hstack([-np.inf, sortS, np.inf])
+        # extend array to include -inf and +inf
+        # sortS = np.hstack([-np.inf, sortS, np.inf])
         # allocate FPR and FNR
         FPR = []
         FNR = []
@@ -168,15 +166,21 @@ def det_plot(models, trueL, file_name=None):
         FPR = np.array(FPR)
         FNR = np.array(FNR)
 
+        # modify 0s and 1s
+        # FPR[FPR == 0] = 10**(-7)
+        # FPR[FPR == 1] = 0.9999999
+        # FNR[FNR == 0] = 10 ** (-7)
+        # FNR[FNR == 1] = 0.9999999
+
         # plot the curve
         plt.plot(norm.ppf(FPR), norm.ppf(FNR), label=label)
 
     plt.title('DET plot')
-    plt.xlabel('FPR')
-    plt.ylabel('FNR')
-    # TODO
-    # plt.xticks(norm.ppf(FPR), FPR)
-    # plt.yticks(norm.ppf(FNR), FNR)
+    plt.xlabel('FPR (%)')
+    plt.ylabel('FNR (%)')
+    ticks = np.array([0.5, 1, 5, 10, 20, 40, 60, 80, 99.5])
+    plt.xticks(norm.ppf(ticks/100), ticks)
+    plt.yticks(norm.ppf(ticks/100), ticks)
     plt.grid(visible=True, linestyle='--')
     plt.legend()
     plt.show()
