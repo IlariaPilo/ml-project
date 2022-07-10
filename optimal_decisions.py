@@ -2,6 +2,7 @@ import sys
 
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.stats import norm
 
 ################################################
 #                                              #
@@ -132,6 +133,8 @@ def roc_plot(S, trueL, file_name=None):
     """
     # sort the values
     sortS = np.sort(S)
+    # extend array to inlcude -inf and +inf
+    sortS = np.hstack([-np.inf, sortS, np.inf])
     # allocate FPR and TPR
     FPR = []
     TPR = []
@@ -150,6 +153,56 @@ def roc_plot(S, trueL, file_name=None):
     plt.xlabel('FPR')
     plt.ylabel('TPR')
     plt.grid(visible=True, linestyle='--')
+    plt.show()
+    if file_name is not None:
+        plt.savefig(file_name)
+
+
+# -------------- plot functions -------------- #
+def det_plot(models, trueL, file_name=None):
+    """
+    Plots the DET curve for many models.
+    :param models is a list of pairs (S, label), where S is the binary log-likelihood ratio, while
+    label is the name of the model (eg, 'GMM')
+    :param trueL stores the actual labels of the dataset
+    :param file_name is the name of the file where we want to save the image, if any
+    """
+    for S, label in models:
+        # sort the values
+        sortS = np.sort(S)
+        # extend array to include -inf and +inf
+        # sortS = np.hstack([-np.inf, sortS, np.inf])
+        # allocate FPR and FNR
+        FPR = []
+        FNR = []
+        # generate the confusion matrix for each threshold (value in sortS)
+        for t in sortS:
+            predL = np.zeros(S.size, dtype=int)
+            predL[S > t] = 1
+            conf = confusion(trueL, predL)
+            FPR.append(get_FPR(conf))
+            FNR.append(get_FNR(conf))
+
+        FPR = np.array(FPR)
+        FNR = np.array(FNR)
+
+        # modify 0s and 1s
+        # FPR[FPR == 0] = 10**(-7)
+        # FPR[FPR == 1] = 0.9999999
+        # FNR[FNR == 0] = 10 ** (-7)
+        # FNR[FNR == 1] = 0.9999999
+
+        # plot the curve
+        plt.plot(norm.ppf(FPR), norm.ppf(FNR), label=label)
+
+    plt.title('DET plot')
+    plt.xlabel('FPR (%)')
+    plt.ylabel('FNR (%)')
+    ticks = np.array([0.5, 1, 5, 10, 20, 40, 60, 80, 99.5])
+    plt.xticks(norm.ppf(ticks/100), ticks)
+    plt.yticks(norm.ppf(ticks/100), ticks)
+    plt.grid(visible=True, linestyle='--')
+    plt.legend()
     plt.show()
     if file_name is not None:
         plt.savefig(file_name)

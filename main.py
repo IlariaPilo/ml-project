@@ -82,6 +82,7 @@ def main(config):
 
     # get parameters combination
     params_list = utilities.params_combinations(config["params"])
+    i = 0
 
     if config["k_fold"] is None:
         # >>>> SINGLE SPLIT <<<< #
@@ -101,6 +102,11 @@ def main(config):
 
             # ----------- 5a. predicting ----------- #
             predL, S = model_predict(XTE_, model, param)
+
+            # save the scores
+            if config["save_scores"]:
+                np.save("scores/"+config["save_scores"]+'_'+str(i)+".npy", S)
+                i += 1
 
             # ----------- 6a. evaluation ----------- #
             # we are using normalized min_dcf to evaluate the model
@@ -137,6 +143,11 @@ def main(config):
                 predL = np.concatenate((predL, predL_))
                 S = np.concatenate((S, S_))
 
+            # save the scores
+            if config["save_scores"]:
+                np.save("scores/" + config["save_scores"] + str(i) + ".npy", S)
+                i += 1
+
             # ----------- 6b. evaluation ----------- #
             trueL = np.hstack(foldsL)
             # we are using normalized min_dcf to evaluate the model
@@ -144,6 +155,10 @@ def main(config):
             print('minDCF: %f' % minDCF)
             err = utilities.err_rate(predL, trueL) * 100
             print('Error rate: %.3f' % err)
+
+            # ----------- 7b. calibration ----------- #
+            if param["calibration"]:
+                res = calibration.calibrate(param["calibration"])
 
 
 
@@ -153,7 +168,9 @@ if __name__ == '__main__':
         # is_print - if true, we generate plots
         "is_print": False,
         # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
-        "k_fold": None,
+        "k_fold": 5,
+        # save_scores - if None, we do not save scores. Otherwise, it is the name of the file (without extension)
+        "save_scores": "GMM",
         # each parameter should be inside an array, even if it is just one value
         "params": {
             # gaussianization - if true, we gaussianize the features
@@ -180,7 +197,7 @@ if __name__ == '__main__':
             # "C": [1, 10],
             # "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
-            "gmm": [2],
+            "gmm": [4],
             # "gmm": [2, 4, 8, 16, 32, 64, 128, 256],
             # "em": [gaussian_mixture_models.em, gaussian_mixture_models.diag_em]
             "em": [gaussian_mixture_models.em],
