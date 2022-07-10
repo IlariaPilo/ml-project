@@ -111,7 +111,7 @@ def main(config):
 
             # ----------- 6a. evaluation ----------- #
             # we are using normalized min_dcf to evaluate the model
-            minDCF = optimal_decisions.minimum_detection_cost(S, LTE, param["pi_t"], 1, 1, normalized=True)
+            minDCF = optimal_decisions.minimum_detection_cost(S, LTE, param["pi_tilde"], 1, 1, normalized=True)
             print('minDCF: %f' % minDCF)
             err = utilities.err_rate(predL, LTE) * 100
             print('Error rate: %.3f' % err)
@@ -153,7 +153,7 @@ def main(config):
             # ----------- 6b. evaluation ----------- #
             trueL = np.hstack(foldsL)
             # we are using normalized min_dcf to evaluate the model
-            minDCF = optimal_decisions.minimum_detection_cost(S, trueL, param["pi_t"], 1, 1, normalized=True)
+            minDCF = optimal_decisions.minimum_detection_cost(S, trueL, param["pi_tilde"], 1, 1, normalized=True)
             print('minDCF: %f' % minDCF)
             err = utilities.err_rate(predL, trueL) * 100
             print('Error rate: %.3f' % err)
@@ -177,7 +177,10 @@ if __name__ == '__main__':
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
             "pca": [None],
-            # pi_t - the main application is 0.5. We focus also on biased applications
+            # pi_tilde - the EFFECTIVE prior probability. the main application is 0.5. We focus also on biased
+            # applications
+            "pi_tilde": [0.5, 0.1, 0.9],
+            # pi_t - the prior probability. the main application is 0.5. We focus also on biased applications
             "pi_t": [0.5],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
             # "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
