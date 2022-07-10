@@ -5,17 +5,7 @@ import utilities as u
 
 # TODO add doc strings
 
-# calibration
-calibration_type = "simple"
-# calibration =  ["simple", "recalibration_func"]
-
-def calibration_main():
-    #TODO load scores
-    calibrate(calibration_type, scores, labels, pi, K)
-
-
-
-def calibrate(mode, scores, labels, pi, K=None):
+def calibrate(mode, scores, labels, pi:float, K:int=None):
     """
     main function for score calibration. It creates the calibration folds, then, depending on the mode,
     it calls the appropriate function on them
@@ -56,7 +46,7 @@ def calibrate(mode, scores, labels, pi, K=None):
     raise ValueError("Invalid calibration function")
 
 
-def calibration_simple(XTR, LTR, XTE, LTE, pi):
+def calibration_simple(XTR, LTR, XTE, LTE, pi:float):
     """
     Calibrate the scores using the
     :param XTR:
@@ -88,7 +78,15 @@ def recalibration():
     raise NotImplemented
 
 if __name__ == '__main__':
-    calibration_main()
+
+    calibration_type = "simple"  # ["simple", "recalibration_func"]
+    scores = np.load("scores/GMM4.npy")
+    labels = np.load("scores/GMM_labels_4.npy")
+    pi_tilde = [0.1,0.5,0.8]  # array of pi_tilde to test
+    K = None  # None, or the number of folds
+
+    for pi in pi_tilde:
+        calibrate(calibration_type, scores, labels, pi, K)
 
 
 

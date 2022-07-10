@@ -106,6 +106,7 @@ def main(config):
             # save the scores
             if config["save_scores"]:
                 np.save("scores/"+config["save_scores"]+'_'+str(i)+".npy", S)
+                np.save("scores/"+config["save_scores"]+'_labels_'+str(i)+".npy", LTE)
                 i += 1
 
             # ----------- 6a. evaluation ----------- #
@@ -145,7 +146,8 @@ def main(config):
 
             # save the scores
             if config["save_scores"]:
-                np.save("scores/" + config["save_scores"] + str(i) + ".npy", S)
+                np.save("scores/" + config["save_scores"] + '_' + str(i) + ".npy", S)
+                np.save("scores/" + config["save_scores"] + '_labels_' + str(i) + ".npy", np.hstack(foldsL))
                 i += 1
 
             # ----------- 6b. evaluation ----------- #
@@ -156,9 +158,6 @@ def main(config):
             err = utilities.err_rate(predL, trueL) * 100
             print('Error rate: %.3f' % err)
 
-            # ----------- 7b. calibration ----------- #
-            if param["calibration"]:
-                res = calibration.calibrate(param["calibration"])
 
 
 
@@ -200,7 +199,7 @@ if __name__ == '__main__':
             "gmm": [4],
             # "gmm": [2, 4, 8, 16, 32, 64, 128, 256],
             # "em": [gaussian_mixture_models.em, gaussian_mixture_models.diag_em]
-            "em": [gaussian_mixture_models.em],
+            "em": [gaussian_mixture_models.tied_em],
         }
     }
     main(config)
