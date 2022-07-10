@@ -1,0 +1,7 @@
+simple calibration: minDCF = 0.09627124672459354, actDCF(t) = 0.12004034689437283, actualDCF(t_star) = 0.17900738859449983
+simple calibration: minDCF = 0.030071218381733864, actDCF(t) = 0.0332834091458518, actualDCF(t_star) = 0.0332834091458518
+simple calibration: minDCF = 0.06104551807690919, actDCF(t) = 0.0851814081955324, actualDCF(t_star) = 0.08591498809322023
+
+recalibration_func (pi_t=0.1): minDCF = 0.09627124672459354, actDCF(uncalibrated) = 0.12004034689437283, actualDCF(pi=0.1) = 0.10076720230966521, actualDCF(pi=0.5) = 0.11379936034055892, actualDCF(pi=0.8) = 0.11549715320982885
+recalibration_func (pi_t=0.5): minDCF = 0.030071218381733864, actDCF(uncalibrated) = 0.0332834091458518, actualDCF(pi=0.1) = 0.034981202015121754, actualDCF(pi=0.5) = 0.034981202015121754, actualDCF(pi=0.8) = 0.034981202015121754
+recalibration_func (pi_t=0.8): minDCF = 0.06104551807690919, actDCF(uncalibrated) = 0.0851814081955324, actualDCF(pi=0.1) = 0.0851814081955324, actualDCF(pi=0.5) = 0.0851814081955324, actualDCF(pi=0.8) = 0.08354474698440312
