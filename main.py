@@ -187,7 +187,7 @@ if __name__ == '__main__':
             #                gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
             "gaussian_fit": [None],
             # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
-            "logistic_regression": [None],
+            "logistic_regression": [True],
             # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
             # "quadratic_regression": [10 ** (-6), 10 ** (-3), 10 ** (-1), 1, 10],
             "quadratic_regression": [None],
@@ -199,10 +199,10 @@ if __name__ == '__main__':
             # "C": [1, 10],
             # "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
-            "gmm": [4],
+            #"gmm": [4],
             # "gmm": [2, 4, 8, 16, 32, 64, 128, 256],
             # "em": [gaussian_mixture_models.em, gaussian_mixture_models.diag_em]
-            "em": [gaussian_mixture_models.tied_em],
+            #"em": [gaussian_mixture_models.tied_em],
         }
     }
     main(config)
