@@ -145,10 +145,6 @@ def main(config):
             err = utilities.err_rate(predL, trueL) * 100
             print('Error rate: %.3f' % err)
 
-            # ----------- 7b. calibration ----------- #
-            if param["calibration"]:
-                res = calibration.calibrate(param["calibration"])
-
 
 
 if __name__ == '__main__':
@@ -188,10 +184,6 @@ if __name__ == '__main__':
             # "gmm": [2, 4, 8, 16, 32, 64, 128, 256],
             # "em": [gaussian_mixture_models.em, gaussian_mixture_models.diag_em]
             "em": [gaussian_mixture_models.em],
-
-            # calibration
-            "calibration": ["simple"]
-            # "calibration": ["simple", "recalibration_func"]
         }
     }
     main(config)
