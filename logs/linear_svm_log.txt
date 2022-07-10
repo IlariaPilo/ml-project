@@ -1,0 +1,128 @@
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.01, 'K': 1}
+minDCF: 0.058389
+Error rate: 3.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.01, 'K': 10}
+minDCF: 0.060073
+Error rate: 3.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.1, 'K': 1}
+minDCF: 0.060039
+Error rate: 3.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.1, 'K': 10}
+minDCF: 0.060273
+Error rate: 3.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 1, 'K': 1}
+minDCF: 0.060306
+Error rate: 3.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 1, 'K': 10}
+minDCF: 0.060239
+Error rate: 3.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 10, 'K': 1}
+minDCF: 0.056706
+Error rate: 3.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 10, 'K': 10}
+minDCF: 0.060273
+Error rate: 3.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.01, 'K': 1}
+minDCF: 0.061623
+Error rate: 3.250
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.01, 'K': 10}
+minDCF: 0.058389
+Error rate: 3.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.1, 'K': 1}
+minDCF: 0.058322
+Error rate: 3.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.1, 'K': 10}
+minDCF: 0.058423
+Error rate: 3.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 1, 'K': 1}
+minDCF: 0.058456
+Error rate: 3.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 1, 'K': 10}
+minDCF: 0.056806
+Error rate: 3.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 10, 'K': 1}
+minDCF: 0.058256
+Error rate: 3.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 10, 'K': 10}
+minDCF: 0.058423
+Error rate: 3.167
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.01, 'K': 1}
+minDCF: 0.076841
+Error rate: 3.833
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.01, 'K': 10}
+minDCF: 0.076841
+Error rate: 3.833
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.1, 'K': 1}
+minDCF: 0.063173
+Error rate: 3.667
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.1, 'K': 10}
+minDCF: 0.063173
+Error rate: 3.667
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 1, 'K': 1}
+minDCF: 0.063140
+Error rate: 3.417
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 1, 'K': 10}
+minDCF: 0.063140
+Error rate: 3.417
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 10, 'K': 1}
+minDCF: 0.061489
+Error rate: 3.667
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 10, 'K': 10}
+minDCF: 0.063140
+Error rate: 3.667
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.01, 'K': 1}
+minDCF: 0.180585
+Error rate: 9.667
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.01, 'K': 10}
+minDCF: 0.180585
+Error rate: 9.667
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.1, 'K': 1}
+minDCF: 0.177118
+Error rate: 9.333
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 0.1, 'K': 10}
+minDCF: 0.177118
+Error rate: 9.333
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 1, 'K': 1}
+minDCF: 0.177218
+Error rate: 9.417
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 1, 'K': 10}
+minDCF: 0.177218
+Error rate: 9.417
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 10, 'K': 1}
+minDCF: 0.175534
+Error rate: 9.333
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'linear_svm': True, 'C': 10, 'K': 10}
+minDCF: 0.180118
+Error rate: 9.000
