@@ -1,0 +1,115 @@
+/home/alessio/anaconda3/envs/ml-project1/bin/python /home/alessio/PycharmProjects/ml-project1/main.py
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 4, 'em': <function em at 0x7f0af7b5ae60>}
+pi_tilde = 0.5 - minDCF: 0.036000
+Error rate: 1.850
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 4, 'em': <function diag_em at 0x7f0af7b5aef0>}
+pi_tilde = 0.5 - minDCF: 0.077333
+Error rate: 3.883
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 4, 'em': <function tied_em at 0x7f0af7b5af80>}
+pi_tilde = 0.5 - minDCF: 0.044667
+Error rate: 2.300
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 4, 'em': <function tied_diag_em at 0x7f0af7b5b010>}
+pi_tilde = 0.5 - minDCF: 0.073333
+Error rate: 3.783
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 8, 'em': <function em at 0x7f0af7b5ae60>}
+pi_tilde = 0.5 - minDCF: 0.036333
+Error rate: 1.917
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 8, 'em': <function diag_em at 0x7f0af7b5aef0>}
+pi_tilde = 0.5 - minDCF: 0.087000
+Error rate: 4.667
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 8, 'em': <function tied_em at 0x7f0af7b5af80>}
+pi_tilde = 0.5 - minDCF: 0.034333
+Error rate: 1.767
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 8, 'em': <function tied_diag_em at 0x7f0af7b5b010>}
+pi_tilde = 0.5 - minDCF: 0.081333
+Error rate: 4.350
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 16, 'em': <function em at 0x7f0af7b5ae60>}
+pi_tilde = 0.5 - minDCF: 0.037667
+Error rate: 1.967
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 16, 'em': <function diag_em at 0x7f0af7b5aef0>}
+pi_tilde = 0.5 - minDCF: 0.077333
+Error rate: 3.967
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 16, 'em': <function tied_em at 0x7f0af7b5af80>}
+pi_tilde = 0.5 - minDCF: 0.035667
+Error rate: 1.850
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 16, 'em': <function tied_diag_em at 0x7f0af7b5b010>}
+pi_tilde = 0.5 - minDCF: 0.067000
+Error rate: 3.500
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 32, 'em': <function em at 0x7f0af7b5ae60>}
+pi_tilde = 0.5 - minDCF: 0.047667
+Error rate: 2.417
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 32, 'em': <function diag_em at 0x7f0af7b5aef0>}
+pi_tilde = 0.5 - minDCF: 0.080000
+Error rate: 4.117
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 32, 'em': <function tied_em at 0x7f0af7b5af80>}
+pi_tilde = 0.5 - minDCF: 0.037333
+Error rate: 1.983
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 32, 'em': <function tied_diag_em at 0x7f0af7b5b010>}
+pi_tilde = 0.5 - minDCF: 0.061000
+Error rate: 3.150
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 64, 'em': <function em at 0x7f0af7b5ae60>}
+pi_tilde = 0.5 - minDCF: 0.068000
+Error rate: 3.400
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 64, 'em': <function diag_em at 0x7f0af7b5aef0>}
+pi_tilde = 0.5 - minDCF: 0.077333
+Error rate: 3.950
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 64, 'em': <function tied_em at 0x7f0af7b5af80>}
+pi_tilde = 0.5 - minDCF: 0.041667
+Error rate: 2.133
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 64, 'em': <function tied_diag_em at 0x7f0af7b5b010>}
+pi_tilde = 0.5 - minDCF: 0.056000
+Error rate: 2.800
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 128, 'em': <function em at 0x7f0af7b5ae60>}
+pi_tilde = 0.5 - minDCF: 0.098667
+Error rate: 5.017
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 128, 'em': <function diag_em at 0x7f0af7b5aef0>}
+pi_tilde = 0.5 - minDCF: 0.085000
+Error rate: 4.333
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 128, 'em': <function tied_em at 0x7f0af7b5af80>}
+pi_tilde = 0.5 - minDCF: 0.039667
+Error rate: 2.050
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 128, 'em': <function tied_diag_em at 0x7f0af7b5b010>}
+pi_tilde = 0.5 - minDCF: 0.056333
+Error rate: 3.050
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 256, 'em': <function em at 0x7f0af7b5ae60>}
+pi_tilde = 0.5 - minDCF: 0.169333
+Error rate: 8.500
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 256, 'em': <function diag_em at 0x7f0af7b5aef0>}
+pi_tilde = 0.5 - minDCF: 0.106000
+Error rate: 5.400
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 256, 'em': <function tied_em at 0x7f0af7b5af80>}
+pi_tilde = 0.5 - minDCF: 0.049667
+Error rate: 2.517
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': 256, 'em': <function tied_diag_em at 0x7f0af7b5b010>}
+pi_tilde = 0.5 - minDCF: 0.060333
+Error rate: 3.083
+
+Process finished with exit code 0
