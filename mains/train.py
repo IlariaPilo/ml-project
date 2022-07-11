@@ -104,14 +104,14 @@ def main(config):
             # save the scores
             if config["save_scores"]:
                 np.save("scores/"+config["save_scores"]+'_'+str(i)+".npy", S)
-                np.save("scores/"+config["save_scores"]+'_labels_'+str(i)+".npy", LTE)
+                # np.save("scores/"+config["save_scores"]+'_labels_'+str(i)+".npy", LTE)
                 i += 1
 
             # ----------- 6a. evaluation ----------- #
             # for each pi_tilde
             for pi_tilde in config["pi_tilde"]:
                 # we are using normalized min_dcf to evaluate the model
-                minDCF = optimal_decisions.minimum_detection_cost(S, LTE, pi_tilde, 1, 1, normalized=True)
+                minDCF, _ = optimal_decisions.minimum_detection_cost(S, LTE, pi_tilde, 1, 1, normalized=True)
                 print('pi_tilde = %0.1f - minDCF: %f' % (pi_tilde, minDCF))
             err = utilities.err_rate(predL, LTE) * 100
             print('Error rate: %.3f' % err)
@@ -147,7 +147,7 @@ def main(config):
             # save the scores
             if config["save_scores"]:
                 np.save("scores/" + config["save_scores"] + '_' + str(i) + ".npy", S)
-                np.save("scores/" + config["save_scores"] + '_labels_' + str(i) + ".npy", np.hstack(foldsL))
+                # np.save("scores/" + config["save_scores"] + '_labels_' + str(i) + ".npy", np.hstack(foldsL))
                 i += 1
 
             # ----------- 6b. evaluation ----------- #
@@ -155,7 +155,7 @@ def main(config):
             # for each pi_tilde
             for pi_tilde in config["pi_tilde"]:
                 # we are using normalized min_dcf to evaluate the model
-                minDCF = optimal_decisions.minimum_detection_cost(S, trueL, pi_tilde, 1, 1, normalized=True)
+                minDCF, _ = optimal_decisions.minimum_detection_cost(S, trueL, pi_tilde, 1, 1, normalized=True)
                 print('pi_tilde = %0.1f - minDCF: %f' % (pi_tilde, minDCF))
             err = utilities.err_rate(predL, trueL) * 100
             print('Error rate: %.3f' % err)
@@ -169,17 +169,17 @@ if __name__ == '__main__':
         # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
         "k_fold": 5,
         # save_scores - if None, we do not save scores. Otherwise, it is the name of the file (without extension)
-        "save_scores": None,
+        "save_scores": "GMM",
         # each parameter should be inside an array, even if it is just one value
         # pi_tilde - the EFFECTIVE prior probability. the main application is 0.5. We focus also on biased
         # applications
-        "pi_tilde": [0.5, 0.1, 0.9],
+        "pi_tilde": [0.5],
         "params": {
             # gaussianization - if true, we gaussianize the features
             "gaussianization": [False],
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
-            "pca": [None, 8],
+            "pca": [None],
             # pi_t - the prior probability. the main application is 0.5. We focus also on biased applications
             "pi_t": [0.5],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
@@ -189,8 +189,8 @@ if __name__ == '__main__':
             # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
             "logistic_regression": [None],
             # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
-            "quadratic_regression": [10 ** (-15), 10 ** (-11), 10 ** (-9)],
-            # "quadratic_regression": [None],
+            # "quadratic_regression": [10 ** (-11)],
+            "quadratic_regression": [None],
             # svm - True if we want to use it. C and K are the related hyperparameters
             "svm": [None],
             # kernel is None if we want linear svm
@@ -199,10 +199,10 @@ if __name__ == '__main__':
             # "C": [1, 10],
             # "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
-            "gmm": [None],
-            # "gmm": [2, 4, 8, 16, 32, 64, 128, 256],
+            # "gmm": [None],
+            "gmm": [8],
             # "em": [gaussian_mixture_models.em, gaussian_mixture_models.diag_em]
-            # "em": [gaussian_mixture_models.tied_em],
+            "em": [gaussian_mixture_models.tied_em]
         }
     }
     main(config)

@@ -92,6 +92,7 @@ def minimum_detection_cost(S, trueL, pi_1, C_fn, C_fp, normalized=False):
     sortS = np.hstack([-np.inf, sortS, np.inf])
     # set up the minimum DCF
     minDCF = sys.float_info.max
+    t_star = 0
     # generate the confusion matrix for each threshold (value in sortS)
     for t in sortS:
         predL = np.zeros(S.size, dtype=int)
@@ -102,7 +103,9 @@ def minimum_detection_cost(S, trueL, pi_1, C_fn, C_fp, normalized=False):
         # if it is lower than the minimum, update it
         if minDCF > DCF:
             minDCF = DCF
-    return minDCF
+            t_star = t
+    return minDCF, t_star
+
 
 def actual_dcf(S, trueL, threshold, pi):
     """
@@ -119,7 +122,6 @@ def actual_dcf(S, trueL, threshold, pi):
     conf = confusion(trueL, predL)
     # compute the (normalized) DCF
     DCF = dcf(conf, pi, 1, 1, True)
-    # if it is lower than the minimum, update it
     return DCF
 
 
@@ -198,7 +200,7 @@ def det_plot(models, trueL, file_name=None):
     plt.title('DET plot')
     plt.xlabel('FPR (%)')
     plt.ylabel('FNR (%)')
-    ticks = np.array([0.5, 1, 5, 10, 20, 40, 60, 80, 99.5])
+    ticks = np.array([0.5, 1, 5, 10, 20, 40])
     plt.xticks(norm.ppf(ticks/100), ticks)
     plt.yticks(norm.ppf(ticks/100), ticks)
     plt.grid(visible=True, linestyle='--')
@@ -231,7 +233,7 @@ def bayes_error_plot(models, trueL, min_p_=-3, max_p_=3, points=21, file_name=No
         for pi_ in effPrior:
             conf = confusion(trueL, binary_optimal_decision(S, pi_, 1, 1))
             DCF.append(dcf(conf, pi_, 1, 1, True))
-            minDCF.append(minimum_detection_cost(S, trueL, pi_, 1, 1, True))
+            minDCF.append(minimum_detection_cost(S, trueL, pi_, 1, 1, True)[0])
         DCF = np.array(DCF)
         minDCF = np.array(minDCF)
         # plot the curves
