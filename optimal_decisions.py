@@ -208,13 +208,14 @@ def det_plot(models, trueL, file_name=None):
         plt.savefig(file_name)
 
 
-def bayes_error_plot(S, trueL, min_p_=-3, max_p_=3, points=21, file_name=None):
+def bayes_error_plot(models, trueL, min_p_=-3, max_p_=3, points=21, file_name=None):
     """
     Plots the Bayes error plots.
-    :param S is the binary log-likelihood ratio
+    :param models is a list of pairs (S, label, color), where S is the binary log-likelihood ratio,
+    label is the name of the model (eg, 'GMM') and color is the color we want to use for that model (eg, 'r')
     :param trueL stores the actual labels of the dataset
-    :param min_p is the minimum prior log-odd we want to consider
-    :param max_p is the maximum prior log-odd we want to consider
+    :param min_p_ is the minimum prior log-odd we want to consider
+    :param max_p_ is the maximum prior log-odd we want to consider
     :param points is the number of points we want to consider
     :param file_name is the name of the file where we want to save the image, if any
     """
@@ -222,22 +223,24 @@ def bayes_error_plot(S, trueL, min_p_=-3, max_p_=3, points=21, file_name=None):
     effPriorLogOdds = np.linspace(min_p_, max_p_, points)
     # generate the correspondent pi_
     effPrior = 1/(1+np.exp(-effPriorLogOdds))
-    # set up DCF and min DCF
-    DCF = []
-    minDCF = []
-    for pi_ in effPrior:
-        conf = confusion(trueL, binary_optimal_decision(S, pi_, 1, 1))
-        DCF.append(dcf(conf, pi_, 1, 1, True))
-        minDCF.append(minimum_detection_cost(S, trueL, pi_, 1, 1, True))
-    DCF = np.array(DCF)
-    minDCF = np.array(minDCF)
-    # plot the curves
-    plt.plot(effPriorLogOdds, DCF, label='DCF', color='r')
-    plt.plot(effPriorLogOdds, minDCF, label='min DCF', color='b')
-    plt.ylim([0, 1.1])
+    # for each model
+    for S, label, color in models:
+        # set up DCF and min DCF
+        DCF = []
+        minDCF = []
+        for pi_ in effPrior:
+            conf = confusion(trueL, binary_optimal_decision(S, pi_, 1, 1))
+            DCF.append(dcf(conf, pi_, 1, 1, True))
+            minDCF.append(minimum_detection_cost(S, trueL, pi_, 1, 1, True))
+        DCF = np.array(DCF)
+        minDCF = np.array(minDCF)
+        # plot the curves
+        plt.plot(effPriorLogOdds, DCF, color, label=label+' - DCF')
+        plt.plot(effPriorLogOdds, minDCF, '--'+color, label=label+' - min DCF')
+    plt.ylim([0, 1.2])
     plt.xlim([min_p_, max_p_])
     plt.xlabel('Prior log-odds')
-    plt.ylabel('DCF value')
+    plt.ylabel('DCF')
     plt.legend(loc='lower left')
     plt.show()
     if file_name is not None:
