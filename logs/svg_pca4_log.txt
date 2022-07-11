@@ -1,0 +1,106 @@
+---------------- NO KFOLD --------------
+C:\Users\ilapi\PycharmProjects\ml-project\venv\Scripts\python.exe C:\Users\ilapi\PycharmProjects\ml-project\mains\train.py
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_fit at 0x000001A6C7ECE3A0>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.389939
+pi_tilde = 0.1 - minDCF: 0.830933
+pi_tilde = 0.9 - minDCF: 0.795580
+Error rate: 20.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_naive_bayes_fit at 0x000001A6C7ECE430>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.405691
+pi_tilde = 0.1 - minDCF: 0.845035
+pi_tilde = 0.9 - minDCF: 0.822332
+Error rate: 21.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_tied_covariance_fit at 0x000001A6C7ECE4C0>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.393406
+pi_tilde = 0.1 - minDCF: 0.832583
+pi_tilde = 0.9 - minDCF: 0.811331
+Error rate: 20.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_tied_naive_bayes_fit at 0x000001A6C7ECE550>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.410674
+pi_tilde = 0.1 - minDCF: 0.839184
+pi_tilde = 0.9 - minDCF: 0.822032
+Error rate: 21.000
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_fit at 0x000001A6C7ECE3A0>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.498200
+pi_tilde = 0.1 - minDCF: 0.922292
+pi_tilde = 0.9 - minDCF: 0.871937
+Error rate: 25.000
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_naive_bayes_fit at 0x000001A6C7ECE430>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.499717
+pi_tilde = 0.1 - minDCF: 0.934893
+pi_tilde = 0.9 - minDCF: 0.881555
+Error rate: 25.083
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_tied_covariance_fit at 0x000001A6C7ECE4C0>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.505034
+pi_tilde = 0.1 - minDCF: 0.908791
+pi_tilde = 0.9 - minDCF: 0.875304
+Error rate: 25.667
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_tied_naive_bayes_fit at 0x000001A6C7ECE550>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.499950
+pi_tilde = 0.1 - minDCF: 0.934893
+pi_tilde = 0.9 - minDCF: 0.873137
+Error rate: 25.083
+
+Process finished with exit code 0
+
+--------------- KFOLD ----------------
+
+C:\Users\ilapi\PycharmProjects\ml-project\venv\Scripts\python.exe C:\Users\ilapi\PycharmProjects\ml-project\mains\train.py
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_fit at 0x000001F6C064E3A0>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.381333
+pi_tilde = 0.1 - minDCF: 0.800333
+pi_tilde = 0.9 - minDCF: 0.797000
+Error rate: 19.100
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_naive_bayes_fit at 0x000001F6C064E430>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.391333
+pi_tilde = 0.1 - minDCF: 0.813333
+pi_tilde = 0.9 - minDCF: 0.803667
+Error rate: 19.850
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_tied_covariance_fit at 0x000001F6C064E4C0>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.381333
+pi_tilde = 0.1 - minDCF: 0.797000
+pi_tilde = 0.9 - minDCF: 0.801667
+Error rate: 19.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_tied_naive_bayes_fit at 0x000001F6C064E550>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.393667
+pi_tilde = 0.1 - minDCF: 0.809000
+pi_tilde = 0.9 - minDCF: 0.801000
+Error rate: 19.800
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_fit at 0x000001F6C064E3A0>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.476667
+pi_tilde = 0.1 - minDCF: 0.909333
+pi_tilde = 0.9 - minDCF: 0.923333
+Error rate: 24.017
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_naive_bayes_fit at 0x000001F6C064E430>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.484000
+pi_tilde = 0.1 - minDCF: 0.915667
+pi_tilde = 0.9 - minDCF: 0.918000
+Error rate: 24.367
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_tied_covariance_fit at 0x000001F6C064E4C0>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.476667
+pi_tilde = 0.1 - minDCF: 0.906667
+pi_tilde = 0.9 - minDCF: 0.909667
+Error rate: 24.083
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 4, 'pi_t': 0.5, 'gaussian_fit': <function mvg_tied_naive_bayes_fit at 0x000001F6C064E550>, 'logistic_regression': None, 'quadratic_regression': None, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.481333
+pi_tilde = 0.1 - minDCF: 0.913333
+pi_tilde = 0.9 - minDCF: 0.916000
+Error rate: 24.283
+
+Process finished with exit code 0
