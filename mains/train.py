@@ -146,7 +146,7 @@ def main(config):
 
             # save the scores
             if config["save_scores"]:
-                np.save("scores/" + config["save_scores"] + '_' + str(i) + ".npy", S)
+                np.save("../scores/" + config["save_scores"] + '_' + str(i) + ".npy", S)
                 # np.save("scores/" + config["save_scores"] + '_labels_' + str(i) + ".npy", np.hstack(foldsL))
                 i += 1
 
