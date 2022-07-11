@@ -36,4 +36,21 @@ pi_tilde = 0.1 - minDCF: 0.271333
 pi_tilde = 0.9 - minDCF: 0.157333
 Error rate: 5.250
 
-Process finished with exit code 0
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7f9d46630550>, 'C': 0.01, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.099000
+pi_tilde = 0.1 - minDCF: 0.288000
+pi_tilde = 0.9 - minDCF: 0.285000
+Error rate: 5.100
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7f9d46630550>, 'C': 0.01, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.051333
+pi_tilde = 0.1 - minDCF: 0.161000
+pi_tilde = 0.9 - minDCF: 0.142333
+Error rate: 50.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7f9d46630550>, 'C': 0.01, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.047000
+pi_tilde = 0.1 - minDCF: 0.136667
+pi_tilde = 0.9 - minDCF: 0.174667
+Error rate: 50.000
