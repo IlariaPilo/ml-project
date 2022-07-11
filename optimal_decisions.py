@@ -164,12 +164,12 @@ def roc_plot(S, trueL, file_name=None):
 def det_plot(models, trueL, file_name=None):
     """
     Plots the DET curve for many models.
-    :param models is a list of pairs (S, label), where S is the binary log-likelihood ratio, while
-    label is the name of the model (eg, 'GMM')
+    :param models is a list of pairs (S, label, color), where S is the binary log-likelihood ratio,
+    label is the name of the model (eg, 'GMM') and color is the color we want to use for that model (eg, 'r')
     :param trueL stores the actual labels of the dataset
     :param file_name is the name of the file where we want to save the image, if any
     """
-    for S, label in models:
+    for S, label, color in models:
         # sort the values
         sortS = np.sort(S)
         # extend array to include -inf and +inf
@@ -195,9 +195,9 @@ def det_plot(models, trueL, file_name=None):
         # FNR[FNR == 1] = 0.9999999
 
         # plot the curve
-        plt.plot(norm.ppf(FPR), norm.ppf(FNR), label=label)
+        plt.plot(norm.ppf(FPR), norm.ppf(FNR), label=label, color=color)
 
-    plt.title('DET plot')
+    # plt.title('DET plot')
     plt.xlabel('FPR (%)')
     plt.ylabel('FNR (%)')
     ticks = np.array([0.5, 1, 5, 10, 20, 40])

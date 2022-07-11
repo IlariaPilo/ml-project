@@ -190,6 +190,8 @@ def recalibration_func_fit(XTR, LTR, pi_1, l: float = 0):
         th = np.log(pi_1/(1 - pi_1))
         # recalibrate scores
         new_scores = u.vcol(alpha)*s + beta_prime - th
+        if new_scores.shape[0] == 1:
+            new_scores = new_scores.flatten()
         return new_scores
 
     return f_s
@@ -197,16 +199,16 @@ def recalibration_func_fit(XTR, LTR, pi_1, l: float = 0):
 
 if __name__ == '__main__':
     # type of calibration: ["simple", "recalibration_func", "fusion"]
-    _calibration_type = "fusion"
+    _calibration_type = "recalibration_func"
     # scores to calibrate
     _scores = u.vrow(np.load("../scores/GMM_8_tied.npy"))
     # actual labels of the dataset
     _labels = np.load("../scores/5fold_labels.npy")
-    _pi_tilde = [0.1, 0.5, 0.9]  # array of pi_tilde to test
+    _pi_tilde = [0.5]  # array of pi_tilde to test
     _K = None  # None, or the number of folds
 
     # recalibration function/fusion settings
-    _pi_1 = [0.1, 0.5, 0.9]  # array of priors (for the logistic regression of the recalibration function f(s))
+    _pi_1 = [0.5]  # array of priors (for the logistic regression of the recalibration function f(s))
     _lambda = [0]  # lambda for the logistic regression
     # _scores_fusion - set None to compute normal recalibration function on _scores, else fuse _scores with these scores
     _scores_fusion = u.vrow(np.load("../scores/LR_pca8.npy"))
@@ -214,4 +216,6 @@ if __name__ == '__main__':
     if _calibration_type == "fusion":
         _scores = np.vstack([_scores, _scores_fusion])
     for pi in _pi_tilde:
-        calibrate(_calibration_type, _scores, _labels, pi, _K)
+        f_s = calibrate(_calibration_type, _scores, _labels, pi, _K)
+    # S2 = f_s[0](_scores)
+    # optimal_decisions.bayes_error_plot([(_scores.flatten(), "Tied GMM (8)", 'r'), (S2, "Tied GMM (8), calibrated", 'b')], _labels)
