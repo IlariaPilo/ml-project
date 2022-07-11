@@ -69,7 +69,7 @@ def model_predict(testX, model, params):
 
 def main(config):
     # ----------- 1. read the training dataset ----------- #
-    trainX, trainL = load.load("data/Train")
+    trainX, trainL = load.load("../data/Train")
 
     # ----------- 2. feature analysis ----------- #
     if config["is_print"]:
@@ -169,19 +169,19 @@ if __name__ == '__main__':
         # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
         "k_fold": 5,
         # save_scores - if None, we do not save scores. Otherwise, it is the name of the file (without extension)
-        "save_scores": "GMM",
+        "save_scores": "SVM_linear",
         # each parameter should be inside an array, even if it is just one value
         # pi_tilde - the EFFECTIVE prior probability. the main application is 0.5. We focus also on biased
         # applications
-        "pi_tilde": [0.5],
+        "pi_tilde": [0.5, 0.1, 0.9],
         "params": {
             # gaussianization - if true, we gaussianize the features
             "gaussianization": [False],
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
-            "pca": [None],
+            "pca": [8],
             # pi_t - the prior probability. the main application is 0.5. We focus also on biased applications
-            "pi_t": [0.5],
+            "pi_t": [0.5, 0.1, 0.9],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
             # "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
             #                gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
@@ -192,17 +192,17 @@ if __name__ == '__main__':
             # "quadratic_regression": [10 ** (-11)],
             "quadratic_regression": [None],
             # svm - True if we want to use it. C and K are the related hyperparameters
-            "svm": [None],
+            "svm": [True],
             # kernel is None if we want linear svm
-            # "kernel": [None],
+            "kernel": [None],
             # "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
-            # "C": [1, 10],
-            # "K": [1],
+            "C": [0.1],
+            "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
             # "gmm": [None],
-            "gmm": [8],
+            # "gmm": [8],
             # "em": [gaussian_mixture_models.em, gaussian_mixture_models.diag_em]
-            "em": [gaussian_mixture_models.tied_em]
+            # "em": [gaussian_mixture_models.tied_em]
         }
     }
     main(config)
