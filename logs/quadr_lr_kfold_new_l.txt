@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-15, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.121667
+pi_tilde = 0.1 - minDCF: 0.354000
+pi_tilde = 0.9 - minDCF: 0.333667
+Error rate: 6.183
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.118333
+pi_tilde = 0.1 - minDCF: 0.371000
+pi_tilde = 0.9 - minDCF: 0.335333
+Error rate: 6.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-09, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.122333
+pi_tilde = 0.1 - minDCF: 0.378333
+pi_tilde = 0.9 - minDCF: 0.331000
+Error rate: 6.250
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-15, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.079333
+pi_tilde = 0.1 - minDCF: 0.229667
+pi_tilde = 0.9 - minDCF: 0.219000
+Error rate: 4.033
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.065667
+pi_tilde = 0.1 - minDCF: 0.204000
+pi_tilde = 0.9 - minDCF: 0.190667
+Error rate: 3.417
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-09, 'svm': None, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.075000
+pi_tilde = 0.1 - minDCF: 0.213333
+pi_tilde = 0.9 - minDCF: 0.199333
+Error rate: 3.967
+
+Process finished with exit code 0

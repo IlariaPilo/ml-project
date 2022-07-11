@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 import load
 import optimal_decisions
+import preprocessing
 
 
 def linear_svm_plot():
@@ -210,14 +211,14 @@ def lr_plot():
 
 
 def quad_lr_plot():
-    l = [10**(-6), 0.001, 0.1, 1, 10]
+    l = [10**(-15), 10**(-11), 10**(-9), 10**(-6), 0.001, 0.1, 1, 10]
 
-    gaussF_pcaF_pi5 = [0.120000, 0.118333, 0.119333, 0.113333, 0.134667]
-    gaussF_pcaF_pi1 = [0.367333, 0.379333, 0.352000, 0.373000, 0.402333]
-    gaussF_pcaF_pi9 = [0.329333, 0.324333, 0.312667, 0.313333, 0.325333]
-    gaussF_pca8_pi5 = [0.081333, 0.083667, 0.077667, 0.103333, 0.219000]
-    gaussF_pca8_pi1 = [0.222667, 0.236667, 0.230333, 0.300000, 0.581000]
-    gaussF_pca8_pi9 = [0.196333, 0.223667, 0.189000, 0.264667, 0.472000]
+    gaussF_pcaF_pi5 = [0.121667, 0.118333, 0.122333, 0.120000, 0.118333, 0.119333, 0.113333, 0.134667]
+    gaussF_pcaF_pi1 = [0.354000, 0.371000, 0.378333, 0.367333, 0.379333, 0.352000, 0.373000, 0.402333]
+    gaussF_pcaF_pi9 = [0.333667, 0.335333, 0.331000, 0.329333, 0.324333, 0.312667, 0.313333, 0.325333]
+    gaussF_pca8_pi5 = [0.079333, 0.065667, 0.075000, 0.081333, 0.083667, 0.077667, 0.103333, 0.219000]
+    gaussF_pca8_pi1 = [0.229667, 0.204000, 0.213333, 0.222667, 0.236667, 0.230333, 0.300000, 0.581000]
+    gaussF_pca8_pi9 = [0.219000, 0.190667, 0.199333, 0.196333, 0.223667, 0.189000, 0.264667, 0.472000]
 
     plt.figure()
     plt.suptitle("Quadratic logistic regression results")
@@ -273,8 +274,14 @@ def gmm_plot_main():
 
 
 if __name__ == '__main__':
+    """
     trainX, trainL = load.load("data/Train")
+    foldsX, foldsL = preprocessing.k_fold(5, trainX, trainL)
+    trueL = np.hstack(foldsL)
     S1 = np.load("scores/GMM_4_tied.npy")
     S2 = np.load("scores/MVG_tied_pca8.npy")
-    optimal_decisions.det_plot([(S1, "Tied GMM, 4 components, no PCA"), (S2, "MVG, PCA (m = 8)")], trainL)
+    # optimal_decisions.det_plot([(S1, "Tied GMM, 4 components, no PCA"), (S2, "MVG, PCA (m = 8)")], trueL)
     # optimal_decisions.roc_plot(S1, LTE)
+    optimal_decisions.bayes_error_plot([(S1, "GMM", 'r'), (S2, "MVG", 'b')], trueL)
+    """
+    quad_lr_plot()
