@@ -1,0 +1,23 @@
+------------ GMM tied 4 -----------
+simple calibration (pi_t=0.1): minDCF = 0.09627124672459354, actDCF(t) = 0.12004034689437283, actualDCF(t_star) = 0.11893997704784107
+simple calibration (pi_t=0.5): minDCF = 0.030071218381733864, actDCF(t) = 0.0332834091458518, actualDCF(t_star) = 0.03346680412027376
+simple calibration (pi_t=0.9): minDCF = 0.07802344676960868, actDCF(t) = 0.10694705720533847, actualDCF(t_star) = 0.09330358259303824
+
+recalibration_func (pi_t=0.1): minDCF = 0.09627124672459354, actDCF(uncalibrated) = 0.12004034689437283
+	actualDCF(pi=0.1,l=0) = 0.10076720230966521
+	actualDCF(pi=0.5,l=0) = 0.11379936034055892
+	actualDCF(pi=0.9,l=0) = 0.10076720230966521
+recalibration_func (pi_t=0.5): minDCF = 0.030071218381733864, actDCF(uncalibrated) = 0.0332834091458518
+	actualDCF(pi=0.1,l=0) = 0.034981202015121754
+	actualDCF(pi=0.5,l=0) = 0.034981202015121754
+	actualDCF(pi=0.9,l=0) = 0.033344540803992455
+recalibration_func (pi_t=0.9): minDCF = 0.07802344676960868, actDCF(uncalibrated) = 0.10694705720533847
+	actualDCF(pi=0.1,l=0) = 0.09330358259303824
+	actualDCF(pi=0.5,l=0) = 0.10694705720533847
+	actualDCF(pi=0.9,l=0) = 0.10694705720533847
+
+
+------------ GMM tied 8 -----------
+simple calibration (pi_t=0.1): minDCF = 0.09627124672459354, actDCF(t) = 0.11040377460201901, actualDCF(t_star) = 0.11265175239455481
+simple calibration (pi_t=0.5): minDCF = 0.030132350039874512, actDCF(t) = 0.030132350039874512, actualDCF(t_star) = 0.03176901125100381
+simple calibration (pi_t=0.9): minDCF = 0.08784341403638445, actDCF(t) = 0.10694705720533847, actualDCF(t_star) = 0.10858371841646777

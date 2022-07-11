@@ -1,6 +1,5 @@
-import numpy as np
 from sklearn.svm import SVC
-import load
+from mains import load
 import preprocessing
 import utilities
 

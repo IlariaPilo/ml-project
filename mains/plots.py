@@ -340,12 +340,12 @@ def gmm_plot_main():
     pca8_diag = np.array([0.081333, 0.077333, 0.087000, 0.077333, 0.080000, 0.077333, 0.085000, 0.106000])
     pca8_tied = np.array([0.045667, 0.044667, 0.034333, 0.035667, 0.037333, 0.041667, 0.039667, 0.049667])
     pca8_tied_diag = np.array([0.081333, 0.073333, 0.081333, 0.067000, 0.061000, 0.056000, 0.056333, 0.060333])
-    gmm_plot(pcaF_em, pca8_em, 'GMM results, Full Covariance', 'plots/gmm_em.png')
-    gmm_plot(pcaF_diag, pca8_diag, 'GMM results, Diagonal Covariance', 'plots/gmm_diag.png')
-    gmm_plot(pcaF_tied, pca8_tied, 'GMM results, Tied Full Covariance', 'plots/gmm_tied.png')
-    gmm_plot(pcaF_tied_diag, pca8_tied_diag, 'GMM results, Tied Diagonal Covariance', 'plots/gmm_tied_diag.png')
-    gmm_plot2(pcaF_em, pcaF_diag, pcaF_tied, pcaF_tied_diag, 'GMM results, no PCA', 'plots/gmm_pcaF.png')
-    gmm_plot2(pca8_em, pca8_diag, pca8_tied, pca8_tied_diag, 'GMM results, PCA (m = 8)', 'plots/gmm_pca8.png')
+    gmm_plot(pcaF_em, pca8_em, 'GMM results, Full Covariance', '../plots/gmm_em.png')
+    gmm_plot(pcaF_diag, pca8_diag, 'GMM results, Diagonal Covariance', '../plots/gmm_diag.png')
+    gmm_plot(pcaF_tied, pca8_tied, 'GMM results, Tied Full Covariance', '../plots/gmm_tied.png')
+    gmm_plot(pcaF_tied_diag, pca8_tied_diag, 'GMM results, Tied Diagonal Covariance', '../plots/gmm_tied_diag.png')
+    gmm_plot2(pcaF_em, pcaF_diag, pcaF_tied, pcaF_tied_diag, 'GMM results, no PCA', '../plots/gmm_pcaF.png')
+    gmm_plot2(pca8_em, pca8_diag, pca8_tied, pca8_tied_diag, 'GMM results, PCA (m = 8)', '../plots/gmm_pca8.png')
 
 
 def lr_plot():
@@ -458,17 +458,13 @@ def quad_lr_plot():
 
 
 if __name__ == '__main__':
-    """
-    trainX, trainL = load.load("data/Train")
-    foldsX, foldsL = preprocessing.k_fold(5, trainX, trainL)
-    trueL = np.hstack(foldsL)
+    trueL = np.load("scores/5fold_labels.npy")
     S1 = np.load("scores/GMM_4_tied.npy")
-    S2 = np.load("scores/MVG_tied_pca8.npy")
-    # optimal_decisions.det_plot([(S1, "Tied GMM, 4 components, no PCA"), (S2, "MVG, PCA (m = 8)")], trueL)
+    S2 = np.load("scores/GMM_8_tied.npy")
+    # optimal_decisions.det_plot([(S1, "Tied GMM, 4 components"), (S2, "Tied GMM, 8 components")], trueL)
     # optimal_decisions.roc_plot(S1, LTE)
-    optimal_decisions.bayes_error_plot([(S1, "GMM", 'r'), (S2, "MVG", 'b')], trueL)
-    """
+    optimal_decisions.bayes_error_plot([(S1, "Tied GMM, 4 components", 'r'), (S2, "Tied GMM, 8 components", 'b')], trueL)
     # quad_lr_plot()
     # linear_svm_plot()
-    quadratic_svm_plot()
+    # quadratic_svm_plot()
     # radial_svm_plot()
