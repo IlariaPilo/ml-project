@@ -237,7 +237,7 @@ def bayes_error_plot(models, trueL, min_p_=-3, max_p_=3, points=21, file_name=No
         # plot the curves
         plt.plot(effPriorLogOdds, DCF, color, label=label+' - DCF')
         plt.plot(effPriorLogOdds, minDCF, '--'+color, label=label+' - min DCF')
-    plt.ylim([0, 1.2])
+    # plt.ylim([0, 1.2])
     plt.xlim([min_p_, max_p_])
     plt.xlabel('Prior log-odds')
     plt.ylabel('DCF')
