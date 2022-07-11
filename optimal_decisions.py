@@ -241,7 +241,7 @@ def bayes_error_plot(models, trueL, min_p_=-3, max_p_=3, points=21, file_name=No
     plt.xlim([min_p_, max_p_])
     plt.xlabel('Prior log-odds')
     plt.ylabel('DCF')
-    plt.legend(loc='lower left')
+    plt.legend()
     plt.show()
     if file_name is not None:
         plt.savefig(file_name)
