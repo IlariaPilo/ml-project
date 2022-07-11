@@ -1,0 +1,144 @@
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838670>, 'C': 1, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.751458
+pi_tilde = 0.1 - minDCF: 0.993699
+pi_tilde = 0.9 - minDCF: 0.994949
+Error rate: 40.917
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838670>, 'C': 10, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.928993
+pi_tilde = 0.1 - minDCF: 0.998350
+pi_tilde = 0.9 - minDCF: 1.000000
+Error rate: 48.250
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838700>, 'C': 1, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.682985
+pi_tilde = 0.1 - minDCF: 0.996700
+pi_tilde = 0.9 - minDCF: 0.978114
+Error rate: 34.750
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838700>, 'C': 10, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.647365
+pi_tilde = 0.1 - minDCF: 0.991749
+pi_tilde = 0.9 - minDCF: 0.876804
+Error rate: 34.250
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838670>, 'C': 1, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.829016
+pi_tilde = 0.1 - minDCF: 1.000000
+pi_tilde = 0.9 - minDCF: 0.967413
+Error rate: 42.417
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838670>, 'C': 10, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.898523
+pi_tilde = 0.1 - minDCF: 0.995350
+pi_tilde = 0.9 - minDCF: 0.994949
+Error rate: 46.250
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838700>, 'C': 1, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.774811
+pi_tilde = 0.1 - minDCF: 1.000000
+pi_tilde = 0.9 - minDCF: 0.998316
+Error rate: 41.667
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838700>, 'C': 10, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.838167
+pi_tilde = 0.1 - minDCF: 0.998350
+pi_tilde = 0.9 - minDCF: 0.998316
+Error rate: 44.667
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838670>, 'C': 1, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.886505
+pi_tilde = 0.1 - minDCF: 0.990099
+pi_tilde = 0.9 - minDCF: 0.996633
+Error rate: 47.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838670>, 'C': 10, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.928826
+pi_tilde = 0.1 - minDCF: 0.990099
+pi_tilde = 0.9 - minDCF: 1.000000
+Error rate: 48.083
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838700>, 'C': 1, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.415458
+pi_tilde = 0.1 - minDCF: 0.922592
+pi_tilde = 0.9 - minDCF: 0.797146
+Error rate: 21.250
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838700>, 'C': 10, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.757059
+pi_tilde = 0.1 - minDCF: 1.000000
+pi_tilde = 0.9 - minDCF: 0.986532
+Error rate: 38.583
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838670>, 'C': 1, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.911258
+pi_tilde = 0.1 - minDCF: 1.000000
+pi_tilde = 0.9 - minDCF: 0.996633
+Error rate: 47.333
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838670>, 'C': 10, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.881772
+pi_tilde = 0.1 - minDCF: 0.998350
+pi_tilde = 0.9 - minDCF: 0.993266
+Error rate: 45.333
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838700>, 'C': 1, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.864686
+pi_tilde = 0.1 - minDCF: 1.000000
+pi_tilde = 0.9 - minDCF: 0.993266
+Error rate: 47.417
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838700>, 'C': 10, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.890556
+pi_tilde = 0.1 - minDCF: 0.975248
+pi_tilde = 0.9 - minDCF: 0.994949
+Error rate: 47.250
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838670>, 'C': 1, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.838984
+pi_tilde = 0.1 - minDCF: 0.993399
+pi_tilde = 0.9 - minDCF: 1.000000
+Error rate: 42.833
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838670>, 'C': 10, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.983665
+pi_tilde = 0.1 - minDCF: 1.000000
+pi_tilde = 0.9 - minDCF: 0.996633
+Error rate: 51.583
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838700>, 'C': 1, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.552772
+pi_tilde = 0.1 - minDCF: 0.973597
+pi_tilde = 0.9 - minDCF: 0.966030
+Error rate: 32.333
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838700>, 'C': 10, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.946578
+pi_tilde = 0.1 - minDCF: 0.991749
+pi_tilde = 0.9 - minDCF: 0.998316
+Error rate: 51.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838670>, 'C': 1, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.956462
+pi_tilde = 0.1 - minDCF: 0.998350
+pi_tilde = 0.9 - minDCF: 0.998316
+Error rate: 49.583
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838670>, 'C': 10, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.948011
+pi_tilde = 0.1 - minDCF: 1.000000
+pi_tilde = 0.9 - minDCF: 0.998316
+Error rate: 50.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838700>, 'C': 1, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.633947
+pi_tilde = 0.1 - minDCF: 0.941794
+pi_tilde = 0.9 - minDCF: 0.915225
+Error rate: 36.167
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7fd4c8838700>, 'C': 10, 'K': 1, 'gmm': None}
+pi_tilde = 0.5 - minDCF: 0.820865
+pi_tilde = 0.1 - minDCF: 0.995050
+pi_tilde = 0.9 - minDCF: 0.996633
+Error rate: 46.333
