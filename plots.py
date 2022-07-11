@@ -86,13 +86,14 @@ def linear_svm_plot():
     plt.show()
 
 
-def gmm_plot(noPca, pca8):
+def gmm_plot(noPca, pca8, title, file_name):
     labels = [2,4,8,16,32,64,128,256]
 
     x = np.arange(len(labels))  # the label locations
     width = 0.35  # the width of the bars
 
     fig, ax = plt.subplots()
+    # plt.suptitle(title)
     rects1 = ax.bar(x - width / 2, noPca, width, label='No PCA')
     rects2 = ax.bar(x + width / 2, pca8, width, label='PCA (m = 8)')
 
@@ -107,16 +108,17 @@ def gmm_plot(noPca, pca8):
 
     fig.tight_layout()
 
-    plt.show()
+    plt.savefig(file_name)
 
 
-def gmm_plot2(em, diag, tied, tied_diag):
+def gmm_plot2(em, diag, tied, tied_diag, title, file_name):
     labels = [2,4,8,16,32,64,128,256]
 
     x = np.arange(len(labels))  # the label locations
     width = 0.15  # the width of the bars
 
     fig, ax = plt.subplots()
+    # plt.suptitle(title)
     rects1 = ax.bar(x - width*1.5, em, width, label='Full-Cov')
     rects2 = ax.bar(x - width / 2, diag, width, label='Diag-Cov')
     rects3 = ax.bar(x + width / 2, tied, width, label='Tied-Cov')
@@ -133,7 +135,35 @@ def gmm_plot2(em, diag, tied, tied_diag):
 
     fig.tight_layout()
 
-    plt.show()
+    plt.savefig(file_name)
+
+
+def gmm_plot_main():
+    """
+    Single fold
+    pcaF_em = np.array([0.054989, 0.046805, 0.035020, 0.046538, 0.048455, 0.078324, 0.116378, 0.211705])
+    pcaF_diag = np.array([0.371721, 0.138897, 0.107761, 0.099810, 0.091926, 0.085259, 0.093476, 0.125463])
+    pca8_em = np.array([0.051789, 0.044988, 0.039971, 0.038387, 0.048255, 0.058389, 0.089776, 0.121162])
+    pca8_diag = np.array([0.095260, 0.093443, 0.096943, 0.086609, 0.091492, 0.093343, 0.103210, 0.146615])
+    pcaF_tied = np.array([0.061823, 0.036670, 0.036637, 0.039971, 0.039971, 0.040237, 0.038287, 0.040037])
+    pcaF_tied_diag = np.array([0.366137, 0.134963, 0.099877, 0.106511, 0.080141, 0.079808, 0.086409, 0.086542])
+    pca8_tied = np.array([0.056772, 0.050005, 0.041721, 0.043338, 0.046671, 0.076474, 0.061523, 0.060139])
+    pca8_tied_diag = np.array([0.088459, 0.083542, 0.092976, 0.081658, 0.054989, 0.051822, 0.058356, 0.063273])
+    """
+    pcaF_em = np.array([0.043000, 0.032667, 0.032333, 0.044000, 0.056000, 0.087667, 0.150667, 0.313000])
+    pcaF_diag = np.array([0.381667, 0.107667, 0.086667, 0.081000, 0.088000, 0.085667, 0.095667, 0.120000])
+    pcaF_tied = np.array([0.048000, 0.029667, 0.030000, 0.031667, 0.032333, 0.036667, 0.040333, 0.044000])
+    pcaF_tied_diag = np.array([0.380333, 0.104667, 0.082333, 0.083333, 0.072000, 0.067667, 0.069000, 0.070667])
+    pca8_em = np.array([0.045000, 0.036000, 0.036333, 0.037667, 0.047667, 0.068000, 0.098667, 0.169333])
+    pca8_diag = np.array([0.081333, 0.077333, 0.087000, 0.077333, 0.080000, 0.077333, 0.085000, 0.106000])
+    pca8_tied = np.array([0.045667, 0.044667, 0.034333, 0.035667, 0.037333, 0.041667, 0.039667, 0.049667])
+    pca8_tied_diag = np.array([0.081333, 0.073333, 0.081333, 0.067000, 0.061000, 0.056000, 0.056333, 0.060333])
+    gmm_plot(pcaF_em, pca8_em, 'GMM results, Full Covariance', 'plots/gmm_em.png')
+    gmm_plot(pcaF_diag, pca8_diag, 'GMM results, Diagonal Covariance', 'plots/gmm_diag.png')
+    gmm_plot(pcaF_tied, pca8_tied, 'GMM results, Tied Full Covariance', 'plots/gmm_tied.png')
+    gmm_plot(pcaF_tied_diag, pca8_tied_diag, 'GMM results, Tied Diagonal Covariance', 'plots/gmm_tied_diag.png')
+    gmm_plot2(pcaF_em, pcaF_diag, pcaF_tied, pcaF_tied_diag, 'GMM results, no PCA', 'plots/gmm_pcaF.png')
+    gmm_plot2(pca8_em, pca8_diag, pca8_tied, pca8_tied_diag, 'GMM results, PCA (m = 8)', 'plots/gmm_pca8.png')
 
 
 def lr_plot():
@@ -245,34 +275,6 @@ def quad_lr_plot():
     plt.show()
 
 
-def gmm_plot_main():
-    """
-    Single fold
-    pcaF_em = np.array([0.054989, 0.046805, 0.035020, 0.046538, 0.048455, 0.078324, 0.116378, 0.211705])
-    pcaF_diag = np.array([0.371721, 0.138897, 0.107761, 0.099810, 0.091926, 0.085259, 0.093476, 0.125463])
-    pca8_em = np.array([0.051789, 0.044988, 0.039971, 0.038387, 0.048255, 0.058389, 0.089776, 0.121162])
-    pca8_diag = np.array([0.095260, 0.093443, 0.096943, 0.086609, 0.091492, 0.093343, 0.103210, 0.146615])
-    pcaF_tied = np.array([0.061823, 0.036670, 0.036637, 0.039971, 0.039971, 0.040237, 0.038287, 0.040037])
-    pcaF_tied_diag = np.array([0.366137, 0.134963, 0.099877, 0.106511, 0.080141, 0.079808, 0.086409, 0.086542])
-    pca8_tied = np.array([0.056772, 0.050005, 0.041721, 0.043338, 0.046671, 0.076474, 0.061523, 0.060139])
-    pca8_tied_diag = np.array([0.088459, 0.083542, 0.092976, 0.081658, 0.054989, 0.051822, 0.058356, 0.063273])
-    """
-    pcaF_em = np.array([0.043000, 0.032667, 0.032333, 0.044000, 0.056000, 0.087667, 0.150667, 0.313000])
-    pcaF_diag = np.array([0.381667, 0.107667, 0.086667, 0.081000, 0.088000, 0.085667, 0.095667, 0.120000])
-    pcaF_tied = np.array([0.048000, 0.029667, 0.030000, 0.031667, 0.032333, 0.036667, 0.040333, 0.044000])
-    pcaF_tied_diag = np.array([0.380333, 0.104667, 0.082333, 0.083333, 0.072000, 0.067667, 0.069000, 0.070667])
-    pca8_em = np.array([0.045000, ])
-    pca8_diag = np.array([0.081333, ])
-    pca8_tied = np.array([0.045667, ])
-    pca8_tied_diag = np.array([0.081333, ])
-    gmm_plot(pcaF_em, pca8_em)
-    gmm_plot(pcaF_diag, pca8_diag)
-    gmm_plot(pcaF_tied, pca8_tied)
-    gmm_plot(pcaF_tied_diag, pca8_tied_diag)
-    gmm_plot2(pcaF_em, pcaF_diag, pcaF_tied, pcaF_tied_diag)
-    gmm_plot2(pca8_em, pca8_diag, pca8_tied, pca8_tied_diag)
-
-
 if __name__ == '__main__':
     """
     trainX, trainL = load.load("data/Train")
@@ -284,4 +286,4 @@ if __name__ == '__main__':
     # optimal_decisions.roc_plot(S1, LTE)
     optimal_decisions.bayes_error_plot([(S1, "GMM", 'r'), (S2, "MVG", 'b')], trueL)
     """
-    quad_lr_plot()
+    gmm_plot_main()
