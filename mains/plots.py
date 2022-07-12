@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import load
 import optimal_decisions
 import preprocessing
-
+from ev_plots import *
 
 def linear_svm_plot():
     C = np.array([0.01, 0.1, 1, 10])
@@ -237,7 +237,7 @@ def radial_svm_plot():
     plt.ylim()
     plt.legend()
     plt.subplot(2, 2, 2)
-    plt.title("PCA (m = 8), "+r"""\gamma = 0.1$""")
+    plt.title("PCA (m = 8), "+r"""$\gamma = 0.1$""")
     plt.semilogx(C, gaussF_pca8_ptilde_0_1_l_0_1, 'b', label=r"""$\~{\pi} = 0.1$""")
     plt.semilogx(C, gaussF_pca8_ptilde_0_5_l_0_1, 'r', label=r"""$\~{\pi} = 0.5$""")
     plt.semilogx(C, gaussF_pca8_ptilde_0_9_l_0_1, 'g', label=r"""$\~{\pi} = 0.9$""")
@@ -458,13 +458,13 @@ def quad_lr_plot():
 
 
 if __name__ == '__main__':
-    trueL = np.load("scores/5fold_labels.npy")
-    S1 = np.load("scores/GMM_4_tied.npy")
-    S2 = np.load("scores/GMM_8_tied.npy")
-    optimal_decisions.det_plot([(S1, "Tied GMM, 4 components", 'r'), (S2, "Tied GMM, 8 components", 'b')], trueL)
+    """ trueL = np.load("../scores/5fold_labels.npy")
+    S1 = np.load("../scores/GMM_4_tied.npy")
+    S2 = np.load("../scores/GMM_8_tied.npy")"""
+    # optimal_decisions.det_plot([(S1, "Tied GMM, 4 components", 'r'), (S2, "Tied GMM, 8 components", 'b')], trueL)
     # optimal_decisions.roc_plot(S1, LTE)
     # optimal_decisions.bayes_error_plot([(S1, "Tied GMM, 4 components", 'r'), (S2, "Tied GMM, 8 components", 'b')], trueL)
     # quad_lr_plot()
     # linear_svm_plot()
     # quadratic_svm_plot()
-    # radial_svm_plot()
+    radial_svm_plot()
