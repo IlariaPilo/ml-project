@@ -32,4 +32,35 @@ pi_tilde = 0.1 - minDCF: 0.145500
 pi_tilde = 0.9 - minDCF: 0.167500
 Error rate: 2.925
 
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fcd6571d090>, 'C': 0.01, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.106000
+pi_tilde = 0.1 - minDCF: 0.312500
+pi_tilde = 0.9 - minDCF: 0.258500
+Error rate: 5.375
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fcd6571d090>, 'C': 0.1, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.059500
+pi_tilde = 0.1 - minDCF: 0.168000
+pi_tilde = 0.9 - minDCF: 0.186000
+Error rate: 3.100
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fcd6571d090>, 'C': 1, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.053500
+pi_tilde = 0.1 - minDCF: 0.135500
+pi_tilde = 0.9 - minDCF: 0.154000
+Error rate: 2.775
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fcd6571d090>, 'C': 10, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.070500
+pi_tilde = 0.1 - minDCF: 0.190500
+pi_tilde = 0.9 - minDCF: 0.204000
+Error rate: 3.725
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fcd6571d090>, 'C': 100, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.082000
+pi_tilde = 0.1 - minDCF: 0.226500
+pi_tilde = 0.9 - minDCF: 0.244500
+Error rate: 4.225
+
 Process finished with exit code 0
