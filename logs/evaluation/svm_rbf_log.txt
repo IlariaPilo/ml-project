@@ -1,0 +1,35 @@
+>>>>>>>>>>>>>>>>>>>>>> 80%, GAMMA = 0.01 <<<<<<<<<<<<<<<<<<<<<<<
+
+/home/alessio/anaconda3/envs/ml-project1/bin/python /home/alessio/PycharmProjects/ml-project1/mains/train.py
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fd0f3f01090>, 'C': 0.01, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.109000
+pi_tilde = 0.1 - minDCF: 0.332000
+pi_tilde = 0.9 - minDCF: 0.255000
+Error rate: 5.550
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fd0f3f01090>, 'C': 0.1, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.058000
+pi_tilde = 0.1 - minDCF: 0.171000
+pi_tilde = 0.9 - minDCF: 0.169000
+Error rate: 3.050
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fd0f3f01090>, 'C': 1, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.050000
+pi_tilde = 0.1 - minDCF: 0.112000
+pi_tilde = 0.9 - minDCF: 0.129000
+Error rate: 2.525
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fd0f3f01090>, 'C': 10, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.055000
+pi_tilde = 0.1 - minDCF: 0.147000
+pi_tilde = 0.9 - minDCF: 0.167500
+Error rate: 2.850
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function radial_kernel.<locals>.kernel at 0x7fd0f3f01090>, 'C': 100, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.055000
+pi_tilde = 0.1 - minDCF: 0.145500
+pi_tilde = 0.9 - minDCF: 0.167500
+Error rate: 2.925
+
+Process finished with exit code 0
