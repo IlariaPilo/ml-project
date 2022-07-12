@@ -467,4 +467,5 @@ if __name__ == '__main__':
     # quad_lr_plot()
     # linear_svm_plot()
     # quadratic_svm_plot()
-    radial_svm_plot()
+    # radial_svm_plot()
+    ev_linear_poly_svm_plot()
