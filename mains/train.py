@@ -89,7 +89,10 @@ def main(config):
             (XTR, LTR), (XTE, LTE) = preprocessing.split_dataset(trainX, trainL, 80)
         else:
             # >>>> EVALUATION <<<< #
-            XTR, LTR = trainX, trainL
+            if config["evaluation"] == 80:
+                (XTR, LTR), _ = preprocessing.split_dataset(trainX, trainL, 80)
+            else:
+                XTR, LTR = trainX, trainL
             XTE, LTE = load.load("../data/Test")
 
         # for each param
@@ -171,10 +174,11 @@ if __name__ == '__main__':
     config = {
         # is_print - if true, we generate plots
         "is_print": False,
-        # evaluation - if True, we use Train.txt as training set and Test.txt as test set.
-        "evaluation": True,
+        # evaluation - if True, we use Train.txt as training set and Test.txt as test set. If 80, we train only on 80%
+        # of the training set
+        "evaluation": 80,
         # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
-        "k_fold": 5,
+        "k_fold": None,
         # save_scores - if None, we do not save scores. Otherwise, it is the name of the file (without extension)
         "save_scores": None,
         # each parameter should be inside an array, even if it is just one value
@@ -183,28 +187,28 @@ if __name__ == '__main__':
         "pi_tilde": [0.5, 0.1, 0.9],
         "params": {
             # gaussianization - if true, we gaussianize the features
-            "gaussianization": [False],
+            "gaussianization": [False, True],
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
-            "pca": [8],
+            "pca": [None, 10, 9, 8],
             # pi_t - the prior probability. the main application is 0.5. We focus also on biased applications
-            "pi_t": [0.5, 0.1, 0.9],
+            "pi_t": [0.5],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
-            # "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
-            #                gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
-            "gaussian_fit": [None],
+            "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
+                           gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
+            # "gaussian_fit": [None],
             # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
-            "logistic_regression": [None],
+            # "logistic_regression": [10**(-4)],
             # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
             # "quadratic_regression": [10 ** (-11)],
             "quadratic_regression": [None],
             # svm - True if we want to use it. C and K are the related hyperparameters
-            "svm": [True],
+            # "svm": [True],
             # kernel is None if we want linear svm
-            "kernel": [None],
+            # "kernel": [None],
             # "kernel": [support_vector_machines.poly_kernel(2, 0), support_vector_machines.poly_kernel(2, 1)],
-            "C": [0.1],
-            "K": [1],
+            # "C": [0.1],
+            # "K": [1],
             # gmm - None if we don't want to use it, else is the number of components
             # "gmm": [None],
             # "gmm": [8],
