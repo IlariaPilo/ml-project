@@ -97,3 +97,86 @@ pi_tilde = 0.9 - minDCF: 0.565000
 Error rate: 12.250
 
 Process finished with exit code 0
+
+>>>>>>>>>>>>>>>>>>>>>>>>> 80 <<<<<<<<<<<<<<<<<<<<<<<<
+C:\Users\ilapi\PycharmProjects\ml-project\venv\Scripts\python.exe C:/Users/ilapi/PycharmProjects/ml-project/mains/train.py
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11}
+pi_tilde = 0.5 - minDCF: 0.139000
+pi_tilde = 0.1 - minDCF: 0.411500
+pi_tilde = 0.9 - minDCF: 0.322500
+Error rate: 7.000
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11}
+pi_tilde = 0.5 - minDCF: 0.152500
+pi_tilde = 0.1 - minDCF: 0.411000
+pi_tilde = 0.9 - minDCF: 0.345500
+Error rate: 11.175
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11}
+pi_tilde = 0.5 - minDCF: 0.170500
+pi_tilde = 0.1 - minDCF: 0.521000
+pi_tilde = 0.9 - minDCF: 0.340500
+Error rate: 11.650
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11}
+pi_tilde = 0.5 - minDCF: 0.075000
+pi_tilde = 0.1 - minDCF: 0.214500
+pi_tilde = 0.9 - minDCF: 0.174000
+Error rate: 3.900
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11}
+pi_tilde = 0.5 - minDCF: 0.129000
+pi_tilde = 0.1 - minDCF: 0.291000
+pi_tilde = 0.9 - minDCF: 0.433000
+Error rate: 9.375
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11}
+pi_tilde = 0.5 - minDCF: 0.091500
+pi_tilde = 0.1 - minDCF: 0.303500
+pi_tilde = 0.9 - minDCF: 0.198000
+Error rate: 5.775
+
+Process finished with exit code 0
+
+>>>>>>>>>>>>>>>>>>>>>>>> FULL <<<<<<<<<<<<<<<<<<<<<<<
+
+C:\Users\ilapi\PycharmProjects\ml-project\venv\Scripts\python.exe C:/Users/ilapi/PycharmProjects/ml-project/mains/train.py
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11}
+pi_tilde = 0.5 - minDCF: 0.117500
+pi_tilde = 0.1 - minDCF: 0.352000
+pi_tilde = 0.9 - minDCF: 0.283000
+Error rate: 6.100
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11}
+pi_tilde = 0.5 - minDCF: 0.156000
+pi_tilde = 0.1 - minDCF: 0.410500
+pi_tilde = 0.9 - minDCF: 0.360000
+Error rate: 11.900
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11}
+pi_tilde = 0.5 - minDCF: 0.164500
+pi_tilde = 0.1 - minDCF: 0.479000
+pi_tilde = 0.9 - minDCF: 0.316000
+Error rate: 11.375
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11}
+pi_tilde = 0.5 - minDCF: 0.087500
+pi_tilde = 0.1 - minDCF: 0.227000
+pi_tilde = 0.9 - minDCF: 0.205000
+Error rate: 4.575
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.1, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11}
+pi_tilde = 0.5 - minDCF: 0.123500
+pi_tilde = 0.1 - minDCF: 0.263500
+pi_tilde = 0.9 - minDCF: 0.427500
+Error rate: 9.450
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.9, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': 1e-11}
+pi_tilde = 0.5 - minDCF: 0.109000
+pi_tilde = 0.1 - minDCF: 0.359000
+pi_tilde = 0.9 - minDCF: 0.216500
+Error rate: 6.650
+
+Process finished with exit code 0

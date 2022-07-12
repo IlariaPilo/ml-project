@@ -204,8 +204,8 @@ if __name__ == '__main__':
     _scores = u.vrow(np.load("../scores/GMM_8_tied.npy"))
     # actual labels of the dataset
     _labels = np.load("../scores/5fold_labels.npy")
-    _pi_tilde = [0.5]  # array of pi_tilde to test
-    _K = None  # None, or the number of folds
+    _pi_tilde = [0.1, 0.9]  # array of pi_tilde to test
+    _K = 5 # None, or the number of folds
 
     # recalibration function/fusion settings
     _pi_1 = [0.5]  # array of priors (for the logistic regression of the recalibration function f(s))
@@ -218,4 +218,5 @@ if __name__ == '__main__':
     for pi in _pi_tilde:
         f_s = calibrate(_calibration_type, _scores, _labels, pi, _K)
     # S2 = f_s[0](_scores)
-    # optimal_decisions.bayes_error_plot([(_scores.flatten(), "Tied GMM (8)", 'r'), (S2, "Tied GMM (8), calibrated", 'b')], _labels)
+    #optimal_decisions.bayes_error_plot([(_scores.flatten(), "SVM RBF kernel", 'b'),
+    #                                    (S2, "SVM RBF kernel, calibrated", 'r')], _labels)
