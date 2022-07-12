@@ -118,3 +118,12 @@ pi_tilde = 0.5 - minDCF: 0.886500
 pi_tilde = 0.1 - minDCF: 0.999000
 pi_tilde = 0.9 - minDCF: 0.999500
 Error rate: 45.150
+
+
+C = 1, 80%
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': None, 'quadratic_regression': None, 'svm': True, 'kernel': <function poly_kernel.<locals>.kernel at 0x7f420ed68550>, 'C': 0.001, 'K': 1}
+pi_tilde = 0.5 - minDCF: 0.059500
+pi_tilde = 0.1 - minDCF: 0.149000
+pi_tilde = 0.9 - minDCF: 0.146000
+Error rate: 3.025
