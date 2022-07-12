@@ -82,10 +82,15 @@ def main(config):
     params_list = utilities.params_combinations(config["params"])
     i = 0
 
-    if config["k_fold"] is None:
-        # >>>> SINGLE SPLIT <<<< #
-        # split the dataset: we use 80% for training and 20% for evaluation
-        (XTR, LTR), (XTE, LTE) = preprocessing.split_dataset(trainX, trainL, 80)
+    if config["evaluation"] or config["k_fold"] is None:
+        if not config["evaluation"]:
+            # >>>> SINGLE SPLIT <<<< #
+            # split the dataset: we use 80% for training and 20% for evaluation
+            (XTR, LTR), (XTE, LTE) = preprocessing.split_dataset(trainX, trainL, 80)
+        else:
+            # >>>> EVALUATION <<<< #
+            XTR, LTR = trainX, trainL
+            XTE, LTE = load.load("../data/Test")
 
         # for each param
         for param in params_list:
@@ -166,10 +171,12 @@ if __name__ == '__main__':
     config = {
         # is_print - if true, we generate plots
         "is_print": False,
+        # evaluation - if True, we use Train.txt as training set and Test.txt as test set.
+        "evaluation": True,
         # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
         "k_fold": 5,
         # save_scores - if None, we do not save scores. Otherwise, it is the name of the file (without extension)
-        "save_scores": "SVM_linear",
+        "save_scores": None,
         # each parameter should be inside an array, even if it is just one value
         # pi_tilde - the EFFECTIVE prior probability. the main application is 0.5. We focus also on biased
         # applications
