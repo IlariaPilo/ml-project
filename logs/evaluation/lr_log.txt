@@ -1,0 +1,123 @@
+/home/alessio/anaconda3/envs/ml-project1/bin/python /home/alessio/PycharmProjects/ml-project1/mains/train.py
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.052500
+pi_tilde = 0.1 - minDCF: 0.135000
+pi_tilde = 0.9 - minDCF: 0.133000
+Error rate: 2.750
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.052500
+pi_tilde = 0.1 - minDCF: 0.132000
+pi_tilde = 0.9 - minDCF: 0.134500
+Error rate: 2.725
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.054000
+pi_tilde = 0.1 - minDCF: 0.148500
+pi_tilde = 0.9 - minDCF: 0.141500
+Error rate: 2.800
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.072000
+pi_tilde = 0.1 - minDCF: 0.194500
+pi_tilde = 0.9 - minDCF: 0.200000
+Error rate: 3.700
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.154500
+pi_tilde = 0.1 - minDCF: 0.389500
+pi_tilde = 0.9 - minDCF: 0.416500
+Error rate: 7.800
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.052500
+pi_tilde = 0.1 - minDCF: 0.144500
+pi_tilde = 0.9 - minDCF: 0.136000
+Error rate: 2.700
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.053000
+pi_tilde = 0.1 - minDCF: 0.145500
+pi_tilde = 0.9 - minDCF: 0.135500
+Error rate: 2.725
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.054500
+pi_tilde = 0.1 - minDCF: 0.153000
+pi_tilde = 0.9 - minDCF: 0.142500
+Error rate: 2.825
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.073000
+pi_tilde = 0.1 - minDCF: 0.198000
+pi_tilde = 0.9 - minDCF: 0.208500
+Error rate: 3.775
+--------------------------------------------------------------------------------------
+{'gaussianization': False, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.156000
+pi_tilde = 0.1 - minDCF: 0.392000
+pi_tilde = 0.9 - minDCF: 0.413000
+Error rate: 7.825
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.059000
+pi_tilde = 0.1 - minDCF: 0.161500
+pi_tilde = 0.9 - minDCF: 0.164500
+Error rate: 3.150
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.065500
+pi_tilde = 0.1 - minDCF: 0.171000
+pi_tilde = 0.9 - minDCF: 0.177000
+Error rate: 3.350
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.140000
+pi_tilde = 0.1 - minDCF: 0.404000
+pi_tilde = 0.9 - minDCF: 0.351500
+Error rate: 7.200
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.280000
+pi_tilde = 0.1 - minDCF: 0.664500
+pi_tilde = 0.9 - minDCF: 0.656500
+Error rate: 14.350
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': None, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.513000
+pi_tilde = 0.1 - minDCF: 0.777500
+pi_tilde = 0.9 - minDCF: 0.839000
+Error rate: 26.000
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1e-06, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.185500
+pi_tilde = 0.1 - minDCF: 0.465000
+pi_tilde = 0.9 - minDCF: 0.434500
+Error rate: 9.400
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.001, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.185500
+pi_tilde = 0.1 - minDCF: 0.468500
+pi_tilde = 0.9 - minDCF: 0.440500
+Error rate: 9.300
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 0.1, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.206500
+pi_tilde = 0.1 - minDCF: 0.527500
+pi_tilde = 0.9 - minDCF: 0.502000
+Error rate: 10.450
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 1, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.312000
+pi_tilde = 0.1 - minDCF: 0.719000
+pi_tilde = 0.9 - minDCF: 0.721500
+Error rate: 15.800
+--------------------------------------------------------------------------------------
+{'gaussianization': True, 'pca': 8, 'pi_t': 0.5, 'gaussian_fit': None, 'logistic_regression': 10, 'quadratic_regression': None, 'svm': None}
+pi_tilde = 0.5 - minDCF: 0.530500
+pi_tilde = 0.1 - minDCF: 0.810000
+pi_tilde = 0.9 - minDCF: 0.869500
+Error rate: 26.850
+
+Process finished with exit code 0
