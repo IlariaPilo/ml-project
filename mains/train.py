@@ -176,7 +176,7 @@ if __name__ == '__main__':
         "is_print": False,
         # evaluation - if True, we use Train.txt as training set and Test.txt as test set. If 80, we train only on 80%
         # of the training set
-        "evaluation": 80,
+        "evaluation": True,
         # k_fold - if None, we use single fold. otherwise, it is an int storing the number of folds.
         "k_fold": None,
         # save_scores - if None, we do not save scores. Otherwise, it is the name of the file (without extension)
@@ -187,21 +187,21 @@ if __name__ == '__main__':
         "pi_tilde": [0.5, 0.1, 0.9],
         "params": {
             # gaussianization - if true, we gaussianize the features
-            "gaussianization": [False, True],
+            "gaussianization": [False],
             # pca - if None, no PCA is applied. otherwise, it is an int storing the number of features we want to have
             # after the pca operation
-            "pca": [None, 10, 9, 8],
+            "pca": [None, 8],
             # pi_t - the prior probability. the main application is 0.5. We focus also on biased applications
-            "pi_t": [0.5],
+            "pi_t": [0.5, 0.1, 0.9],
             # gaussian_fit - the type of basic gaussian fit we want to apply (if any)
-            "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
-                           gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
-            # "gaussian_fit": [None],
+            # "gaussian_fit": [gaussian_models.mvg_fit, gaussian_models.mvg_naive_bayes_fit,
+            #               gaussian_models.mvg_tied_covariance_fit, gaussian_models.mvg_tied_naive_bayes_fit],
+            "gaussian_fit": [None],
             # logistic_regression - the value of hyperparameter lambda of logistic regression (if any)
-            # "logistic_regression": [10**(-4)],
+            "logistic_regression": [None],
             # quadratic_regression - the value of hyperparameter lambda of quadratic logistic regression (if any)
-            # "quadratic_regression": [10 ** (-11)],
-            "quadratic_regression": [None],
+            "quadratic_regression": [10 ** (-11)],
+            # "quadratic_regression": [None],
             # svm - True if we want to use it. C and K are the related hyperparameters
             # "svm": [True],
             # kernel is None if we want linear svm
