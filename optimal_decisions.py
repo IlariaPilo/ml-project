@@ -210,7 +210,7 @@ def det_plot(models, trueL, file_name=None):
         plt.savefig(file_name)
 
 
-def bayes_error_plot(models, trueL, min_p_=-3, max_p_=3, points=21, file_name=None):
+def bayes_error_plot(models, trueL, min_p_=-3, max_p_=3, points=21, file_name=None, max_dcf=None):
     """
     Plots the Bayes error plots.
     :param models is a list of pairs (S, label, color), where S is the binary log-likelihood ratio,
@@ -220,6 +220,7 @@ def bayes_error_plot(models, trueL, min_p_=-3, max_p_=3, points=21, file_name=No
     :param max_p_ is the maximum prior log-odd we want to consider
     :param points is the number of points we want to consider
     :param file_name is the name of the file where we want to save the image, if any
+    :param max_dcf is the top vertical cap of the plot
     """
     # generate linear prior log-odds
     effPriorLogOdds = np.linspace(min_p_, max_p_, points)
@@ -239,7 +240,8 @@ def bayes_error_plot(models, trueL, min_p_=-3, max_p_=3, points=21, file_name=No
         # plot the curves
         plt.plot(effPriorLogOdds, DCF, color, label=label+' - DCF')
         plt.plot(effPriorLogOdds, minDCF, '--'+color, label=label+' - min DCF')
-    # plt.ylim([0, 1.2])
+    if max_dcf:
+        plt.ylim([0, max_dcf])
     plt.xlim([min_p_, max_p_])
     plt.xlabel('Prior log-odds')
     plt.ylabel('DCF')

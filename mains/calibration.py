@@ -161,7 +161,7 @@ def fusion(XTR, LTR, XTE, LTE, pi_tilde: float):
     # compute the theoretical threashold
     t = -np.log(pi_tilde / (1 - pi_tilde))
 
-    dcfs = np.array([-1])
+    dcfs = np.array([-1.0])
     funcs = []
     for pi_1 in _pi_1:
         print("\t", end='')
@@ -218,7 +218,7 @@ if __name__ == '__main__':
     _scores = u.vrow(np.load("../scores/SVM_rbf_4.npy"))
     # actual labels of the dataset
     _labels = np.load("../scores/5fold_labels.npy")
-    _pi_tilde = [0.1]  # array of pi_tilde to test
+    _pi_tilde = [0.5]  # array of pi_tilde to test
     _K = 5  # None, or the number of folds
 
     # recalibration function/fusion settings
@@ -242,4 +242,4 @@ if __name__ == '__main__':
         S2 = f_s[0](_scores)
         optimal_decisions.bayes_error_plot([(_scores[0, :].flatten(), "GMM, 4 components", 'b'),
                                             (_scores[1, :].flatten(), "SVM RBF kernel", 'g'),
-                                            (S2, "Fusion", 'r')], _labels)
+                                            (S2, "Fusion", 'r')], _labels, max_dcf=0.3)
