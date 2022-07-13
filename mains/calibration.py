@@ -204,19 +204,28 @@ if __name__ == '__main__':
     _scores = u.vrow(np.load("../scores/GMM_8_tied.npy"))
     # actual labels of the dataset
     _labels = np.load("../scores/5fold_labels.npy")
-    _pi_tilde = [0.1, 0.9]  # array of pi_tilde to test
+    _pi_tilde = [0.5]  # array of pi_tilde to test
     _K = 5 # None, or the number of folds
 
     # recalibration function/fusion settings
     _pi_1 = [0.5]  # array of priors (for the logistic regression of the recalibration function f(s))
     _lambda = [0]  # lambda for the logistic regression
     # _scores_fusion - set None to compute normal recalibration function on _scores, else fuse _scores with these scores
-    _scores_fusion = u.vrow(np.load("../scores/LR_pca8.npy"))
+    _scores_fusion = u.vrow(np.load("../scores/SVM_rbf_4.npy"))
 
     if _calibration_type == "fusion":
         _scores = np.vstack([_scores, _scores_fusion])
     for pi in _pi_tilde:
         f_s = calibrate(_calibration_type, _scores, _labels, pi, _K)
-    # S2 = f_s[0](_scores)
-    #optimal_decisions.bayes_error_plot([(_scores.flatten(), "SVM RBF kernel", 'b'),
-    #                                    (S2, "SVM RBF kernel, calibrated", 'r')], _labels)
+
+    # draw bayes error plots
+    if _calibration_type == "recalibration_func":
+        S2 = f_s[0](_scores)
+        optimal_decisions.bayes_error_plot([(_scores.flatten(), "SVM RBF kernel", 'b'),
+                                            (S2, "SVM RBF kernel, calibrated", 'r')], _labels)
+    elif _calibration_type == "fusion":
+        # plot for fusion
+        S2 = f_s[0](_scores)
+        optimal_decisions.bayes_error_plot([(_scores[0,:].flatten(), "GMM, 8 components", 'b'),
+                                            (_scores[1, :].flatten(), "SVM RBF kernel", 'g'),
+                                            (S2, "Fusion", 'r')], _labels)
