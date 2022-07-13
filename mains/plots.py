@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import load
 import optimal_decisions
 import preprocessing
-from ev_plots import *
+
 
 def linear_svm_plot():
     C = np.array([0.01, 0.1, 1, 10])
@@ -468,4 +468,4 @@ if __name__ == '__main__':
     # linear_svm_plot()
     # quadratic_svm_plot()
     # radial_svm_plot()
-    ev_linear_poly_svm_plot()
+
