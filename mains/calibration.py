@@ -34,13 +34,13 @@ def calibrate(mode, scores, labels, pi_t: float, K: int = None):
 
         # call the right calibration function
         if mode == "simple":
-            dcf = calibration_simple(XTR, LTR, XTE, LTE, pi_t)
+            dcf, _ = calibration_simple(XTR, LTR, XTE, LTE, pi_t)
             return dcf
         elif mode == "recalibration_func":
-            f_s = recalibration(XTR, LTR, XTE, LTE, pi_t)
+            f_s, _ = recalibration(XTR, LTR, XTE, LTE, pi_t)
             return f_s
         elif mode == "fusion":
-            f_s = fusion(XTR, LTR, XTE, LTE, pi_t)
+            f_s, _ = fusion(XTR, LTR, XTE, LTE, pi_t)
             return f_s
     else:
         # divide scores using Kfold
@@ -61,7 +61,7 @@ def calibrate(mode, scores, labels, pi_t: float, K: int = None):
                 dcfs[i, :] = r_dcfs
             elif mode == "fusion":
                 _, f_dcfs = fusion(XTR, LTR, XTE, LTE, pi_t)
-                dcfs[i, 0] = f_dcfs
+                dcfs[i, :2] = f_dcfs
 
         if mode == "simple":
             print("average dcfs (minDCF, actDCF(uncal), actDCF(cal))): ", dcfs.mean(0))
@@ -73,7 +73,7 @@ def calibrate(mode, scores, labels, pi_t: float, K: int = None):
             funcs = [recalibration_func_fit(scores, labels, pi_1, l) for l in _lambda for pi_1 in _pi_1]
             return funcs
         elif mode == "fusion":
-            print("average actDCF(cal): ", dcfs[:, 0].mean(0))
+            print("average minDCF and actDCF(cal): ", dcfs[:, :2].mean(0))
             f_s = [recalibration_func_fit(scores, labels, pi_1, l) for l in _lambda for pi_1 in _pi_1]
             return f_s
 
@@ -166,7 +166,7 @@ def fusion(XTR, LTR, XTE, LTE, pi_tilde: float):
     # compute the theoretical threashold
     t = -np.log(pi_tilde / (1 - pi_tilde))
 
-    dcfs = np.array([-1.0])
+    dcfs = np.array([-1.0, -1.0])
     funcs = []
     for pi_1 in _pi_1:
         print("\t", end='')
@@ -177,12 +177,16 @@ def fusion(XTR, LTR, XTE, LTE, pi_tilde: float):
             # now, recalibrate the score to test the recalibration function
             s_cal = f_s(XTE)
             s_cal = s_cal.flatten()
+
+            # compute the minDCF
+            minDCF, _ = optimal_decisions.minimum_detection_cost(s_cal, LTE, pi_tilde, 1, 1, True)
             # compute atualDCF with theoretical threshold over recalibrated scores
             actualDCF_cal = optimal_decisions.actual_dcf(s_cal, LTE, t, pi_tilde)
             print(f"actualDCF(pi_1={pi_1},l={l}) = {actualDCF_cal}\t", end='')
 
             if pi_1 == 0.5 and l == 0:
-                dcfs[0] = actualDCF_cal
+                dcfs[0] = minDCF
+                dcfs[1] = actualDCF_cal
             funcs.append(f_s)
         print()
 
@@ -198,6 +202,9 @@ def recalibration_func_fit(XTR, LTR, pi_1, l: float = 0):
     :param l: lambda for the logistic regression
     """
     alpha, beta_prime, J_a_b = logistic_regression.binary_lr_fit(XTR, LTR, l, pi_1)
+
+    # debug print
+    # print("alpha = ", alpha, end='   ')
 
     # define recalibration function using alpha, beta_prime
     def f_s(s):
@@ -216,15 +223,15 @@ def recalibration_func_fit(XTR, LTR, pi_1, l: float = 0):
 
 if __name__ == '__main__':
     # type of calibration: ["simple", "recalibration_func", "fusion"]
-    _calibration_type = "recalibration_func"
+    _calibration_type = "fusion"
     # scores to calibrate
-    _scores = u.vrow(np.load("../scores/SVM_rbf_4.npy"))
+    _scores = u.vrow(np.load("../scores/GMM_4_tied.npy"))
     # actual labels of the dataset
     _labels = np.load("../scores/5fold_labels.npy")
-    _pi_tilde = [0.5, 0.1, 0.9]  # array of pi_tilde to test
+    _pi_tilde = [0.1]  # array of pi_tilde to test
     _K = 5  # None, or the number of folds
 
-    _evaluation = True
+    _evaluation = False
     _test = u.vrow(np.load("../scores/SVM_rbf_evaluation.npy"))
 
     # recalibration function/fusion settings
@@ -236,7 +243,7 @@ if __name__ == '__main__':
     if _calibration_type == "fusion":
         _scores = np.vstack([_scores, _scores_fusion])
     for pi in _pi_tilde:
-        f_s, _ = calibrate(_calibration_type, _scores, _labels, pi, _K)
+        f_s = calibrate(_calibration_type, _scores, _labels, pi, _K)
 
     # draw bayes error plots
     if _calibration_type == "recalibration_func":
