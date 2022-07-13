@@ -1,0 +1,13 @@
+GMM_4 + SVM RBF
+
+fusion (pi_t=0.5):
+	actualDCF(pi=0.5,l=0) = 0.02667407613225896
+fusion (pi_t=0.5):
+	actualDCF(pi=0.5,l=0) = 0.04667235186764408
+fusion (pi_t=0.5):
+	actualDCF(pi=0.5,l=0) = 0.03164514729923598
+fusion (pi_t=0.5):
+	actualDCF(pi=0.5,l=0) = 0.021636139191939414
+fusion (pi_t=0.5):
+	actualDCF(pi=0.5,l=0) = 0.031707879592863156
+average actDCF(cal):  0.03166711881678832

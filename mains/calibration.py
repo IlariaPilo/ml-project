@@ -163,7 +163,7 @@ def fusion(XTR, LTR, XTE, LTE, pi_tilde: float):
     # compute the theoretical threashold
     t = -np.log(pi_tilde / (1 - pi_tilde))
 
-    dcfs = np.array([-1])
+    dcfs = np.array([-1.0])
     funcs = []
     for pi_1 in _pi_1:
         print("\t", end='')
@@ -215,9 +215,9 @@ def recalibration_func_fit(XTR, LTR, pi_1, l: float = 0):
 
 if __name__ == '__main__':
     # type of calibration: ["simple", "recalibration_func", "fusion"]
-    _calibration_type = "simple"
+    _calibration_type = "recalibration_func"
     # scores to calibrate
-    _scores = u.vrow(np.load("../scores/GMM_8_tied.npy"))
+    _scores = u.vrow(np.load("../scores/GMM_4_tied.npy"))
     # actual labels of the dataset
     _labels = np.load("../scores/5fold_labels.npy")
     _pi_tilde = [0.5]  # array of pi_tilde to test
@@ -242,6 +242,6 @@ if __name__ == '__main__':
     elif _calibration_type == "fusion":
         # plot for fusion
         S2 = f_s[0](_scores)
-        optimal_decisions.bayes_error_plot([(_scores[0, :].flatten(), "GMM, 8 components", 'b'),
+        optimal_decisions.bayes_error_plot([(_scores[0, :].flatten(), "GMM, 4 components", 'b'),
                                             (_scores[1, :].flatten(), "SVM RBF kernel", 'g'),
-                                            (S2, "Fusion", 'r')], _labels)
+                                            (S2, "Fusion", 'r')], _labels, max_dcf=0.3)
