@@ -21,3 +21,11 @@ recalibration_func (pi_t=0.9): minDCF = 0.07802344676960868, actDCF(uncalibrated
 simple calibration (pi_t=0.1): minDCF = 0.09627124672459354, actDCF(t) = 0.11040377460201901, actualDCF(t_star) = 0.11265175239455481
 simple calibration (pi_t=0.5): minDCF = 0.030132350039874512, actDCF(t) = 0.030132350039874512, actualDCF(t_star) = 0.03176901125100381
 simple calibration (pi_t=0.9): minDCF = 0.08784341403638445, actDCF(t) = 0.10694705720533847, actualDCF(t_star) = 0.10858371841646777
+
+------------ GMM tied 4 simple -----------
+simple calibration (pi_t=0.5): minDCF = 0.02667407613225896, actDCF(t) = 0.028368991386496248, actualDCF(t_star) = 0.03487079744373437
+simple calibration (pi_t=0.5): minDCF = 0.034986208295023045, actDCF(t) = 0.04500845835682877, actualDCF(t_star) = 0.04166400462223506
+simple calibration (pi_t=0.5): minDCF = 0.023854802655723484, actDCF(t) = 0.03164514729923598, actualDCF(t_star) = 0.029826844159743772
+simple calibration (pi_t=0.5): minDCF = 0.018399893237246855, actDCF(t) = 0.02325426216928569, actualDCF(t_star) = 0.02325426216928569
+simple calibration (pi_t=0.5): minDCF = 0.030071218381733864, actDCF(t) = 0.0332834091458518, actualDCF(t_star) = 0.03346680412027376
+average dcfs (minDCF, actDCF(uncal), actDCF(cal))):  [0.02679724 0.03231205 0.03261654]

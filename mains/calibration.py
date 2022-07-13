@@ -6,8 +6,6 @@ import utilities as u
 from sys import stderr
 
 
-# TODO add doc strings
-
 def calibrate(mode, scores, labels, pi_t: float, K: int = None):
     """
     main function for score calibration. It creates the calibration folds, then, depending on the mode,
@@ -100,7 +98,7 @@ def calibration_simple(XTR, LTR, XTE, LTE, pi_t: float):
     # compute the actual DCF using minDCF as threshold
     actualDCF_t_star = optimal_decisions.actual_dcf(testX, LTE, t_star, pi_t)
     print(
-        f"simple calibration (pi_t={pi_t}): minDCF = {minDCF_test}, actDCF(t) = {actualDCF_t}, actualDCF(t_star) = {actualDCF_t_star}")
+        f"simple calibration (pi_tilde={pi_t}): minDCF = {minDCF_test}, actDCF(t) = {actualDCF_t}, actualDCF(t_star) = {actualDCF_t_star}")
 
     return actualDCF_t_star, np.array([minDCF_test, actualDCF_t, actualDCF_t_star])
 
@@ -123,7 +121,7 @@ def recalibration(XTR, LTR, XTE, LTE, pi_tilde: float):
     t = -np.log(pi_tilde / (1 - pi_tilde))
     actualDCF_uncal = optimal_decisions.actual_dcf(testX, LTE, t, pi_tilde)
     print(
-        f"recalibration_func (pi_t={pi_tilde}): minDCF = {minDCF_test}, actDCF(uncalibrated) = {actualDCF_uncal}")
+        f"recalibration_func (pi_tilde={pi_tilde}): minDCF = {minDCF_test}, actDCF(uncalibrated) = {actualDCF_uncal}")
 
     dcfs = np.array([minDCF_test, actualDCF_uncal, -1])
     funcs = []
@@ -176,7 +174,7 @@ def fusion(XTR, LTR, XTE, LTE, pi_tilde: float):
             s_cal = s_cal.flatten()
             # compute atualDCF with theoretical threshold over recalibrated scores
             actualDCF_cal = optimal_decisions.actual_dcf(s_cal, LTE, t, pi_tilde)
-            print(f"actualDCF(pi={pi_1},l={l}) = {actualDCF_cal}\t", end='')
+            print(f"actualDCF(pi_1={pi_1},l={l}) = {actualDCF_cal}\t", end='')
 
             if pi_1 == 0.5 and l == 0:
                 dcfs[0] = actualDCF_cal
@@ -217,10 +215,10 @@ if __name__ == '__main__':
     # type of calibration: ["simple", "recalibration_func", "fusion"]
     _calibration_type = "simple"
     # scores to calibrate
-    _scores = u.vrow(np.load("../scores/GMM_8_tied.npy"))
+    _scores = u.vrow(np.load("../scores/SVM_rbf_4.npy"))
     # actual labels of the dataset
     _labels = np.load("../scores/5fold_labels.npy")
-    _pi_tilde = [0.5]  # array of pi_tilde to test
+    _pi_tilde = [0.1]  # array of pi_tilde to test
     _K = 5  # None, or the number of folds
 
     # recalibration function/fusion settings
@@ -242,6 +240,6 @@ if __name__ == '__main__':
     elif _calibration_type == "fusion":
         # plot for fusion
         S2 = f_s[0](_scores)
-        optimal_decisions.bayes_error_plot([(_scores[0, :].flatten(), "GMM, 8 components", 'b'),
+        optimal_decisions.bayes_error_plot([(_scores[0, :].flatten(), "GMM, 4 components", 'b'),
                                             (_scores[1, :].flatten(), "SVM RBF kernel", 'g'),
                                             (S2, "Fusion", 'r')], _labels)
