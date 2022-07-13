@@ -23,9 +23,14 @@ def calibrate(mode, scores, labels, pi_t: float, K: int = None):
     # we want a single or just a few row vectors stacked on each other
     assert (scores.shape[0] <= scores.shape[1])
 
-    if K is None:
-        # split scores
-        (XTR, LTR), (XTE, LTE) = preprocessing.split_dataset(scores, labels, 80)
+    if K is None or _evaluation:
+        if not _evaluation:
+            # split scores
+            (XTR, LTR), (XTE, LTE) = preprocessing.split_dataset(scores, labels, 80)
+        else:
+            XTR, LTR = scores, labels
+            XTE = _test
+            LTE = np.load("../data/TestL.npy")
 
         # call the right calibration function
         if mode == "simple":
@@ -204,22 +209,23 @@ def recalibration_func_fit(XTR, LTR, pi_1, l: float = 0):
         th = np.log(pi_1 / (1 - pi_1))
         # recalibrate scores
         new_scores = (u.vcol(alpha) * s).sum(axis=0) + beta_prime - th
-        if new_scores.shape[0] == 1:
-            new_scores = new_scores.flatten()
-        return new_scores
+        return new_scores.flatten()
 
     return f_s
 
 
 if __name__ == '__main__':
     # type of calibration: ["simple", "recalibration_func", "fusion"]
-    _calibration_type = "simple"
+    _calibration_type = "recalibration_func"
     # scores to calibrate
     _scores = u.vrow(np.load("../scores/SVM_rbf_4.npy"))
     # actual labels of the dataset
     _labels = np.load("../scores/5fold_labels.npy")
-    _pi_tilde = [0.5]  # array of pi_tilde to test
+    _pi_tilde = [0.5, 0.1, 0.9]  # array of pi_tilde to test
     _K = 5  # None, or the number of folds
+
+    _evaluation = True
+    _test = u.vrow(np.load("../scores/SVM_rbf_evaluation.npy"))
 
     # recalibration function/fusion settings
     _pi_1 = [0.5]  # array of priors (for the logistic regression of the recalibration function f(s))
@@ -230,11 +236,12 @@ if __name__ == '__main__':
     if _calibration_type == "fusion":
         _scores = np.vstack([_scores, _scores_fusion])
     for pi in _pi_tilde:
-        f_s = calibrate(_calibration_type, _scores, _labels, pi, _K)
+        f_s, _ = calibrate(_calibration_type, _scores, _labels, pi, _K)
 
     # draw bayes error plots
     if _calibration_type == "recalibration_func":
         S2 = f_s[0](_scores)
+        np.save('../scores/SVM_calibrated.npy', S2)
         optimal_decisions.bayes_error_plot([(_scores.flatten(), "SVM RBF kernel", 'b'),
                                             (S2, "SVM RBF kernel, calibrated", 'r')], _labels)
     elif _calibration_type == "fusion":
